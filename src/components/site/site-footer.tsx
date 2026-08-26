@@ -38,12 +38,13 @@ export default function SiteFooter() {
           <div className="md:col-span-5">
             <Link href="/" aria-label={`${site.name} home`}>
               <Image
-                src="/watnidea-logo-original.png"
-                alt={`${site.name} logo`}
-                width={180}
-                height={31}
-                className="h-[28px] w-auto sm:h-[31px]"
-              />
+  src="/watnidea-logo-original.png"
+  alt={`${site.name} logo`}
+  width={200}
+  height={49}
+  className="h-[40px] w-auto"
+  loading="lazy"
+/>
             </Link>
             <p className="mt-3 max-w-sm font-editorial text-xl leading-snug text-[#111111]">
               {site.tagline}

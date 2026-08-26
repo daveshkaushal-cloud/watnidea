@@ -119,13 +119,13 @@ export default function SiteHeader({ tone = 'light' }: { tone?: 'light' | 'dark'
           className="flex shrink-0 items-center"
         >
           <Image
-            src="/watnidea-logo-original.png"
-            alt={`${site.name} logo`}
-            width={160}
-            height={27}
-            priority
-            className="h-[27px] w-auto sm:h-[30px] lg:h-[32px]"
-          />
+  src="/watnidea-logo-original.png"
+  alt={`${site.name} logo`}
+  width={180}
+  height={44}
+  priority
+  className="h-[34px] w-auto sm:h-[36px] lg:h-[38px]"
+/>
         </Link>
 
         {/* Desktop nav — lg+ (1024px). Natural width, sits between logo and right cluster. */}

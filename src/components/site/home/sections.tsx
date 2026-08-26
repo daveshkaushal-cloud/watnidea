@@ -78,7 +78,9 @@ export function StatsSection() {
       <Container>
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
-            <SectionLabel number="02" accent="#FFC83D">Our Work in Numbers</SectionLabel>
+            <SectionLabel number="02" accent="#FFC83D">
+  Capabilities Under One Roof
+</SectionLabel>
             <Reveal delay={0.08}>
               <EditorialHeading as="h2" className="mt-4 max-w-[20ch] text-white">
                 What the studio can <Underline>set up, make and measure</Underline>.
