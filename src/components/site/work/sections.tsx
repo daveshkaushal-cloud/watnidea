@@ -26,6 +26,7 @@
  */
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { ArrowUpRight, ArrowRight } from 'lucide-react'
 import {
   Section, Container, SectionLabel, EditorialHeading, Reveal,
@@ -181,106 +182,133 @@ export function WorkIdeas() {
  * ============================================================ */
 const EXPLORATIONS = [
   {
-    title: 'Aura Architecture — Brand Identity System Exploration',
-    capability: 'Brand Identity',
-    accent: '#F13D32',
-    route: '/aura-architecture',
-    cta: 'Explore Service',
-    body: 'A modular identity system created to explore how a brand can feel architectural, confident, and contemporary without becoming cold or overly corporate. The direction combines a distinctive wordmark, structured typography, a focused color system, editorial layouts, and flexible graphic elements that can work across print and digital applications. The exploration demonstrates how one central idea can create consistency across business cards, presentations, social media, signage, brand communications, and digital touchpoints.',
-  },
-  {
-    title: 'The Digital HQ — Marketing Website Architecture',
-    capability: 'Website Development',
-    accent: '#3D5AFE',
+    title: 'Digital Experience',
+    capability: 'Website Design & Development',
+    description:
+      'A responsive website experience combining clear content hierarchy, distinctive visual direction and focused user journeys.',
+    mediaType: 'image',
+    media: '/project-website.webp',
     route: '/the-digital-hq',
-    cta: 'Explore Service',
-    body: 'A responsive marketing website concept built around clear content hierarchy, modular components, confident typography, and focused conversion paths. The exploration considers how a modern business website can guide visitors from initial interest to deeper understanding without overwhelming them with unnecessary information. The concept includes page structure, service presentation, call-to-action placement, responsive behavior, reusable interface components, and a visual system designed to remain consistent across the website.',
+    accent: '#3D5AFE',
   },
   {
-    title: 'The Hype Engine — Social Content System',
-    capability: 'Social Media',
-    accent: '#C8F542',
+    title: 'Brand Transformation',
+    capability: 'Brand Identity & Strategy',
+    description:
+      'A before-and-after brand transformation exploring identity, typography, colour and a more memorable visual presence.',
+    mediaType: 'image',
+    media: '/project-branding.webp',
+    route: '/aura-architecture',
+    accent: '#F13D32',
+  },
+  {
+    title: 'Social Campaign System',
+    capability: 'Social Media Creative',
+    description:
+      'A connected social-media campaign designed to remain recognisable across posts, stories and promotional formats.',
+    mediaType: 'image',
+    media: '/project-social-campaign.webp',
     route: '/the-hype-engine',
-    cta: 'Explore Social Media',
-    body: 'A flexible social media system designed to help a brand remain recognizable while creating content across different topics, formats, and platforms. The exploration includes campaign frames, carousel structures, short-form video covers, announcement posts, educational content, and visual templates that can evolve without losing brand consistency. The goal is to show how social content can feel current and energetic while still belonging to one connected identity.',
+    accent: '#C8F542',
   },
   {
-    title: 'Kinetic Studio — Brand Film Title Sequence',
-    capability: 'Video Production',
-    accent: '#F97316',
-    route: '/kinetic-studio',
-    cta: 'Explore Video Production',
-    body: 'A type-led motion concept exploring how pacing, typography, movement, transitions, sound, and visual rhythm can introduce a brand story. The title sequence is designed to create curiosity before revealing the central message, using motion as a communication tool rather than decoration. This exploration demonstrates how a visual direction can develop from storyboard and style frames into an engaging motion experience.',
-  },
-  {
-    title: 'Growth Alchemy — Performance Campaign Framework',
-    capability: 'Performance Marketing',
-    accent: '#66DFC0',
-    route: '/growth-alchemy',
-    cta: 'Explore Performance Marketing',
-    body: 'A campaign framework designed to connect audience understanding, advertising creative, landing-page messaging, conversion paths, and structured testing. The concept explores how multiple creative variations can communicate one central offer while testing different messages, formats, and calls to action. No performance figures are attached to this exploration. Its purpose is to demonstrate the thinking and structure behind a measurable campaign system.',
-  },
-  {
-    title: 'Synthetic Cinema — AI-Assisted Advertising Concept',
-    capability: 'AI Advertising',
-    accent: '#7657F6',
+    title: 'AI Advertising Campaign',
+    capability: 'AI-Assisted Creative',
+    description:
+      'A human-directed AI advertising showcase combining multiple visual concepts into one fast, cinematic campaign loop.',
+    mediaType: 'video',
+    media: '/watnidea-ai-campaign-loop-1600x1000.mp4',
     route: '/synthetic-cinema',
-    cta: 'Explore AI Advertising',
-    body: 'A human-directed advertising exploration that uses AI-supported tools during visual development, creative variation, storyboarding, and concept testing. The process begins with a clear campaign idea before AI is introduced. Creative judgment, brand consistency, refinement, and final execution remain guided by people. The result demonstrates how AI can support experimentation and production without replacing strategy, originality, or creative direction.',
+    accent: '#7657F6',
   },
-  {
-    title: 'The Echo System — Search Content Network',
-    capability: 'AEO and SEO',
-    accent: '#FFC83D',
-    route: '/the-echo-system',
-    cta: 'Explore AEO and SEO',
-    body: 'A search content concept designed around the questions, problems, and decisions that influence a potential customer’s journey. The exploration connects service pages, useful articles, frequently asked questions, internal links, structured content, and clear answers into one discoverable information system. It demonstrates how content can support both traditional search engines and changing answer-driven search experiences without relying on keyword repetition or low-value pages.',
-  },
-  {
-    title: 'Integrated Digital Campaign System',
-    capability: 'Digital Marketing',
-    accent: '#FF6B62',
-    route: '/digital-marketing',
-    cta: 'Explore Digital Marketing',
-    body: 'A connected digital campaign concept that brings together website experiences, content, social media, search, paid advertising, and conversion-focused communication. Rather than treating every platform as a separate activity, the system is designed around one campaign idea adapted for different audience moments and digital channels. The exploration shows how consistent messaging and creative direction can create a more recognizable journey from first discovery to meaningful action.',
-  },
-]
-
+] as const
+  
 export function WorkExplorations() {
   return (
-    <Section surface="paper" id="selected-work" ariaLabelledBy="work-explorations-heading" className={COMPACT}>
+    <Section
+      surface="paper"
+      id="selected-work"
+      ariaLabelledBy="work-explorations-heading"
+      className={COMPACT}
+    >
       <Container>
-        <SectionLabel number="02" accent={RED}>Selected Creative Explorations</SectionLabel>
+        <SectionLabel number="02" accent={RED}>
+          Selected Work
+        </SectionLabel>
+
         <Reveal delay={0.08}>
-          <EditorialHeading as="h2" id="work-explorations-heading" className="mt-4 max-w-[20ch]">
-            Eight concept <Underline>explorations</Underline>.
+          <EditorialHeading
+            as="h2"
+            id="work-explorations-heading"
+            className="mt-4 max-w-[20ch]"
+          >
+            Four creative <Underline>projects</Underline>.
           </EditorialHeading>
         </Reveal>
+
         <Reveal delay={0.16}>
           <p className="mt-4 max-w-2xl text-base text-[#5D5A54]">
-            The following projects are internal creative explorations designed to demonstrate watNidea’s capabilities, thinking, and visual approach. Each exploration is clearly marked and should not be presented as paid client work or connected to invented business results.
+            A focused selection of digital, branding, social and AI-assisted
+            creative work. Each project demonstrates how one clear idea can
+            become a distinctive visual experience.
           </p>
         </Reveal>
-        <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2">
-          {EXPLORATIONS.map((e, i) => (
-            <Reveal key={e.title} delay={0.24 + i * 0.05}>
-              <article className="flex h-full flex-col gap-3 rounded-[18px] border border-[rgba(16,16,16,0.12)] bg-[#FFFDF8] p-5 transition-all duration-200 hover:border-[rgba(16,16,16,0.20)] hover:shadow-[0_8px_24px_-14px_rgba(16,16,16,0.18)]">
-                {/* Project type label */}
-                <div className="flex items-center gap-2">
-                  <span className="inline-flex items-center rounded-full px-2.5 py-0.5 text-[0.6rem] font-bold uppercase tracking-wider text-white" style={{ background: e.accent }}>
-                    Concept exploration — not client work
-                  </span>
+
+        <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2">
+          {EXPLORATIONS.map((project, index) => (
+            <Reveal key={project.title} delay={0.2 + index * 0.06}>
+              <article className="group flex h-full flex-col overflow-hidden rounded-[22px] border border-[rgba(16,16,16,0.12)] bg-[#FFFDF8] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_40px_-22px_rgba(16,16,16,0.30)]">
+
+                <div className="relative aspect-[16/10] overflow-hidden bg-[#101010]">
+                  {project.mediaType === 'video' ? (
+                    <video
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      preload="metadata"
+                      aria-label="watNidea AI advertising campaign showcase"
+                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                    >
+                      <source src={project.media} type="video/mp4" />
+                    </video>
+                  ) : (
+                    <Image
+                      src={project.media}
+                      alt={`${project.title} project by watNidea`}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                    />
+                  )}
+
+                  <div className="absolute left-4 top-4">
+                    <span
+                      className="inline-flex rounded-full px-3 py-1 text-[0.65rem] font-bold uppercase tracking-wider text-white shadow-sm"
+                      style={{ background: project.accent }}
+                    >
+                      {project.capability}
+                    </span>
+                  </div>
                 </div>
-                {/* Title (H3 per brief) */}
-                <h3 className="font-editorial text-base font-semibold leading-tight text-[#101010]">{e.title}</h3>
-                {/* Capability */}
-                <p className="text-[0.65rem] font-bold uppercase tracking-wider text-[#5D5A54]">Capability: {e.capability}</p>
-                {/* Body */}
-                <p className="text-xs leading-relaxed text-[#5D5A54]">{e.body}</p>
-                {/* CTA */}
-                <Link href={e.route} className="mt-auto inline-flex items-center gap-1 text-[0.65rem] font-bold uppercase tracking-wider hover:underline" style={{ color: e.accent === '#C8F542' || e.accent === '#FFC83D' ? INK : e.accent }}>
-                  {e.cta} <ArrowRight className="h-3 w-3" aria-hidden />
-                </Link>
+
+                <div className="flex flex-1 flex-col p-5 sm:p-6">
+                  <h3 className="font-editorial text-2xl font-semibold leading-tight text-[#101010]">
+                    {project.title}
+                  </h3>
+
+                  <p className="mt-3 text-sm leading-relaxed text-[#5D5A54]">
+                    {project.description}
+                  </p>
+
+                  <Link
+                    href={project.route}
+                    className="mt-5 inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#101010] hover:underline"
+                  >
+                    Explore Project
+                    <ArrowUpRight className="h-4 w-4" aria-hidden />
+                  </Link>
+                </div>
               </article>
             </Reveal>
           ))}
