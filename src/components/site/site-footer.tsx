@@ -38,7 +38,7 @@ export default function SiteFooter() {
           <div className="md:col-span-5">
             <Link href="/" aria-label={`${site.name} home`}>
               <Image
-                src="/watnidea-logo-navbar.png"
+                src="/watnidea-logo-original.png"
                 alt={`${site.name} logo`}
                 width={180}
                 height={31}
