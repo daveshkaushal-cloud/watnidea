@@ -1,0 +1,13 @@
+/**
+ * FAQ data for Aura Architecture (Brand Identity) page — plain data.
+ */
+export const AURA_FAQS = [
+  { q: 'What does a brand identity agency do?', a: 'A brand identity agency creates the visual and strategic system that defines how a business is recognized. This includes logo design, colour palettes, typography, brand messaging, guidelines and the application of the brand across digital and print. The agency connects strategy to design so every choice has a reason.' },
+  { q: 'What is the difference between branding and brand identity?', a: 'Branding is the broad process of building how people perceive your business. Brand identity is the visual and verbal system that expresses that perception — your logo, colours, typography, voice and guidelines. Branding is the strategy; brand identity is the design system that brings it to life.' },
+  { q: 'Why should a small business invest in branding?', a: "A strong brand identity helps a small business look professional, build trust quickly, stand out from competitors, and create a consistent experience across every touchpoint. It's an investment that pays off in recognition, credibility and long-term loyalty." },
+  { q: 'Do you provide branding and strategy services for small businesses?', a: 'Yes. We work with startups, small businesses and growing brands. The engagement scales to fit where you are — from a focused logo and identity package to a complete brand system with strategy, guidelines and applications.' },
+  { q: 'Do you offer visual brand identity services?', a: 'Yes. Visual identity is the core of what we do — logo design, colour palettes, typography, imagery direction, design elements and the guidelines that keep them consistent. We build visual systems that are distinctive, scalable and built to last.' },
+  { q: 'Do you provide packaging design?', a: 'Yes, as part of a brand identity system. We design packaging concepts and dielines that extend the brand into physical products and retail. For complex production requirements, we partner with specialist production studios.' },
+  { q: 'When should a business consider rebranding?', a: "A business should consider rebranding when the current brand no longer reflects what the business does, looks outdated, is inconsistent across platforms, faces stronger competition, or is entering a new market. Rebranding refreshes or repositions the brand to match where the business is now." },
+  { q: 'How long does a branding project take?', a: "A branding project typically takes 4–8 weeks depending on scope — from a focused identity refresh to a complete brand system with strategy, guidelines and applications. We'll give you a clear timeline after the discovery call." },
+]

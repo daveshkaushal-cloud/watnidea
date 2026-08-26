@@ -1,0 +1,506 @@
+'use client'
+
+/**
+ * Work — Creative Portfolio page.
+ * Custom implementation. 8 visible sections + Final CTA.
+ *
+ * Hierarchy (per brief):
+ *   H1: Creative Work Built From Clear Ideas (hero, 1 only)
+ *   H2: Ideas, Built to Be Used
+ *   H2: Selected Creative Explorations (8 H3 concept cards)
+ *   H2: Explore Work by Capability (8 H3 capability links)
+ *   H2: Behind Every Strong Piece of Work (6 H3 process steps)
+ *   H2: Honest Context. Better Case Studies. (3 H3 points)
+ *   H2: Frequently Asked Questions (6 H3 FAQs)
+ *   H2: Let's Create Work Worth Remembering (final CTA)
+ *
+ * Palette: cream paper base, red (#F13D32) primary accent, controlled
+ * service colours (yellow/teal/blue/lime/orange/violet) as concept-card
+ * accents, ink (#101010) for the ONE dark section (process).
+ *
+ * Honesty rules:
+ *   - All 8 concept explorations labelled "Concept exploration — not client work".
+ *   - NO invented clients, metrics, testimonials, awards or results.
+ *   - NO fake revenue/engagement/ranking/conversion/growth figures.
+ *   - Client privacy respected — no unverified client work shown.
+ */
+
+import Link from 'next/link'
+import { ArrowUpRight, ArrowRight } from 'lucide-react'
+import {
+  Section, Container, SectionLabel, EditorialHeading, Reveal,
+  CTAButton, Sticker, Underline, IdeaStamp, FAQAccordion,
+} from '@/components/site/primitives'
+import { WORK_FAQS as FAQS } from '@/lib/work-faq-data'
+
+const RED = '#F13D32'
+const INK = '#101010'
+
+/* Compact section padding override */
+const COMPACT = 'py-10 lg:!py-10'
+const COMPACT_SM = 'py-8 lg:!py-8'
+
+/* ============================================================
+ * S1 — Hero (paper)
+ * H1: "Creative Work Built From Clear Ideas"
+ * ============================================================ */
+export function WorkHero() {
+  return (
+    <Section surface="blue" className="relative overflow-hidden !pt-[calc(72px+2.75rem)] pb-10 sm:!pt-[calc(72px+3.25rem)] sm:pb-12 lg:!pb-10" ariaLabelledBy="work-hero-heading">
+      <div aria-hidden className="pointer-events-none absolute inset-0">
+        <div className="absolute -left-24 top-10 h-[240px] w-[240px] rounded-full opacity-15 blur-[100px]" style={{ background: RED }} />
+        <div className="absolute right-10 top-32 h-[120px] w-[120px] rounded-full opacity-20 blur-[80px]" style={{ background: '#FFC83D' }} />
+      </div>
+      <Container className="relative">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-8">
+          <div className="lg:col-span-7">
+            <Reveal><p className="wn-caption mb-3 text-white">Work · Creative Portfolio</p></Reveal>
+            <Reveal delay={0.08}>
+              <h1 id="work-hero-heading" className="max-w-[18ch] font-editorial text-[clamp(2.25rem,5.5vw,4.5rem)] font-medium leading-[1.02] tracking-[-0.02em] text-white">
+                Creative Work Built From <Underline>Clear</Underline> Ideas
+              </h1>
+            </Reveal>
+            <Reveal delay={0.16}>
+              <p className="mt-5 max-w-xl text-base leading-relaxed text-white opacity-90 sm:text-lg">
+                Explore how watNidea turns strategy, creativity, technology, and communication into distinctive brand identities, digital experiences, content, films, and campaigns.
+              </p>
+            </Reveal>
+            <Reveal delay={0.24}>
+              <p className="mt-4 max-w-xl text-base leading-relaxed text-white opacity-90">
+                A strong portfolio should show more than polished visuals. It should reveal the thinking, structure, and creative decisions that give the work meaning. Every project and concept presented here is clearly identified, so you can understand what was created, why it was created, and how the idea could work in the real world.
+              </p>
+            </Reveal>
+            <Reveal delay={0.32}>
+              <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
+                <a href="#selected-work" className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full bg-[#FFC83D] px-6 py-3 text-sm font-semibold text-[#111111] shadow-[0_3px_0_rgba(0,0,0,0.20)] transition-transform hover:-translate-y-0.5">
+                  Explore Selected Work <ArrowUpRight className="h-4 w-4" aria-hidden />
+                </a>
+                <a href="/book-strategy-call" className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full border border-[rgba(255,255,255,0.40)] bg-transparent px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[rgba(255,255,255,0.10)]">Start Your Project</a>
+              </div>
+            </Reveal>
+          </div>
+          {/* Editorial portfolio visual */}
+          <div className="hidden lg:col-span-5 lg:block">
+            <Reveal delay={0.2}>
+              <div className="relative overflow-hidden rounded-[22px] border border-[rgba(16,16,16,0.16)] bg-[#FFFDF8] p-5 shadow-[0_10px_30px_-18px_rgba(16,16,16,0.25)]">
+                <div className="absolute -right-3 -top-3 z-10"><IdeaStamp label="Work" size={84} color={RED} /></div>
+                <p className="wn-caption text-[#5D5A54]">Creative Direction</p>
+                <div className="mt-3 grid grid-cols-2 gap-2">
+                  {/* Mini portfolio tiles with controlled service colours */}
+                  <div className="aspect-[4/5] rounded-lg p-2" style={{ background: '#F13D32' }}>
+                    <span className="text-[0.5rem] font-bold uppercase tracking-wider text-white">Identity</span>
+                  </div>
+                  <div className="aspect-[4/5] rounded-lg p-2" style={{ background: '#3D5AFE' }}>
+                    <span className="text-[0.5rem] font-bold uppercase tracking-wider text-white">Digital</span>
+                  </div>
+                  <div className="aspect-[4/5] rounded-lg p-2" style={{ background: '#C8F542' }}>
+                    <span className="text-[0.5rem] font-bold uppercase tracking-wider text-[#101010]">Social</span>
+                  </div>
+                  <div className="aspect-[4/5] rounded-lg p-2" style={{ background: '#F97316' }}>
+                    <span className="text-[0.5rem] font-bold uppercase tracking-wider text-white">Film</span>
+                  </div>
+                  <div className="aspect-[4/5] rounded-lg p-2" style={{ background: '#7657F6' }}>
+                    <span className="text-[0.5rem] font-bold uppercase tracking-wider text-white">AI Ads</span>
+                  </div>
+                  <div className="aspect-[4/5] rounded-lg p-2" style={{ background: '#FFC83D' }}>
+                    <span className="text-[0.5rem] font-bold uppercase tracking-wider text-[#101010]">Search</span>
+                  </div>
+                </div>
+                <p className="mt-3 font-editorial text-xs italic text-[#5D5A54]">“What should people understand, feel, remember, or do?”</p>
+                <p className="mt-1 text-[0.55rem] text-center uppercase tracking-wider text-[#5D5A54]">Original visual — illustrative</p>
+              </div>
+              <span aria-hidden className="wn-tape" style={{ left: '50%', top: '-10px', transform: 'translateX(-50%) rotate(-3deg)', background: 'rgba(255,200,61,0.85)' }} />
+            </Reveal>
+          </div>
+        </div>
+      </Container>
+    </Section>
+  )
+}
+
+/* ============================================================
+ * S2 — Ideas, Built to Be Used (sand)
+ * ============================================================ */
+export function WorkIdeas() {
+  return (
+    <Section surface="orange" ariaLabelledBy="work-ideas-heading" className={COMPACT}>
+      <Container>
+        <SectionLabel number="01" accent="#FFC83D">Ideas, Built to Be Used</SectionLabel>
+        <Reveal delay={0.08}>
+          <EditorialHeading as="h2" id="work-ideas-heading" className="mt-4 max-w-[20ch] text-white">
+            Good-looking work is only the <Underline>beginning</Underline>.
+          </EditorialHeading>
+        </Reveal>
+        <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-12 lg:gap-8">
+          <div className="lg:col-span-7">
+            <Reveal delay={0.16}>
+              <p className="text-base leading-relaxed text-white opacity-90">
+                At watNidea, we create ideas that can become practical brand systems, responsive websites, repeatable content formats, focused campaigns, and meaningful experiences.
+              </p>
+            </Reveal>
+            <Reveal delay={0.24}>
+              <p className="mt-4 text-base leading-relaxed text-white opacity-90">
+                Every creative direction starts with a clear question:
+              </p>
+            </Reveal>
+            <Reveal delay={0.3}>
+              <p className="mt-3 rounded-[14px] border-l-4 border-[#FFC83D] bg-[rgba(255,255,255,0.10)] py-3 pl-4 pr-3 font-editorial text-lg font-semibold italic text-white">
+                What should people understand, feel, remember, or do?
+              </p>
+            </Reveal>
+            <Reveal delay={0.36}>
+              <p className="mt-4 text-base leading-relaxed text-white opacity-90">
+                That question helps us connect business goals with creative thinking. It also ensures that every color, typeface, message, layout, interaction, frame, and campaign asset has a reason to exist.
+              </p>
+            </Reveal>
+          </div>
+          <div className="lg:col-span-5">
+            <Reveal delay={0.24}>
+              <div className="rounded-[18px] border border-[rgba(16,16,16,0.12)] bg-[#FFFDF8] p-5">
+                <p className="wn-caption text-[#5D5A54]">The selected work below demonstrates how we approach different creative challenges across:</p>
+                <div className="mt-3 flex flex-wrap gap-1.5">
+                  {['Branding', 'Digital', 'Content', 'Video', 'Advertising', 'Search'].map((tag) => (
+                    <span key={tag} className="inline-flex items-center rounded-full border border-[rgba(16,16,16,0.14)] bg-[#F7F2E8] px-2.5 py-1 text-xs font-medium text-[#101010]">{tag}</span>
+                  ))}
+                </div>
+                <div className="mt-4">
+                  <CTAButton href="/about" variant="secondary" icon={<ArrowUpRight className="h-4 w-4" />} aria-label="Discover our approach">Discover Our Approach</CTAButton>
+                </div>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </Container>
+    </Section>
+  )
+}
+
+/* ============================================================
+ * S3 — Selected Creative Explorations (paper, 8 concept cards)
+ * Each H3 with project type label + capability + description + CTA.
+ * ============================================================ */
+const EXPLORATIONS = [
+  {
+    title: 'Aura Architecture — Brand Identity System Exploration',
+    capability: 'Brand Identity',
+    accent: '#F13D32',
+    route: '/aura-architecture',
+    cta: 'Explore Service',
+    body: 'A modular identity system created to explore how a brand can feel architectural, confident, and contemporary without becoming cold or overly corporate. The direction combines a distinctive wordmark, structured typography, a focused color system, editorial layouts, and flexible graphic elements that can work across print and digital applications. The exploration demonstrates how one central idea can create consistency across business cards, presentations, social media, signage, brand communications, and digital touchpoints.',
+  },
+  {
+    title: 'The Digital HQ — Marketing Website Architecture',
+    capability: 'Website Development',
+    accent: '#3D5AFE',
+    route: '/the-digital-hq',
+    cta: 'Explore Service',
+    body: 'A responsive marketing website concept built around clear content hierarchy, modular components, confident typography, and focused conversion paths. The exploration considers how a modern business website can guide visitors from initial interest to deeper understanding without overwhelming them with unnecessary information. The concept includes page structure, service presentation, call-to-action placement, responsive behavior, reusable interface components, and a visual system designed to remain consistent across the website.',
+  },
+  {
+    title: 'The Hype Engine — Social Content System',
+    capability: 'Social Media',
+    accent: '#C8F542',
+    route: '/the-hype-engine',
+    cta: 'Explore Social Media',
+    body: 'A flexible social media system designed to help a brand remain recognizable while creating content across different topics, formats, and platforms. The exploration includes campaign frames, carousel structures, short-form video covers, announcement posts, educational content, and visual templates that can evolve without losing brand consistency. The goal is to show how social content can feel current and energetic while still belonging to one connected identity.',
+  },
+  {
+    title: 'Kinetic Studio — Brand Film Title Sequence',
+    capability: 'Video Production',
+    accent: '#F97316',
+    route: '/kinetic-studio',
+    cta: 'Explore Video Production',
+    body: 'A type-led motion concept exploring how pacing, typography, movement, transitions, sound, and visual rhythm can introduce a brand story. The title sequence is designed to create curiosity before revealing the central message, using motion as a communication tool rather than decoration. This exploration demonstrates how a visual direction can develop from storyboard and style frames into an engaging motion experience.',
+  },
+  {
+    title: 'Growth Alchemy — Performance Campaign Framework',
+    capability: 'Performance Marketing',
+    accent: '#66DFC0',
+    route: '/growth-alchemy',
+    cta: 'Explore Performance Marketing',
+    body: 'A campaign framework designed to connect audience understanding, advertising creative, landing-page messaging, conversion paths, and structured testing. The concept explores how multiple creative variations can communicate one central offer while testing different messages, formats, and calls to action. No performance figures are attached to this exploration. Its purpose is to demonstrate the thinking and structure behind a measurable campaign system.',
+  },
+  {
+    title: 'Synthetic Cinema — AI-Assisted Advertising Concept',
+    capability: 'AI Advertising',
+    accent: '#7657F6',
+    route: '/synthetic-cinema',
+    cta: 'Explore AI Advertising',
+    body: 'A human-directed advertising exploration that uses AI-supported tools during visual development, creative variation, storyboarding, and concept testing. The process begins with a clear campaign idea before AI is introduced. Creative judgment, brand consistency, refinement, and final execution remain guided by people. The result demonstrates how AI can support experimentation and production without replacing strategy, originality, or creative direction.',
+  },
+  {
+    title: 'The Echo System — Search Content Network',
+    capability: 'AEO and SEO',
+    accent: '#FFC83D',
+    route: '/the-echo-system',
+    cta: 'Explore AEO and SEO',
+    body: 'A search content concept designed around the questions, problems, and decisions that influence a potential customer’s journey. The exploration connects service pages, useful articles, frequently asked questions, internal links, structured content, and clear answers into one discoverable information system. It demonstrates how content can support both traditional search engines and changing answer-driven search experiences without relying on keyword repetition or low-value pages.',
+  },
+  {
+    title: 'Integrated Digital Campaign System',
+    capability: 'Digital Marketing',
+    accent: '#FF6B62',
+    route: '/digital-marketing',
+    cta: 'Explore Digital Marketing',
+    body: 'A connected digital campaign concept that brings together website experiences, content, social media, search, paid advertising, and conversion-focused communication. Rather than treating every platform as a separate activity, the system is designed around one campaign idea adapted for different audience moments and digital channels. The exploration shows how consistent messaging and creative direction can create a more recognizable journey from first discovery to meaningful action.',
+  },
+]
+
+export function WorkExplorations() {
+  return (
+    <Section surface="paper" id="selected-work" ariaLabelledBy="work-explorations-heading" className={COMPACT}>
+      <Container>
+        <SectionLabel number="02" accent={RED}>Selected Creative Explorations</SectionLabel>
+        <Reveal delay={0.08}>
+          <EditorialHeading as="h2" id="work-explorations-heading" className="mt-4 max-w-[20ch]">
+            Eight concept <Underline>explorations</Underline>.
+          </EditorialHeading>
+        </Reveal>
+        <Reveal delay={0.16}>
+          <p className="mt-4 max-w-2xl text-base text-[#5D5A54]">
+            The following projects are internal creative explorations designed to demonstrate watNidea’s capabilities, thinking, and visual approach. Each exploration is clearly marked and should not be presented as paid client work or connected to invented business results.
+          </p>
+        </Reveal>
+        <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2">
+          {EXPLORATIONS.map((e, i) => (
+            <Reveal key={e.title} delay={0.24 + i * 0.05}>
+              <article className="flex h-full flex-col gap-3 rounded-[18px] border border-[rgba(16,16,16,0.12)] bg-[#FFFDF8] p-5 transition-all duration-200 hover:border-[rgba(16,16,16,0.20)] hover:shadow-[0_8px_24px_-14px_rgba(16,16,16,0.18)]">
+                {/* Project type label */}
+                <div className="flex items-center gap-2">
+                  <span className="inline-flex items-center rounded-full px-2.5 py-0.5 text-[0.6rem] font-bold uppercase tracking-wider text-white" style={{ background: e.accent }}>
+                    Concept exploration — not client work
+                  </span>
+                </div>
+                {/* Title (H3 per brief) */}
+                <h3 className="font-editorial text-base font-semibold leading-tight text-[#101010]">{e.title}</h3>
+                {/* Capability */}
+                <p className="text-[0.65rem] font-bold uppercase tracking-wider text-[#5D5A54]">Capability: {e.capability}</p>
+                {/* Body */}
+                <p className="text-xs leading-relaxed text-[#5D5A54]">{e.body}</p>
+                {/* CTA */}
+                <Link href={e.route} className="mt-auto inline-flex items-center gap-1 text-[0.65rem] font-bold uppercase tracking-wider hover:underline" style={{ color: e.accent === '#C8F542' || e.accent === '#FFC83D' ? INK : e.accent }}>
+                  {e.cta} <ArrowRight className="h-3 w-3" aria-hidden />
+                </Link>
+              </article>
+            </Reveal>
+          ))}
+        </div>
+      </Container>
+    </Section>
+  )
+}
+
+/* ============================================================
+ * S4 — Explore Work by Capability (white, 8 capability links)
+ * ============================================================ */
+const CAPABILITIES = [
+  { t: 'Brand Identity', d: 'Create a distinctive and flexible identity through brand strategy, logo design, typography, colors, messaging, guidelines, and creative direction.', href: '/aura-architecture', accent: '#F13D32' },
+  { t: 'Website Development', d: 'Build responsive digital experiences that combine brand identity, content, usability, visual design, and clear conversion paths.', href: '/the-digital-hq', accent: '#3D5AFE' },
+  { t: 'Social Media', d: 'Develop recognizable social content, campaign concepts, platform-specific assets, and visual systems that can evolve with your brand.', href: '/the-hype-engine', accent: '#C8F542' },
+  { t: 'Video Production', d: 'Transform an idea into an engaging visual story through concepts, scripts, storyboards, filming, editing, sound, and motion graphics.', href: '/kinetic-studio', accent: '#F97316' },
+  { t: 'Performance Marketing', d: 'Connect advertising creative with targeting, landing pages, conversion tracking, campaign testing, and ongoing optimization.', href: '/growth-alchemy', accent: '#66DFC0' },
+  { t: 'AI Advertising', d: 'Use AI-supported insights and creative tools to explore ideas, build variations, personalize communication, and develop more informed campaigns.', href: '/synthetic-cinema', accent: '#7657F6' },
+  { t: 'AEO and SEO', d: 'Improve discoverability through useful content, technical improvements, search strategy, structured information, and answer-focused experiences.', href: '/the-echo-system', accent: '#FFC83D' },
+  { t: 'Digital Marketing', d: 'Bring content, social media, search, advertising, websites, and campaigns together through one connected digital strategy.', href: '/digital-marketing', accent: '#FF6B62' },
+]
+
+export function WorkCapabilities() {
+  return (
+    <Section surface="lime" ariaLabelledBy="work-capabilities-heading" className={COMPACT}>
+      <Container>
+        <SectionLabel number="03" accent={RED}>Explore Work by Capability</SectionLabel>
+        <Reveal delay={0.08}>
+          <EditorialHeading as="h2" id="work-capabilities-heading" className="mt-4 max-w-[20ch]">
+            Different projects, <Underline>different</Underline> capabilities.
+          </EditorialHeading>
+        </Reveal>
+        <Reveal delay={0.16}>
+          <p className="mt-4 max-w-2xl text-base text-[#5D5A54]">
+            Some require one focused service, while others benefit from a connected creative team working across multiple touchpoints.
+          </p>
+        </Reveal>
+        <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {CAPABILITIES.map((c, i) => (
+            <Reveal key={c.t} delay={0.24 + i * 0.04}>
+              <Link
+                href={c.href}
+                className="group flex h-full flex-col gap-2 rounded-[14px] border border-[rgba(16,16,16,0.12)] bg-[#F7F2E8] p-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-[rgba(16,16,16,0.20)] hover:shadow-[0_8px_24px_-14px_rgba(16,16,16,0.18)] focus-visible:outline-2 focus-visible:outline-offset-2"
+              >
+                <div className="flex items-center gap-2">
+                  <span className="h-2.5 w-2.5 shrink-0 rounded-full" style={{ background: c.accent }} aria-hidden />
+                  <h3 className="font-editorial text-sm font-semibold leading-tight">{c.t}</h3>
+                  <ArrowUpRight className="ml-auto h-3.5 w-3.5 text-[#5D5A54] transition-colors group-hover:text-[#101010]" aria-hidden />
+                </div>
+                <p className="text-xs leading-relaxed text-[#5D5A54]">{c.d}</p>
+              </Link>
+            </Reveal>
+          ))}
+        </div>
+      </Container>
+    </Section>
+  )
+}
+
+/* ============================================================
+ * S5 — Behind Every Strong Piece of Work (ink — the ONE dark section, process)
+ * 6 process steps.
+ * ============================================================ */
+const PROCESS_STEPS = [
+  { n: '01', t: 'Understand the Context', d: 'We begin by learning about the business, audience, market, competitors, challenges, goals, and practical requirements behind the project.' },
+  { n: '02', t: 'Define the Direction', d: 'We establish the central idea, message, visual language, tone, priorities, and creative principles that will guide the work.' },
+  { n: '03', t: 'Build the Creative System', d: 'We develop the core identity, design, content, interface, film, or campaign components needed to bring the direction to life.' },
+  { n: '04', t: 'Connect Every Touchpoint', d: 'We consider how the idea should adapt across websites, social media, presentations, packaging, advertising, video, and other brand interactions.' },
+  { n: '05', t: 'Refine the Details', d: 'We review typography, messaging, layouts, transitions, interactions, visual consistency, and other details that influence how the work is experienced.' },
+  { n: '06', t: 'Prepare for Real Use', d: 'Final assets are organized and prepared for the formats, platforms, teams, and situations in which they will be used.' },
+]
+
+export function WorkProcess() {
+  return (
+    <Section surface="ink" ariaLabelledBy="work-process-heading" className={COMPACT}>
+      <Container>
+        <SectionLabel number="04" accent="#FFC83D">Behind Every Strong Piece of Work</SectionLabel>
+        <Reveal delay={0.08}>
+          <EditorialHeading as="h2" id="work-process-heading" className="mt-4 max-w-[20ch] text-white">
+            The final visual is <Underline>one part</Underline> of the story.
+          </EditorialHeading>
+        </Reveal>
+        <Reveal delay={0.16}>
+          <p className="mt-4 max-w-2xl text-base text-[rgba(255,255,255,0.82)]">
+            Our process considers what the work needs to communicate, where it will be used, and how it can remain effective as the brand develops.
+          </p>
+        </Reveal>
+        <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {PROCESS_STEPS.map((s, i) => (
+            <Reveal key={s.n} delay={0.24 + i * 0.05}>
+              <div className="relative flex h-full flex-col gap-2 rounded-[16px] border border-[rgba(255,255,255,0.14)] bg-[rgba(255,255,255,0.04)] p-4">
+                <div className="flex items-center gap-2">
+                  <span className="flex h-7 w-7 items-center justify-center rounded-full font-editorial text-xs font-bold text-[#101010]" style={{ background: '#FFC83D' }}>{s.n}</span>
+                  <h3 className="font-editorial text-sm font-semibold text-white">{s.t}</h3>
+                </div>
+                <p className="text-xs leading-relaxed text-[rgba(255,255,255,0.72)]">{s.d}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </Container>
+    </Section>
+  )
+}
+
+/* ============================================================
+ * S6 — Honest Context. Better Case Studies. (sand, 3 points)
+ * ============================================================ */
+const HONESTY_POINTS = [
+  { t: 'Clear Project Labels', d: 'Internal explorations are clearly labelled as concepts. Completed client work will be identified as client work only when that description is accurate and approved.' },
+  { t: 'No Invented Results', d: 'We do not attach imaginary revenue, engagement, ranking, conversion, or growth figures to creative concepts. Results should only be published when they are documented and verified.' },
+  { t: 'Client Privacy Comes First', d: 'Some projects cannot be shared publicly because of confidentiality, commercial sensitivity, or client preference. Work is only published when the appropriate permission has been given.' },
+]
+
+export function WorkHonestContext() {
+  return (
+    <Section surface="violet" ariaLabelledBy="work-honest-heading" className={COMPACT}>
+      <Container>
+        <SectionLabel number="05" accent="#FFC83D">Honest Context. Better Case Studies.</SectionLabel>
+        <Reveal delay={0.08}>
+          <EditorialHeading as="h2" id="work-honest-heading" className="mt-4 max-w-[20ch] text-white">
+            Trust matters in <Underline>creative</Underline> work.
+          </EditorialHeading>
+        </Reveal>
+        <Reveal delay={0.16}>
+          <p className="mt-4 max-w-2xl text-base text-white opacity-90">
+            A portfolio should inspire potential clients without creating a misleading impression.
+          </p>
+        </Reveal>
+        <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-3">
+          {HONESTY_POINTS.map((h, i) => (
+            <Reveal key={h.t} delay={0.24 + i * 0.06}>
+              <div className="flex h-full flex-col gap-2 rounded-[16px] border border-[rgba(255,255,255,0.16)] bg-[rgba(255,255,255,0.06)] p-4">
+                <div className="flex items-center gap-2">
+                  <span className="flex h-6 w-6 items-center justify-center rounded-full font-editorial text-[0.6rem] font-bold text-[#111111]" style={{ background: '#FFC83D' }}>{i + 1}</span>
+                  <h3 className="font-editorial text-sm font-semibold text-white">{h.t}</h3>
+                </div>
+                <p className="text-xs leading-relaxed text-[rgba(255,255,255,0.80)]">{h.d}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </Container>
+    </Section>
+  )
+}
+
+/* ============================================================
+ * S7 — Frequently Asked Questions (paper, accessible accordion)
+ * 6 Q&As.
+ * ============================================================ */
+export function WorkFaq() {
+  return (
+    <Section surface="paper" ariaLabelledBy="work-faq-heading" className={COMPACT}>
+      <Container>
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-12">
+          <div className="lg:col-span-4">
+            <SectionLabel number="06" accent={RED}>Frequently Asked Questions</SectionLabel>
+            <Reveal delay={0.08}>
+              <EditorialHeading as="h2" id="work-faq-heading" className="mt-4">
+                Questions, <Underline>honestly</Underline> answered.
+              </EditorialHeading>
+            </Reveal>
+            <Reveal delay={0.16}>
+              <p className="mt-3 max-w-sm text-sm text-[#5D5A54]">If yours isn&apos;t here, write to us. We&apos;ll answer honestly.</p>
+            </Reveal>
+          </div>
+          <div className="lg:col-span-8">
+            <FAQAccordion items={FAQS} accent={RED} />
+          </div>
+        </div>
+      </Container>
+    </Section>
+  )
+}
+
+/* ============================================================
+ * S8 — Final CTA (red, paper texture)
+ * H2: "Let's Create Work Worth Remembering"
+ * ============================================================ */
+export function WorkFinalCta() {
+  return (
+    <Section surface="red" ariaLabelledBy="work-final-heading" className="relative overflow-hidden py-12 lg:!py-12">
+      <div aria-hidden className="pointer-events-none absolute inset-0">
+        <div className="absolute -right-24 top-0 h-[240px] w-[240px] rounded-full opacity-20 blur-[100px]" style={{ background: INK }} />
+      </div>
+      <Container className="relative">
+        <div className="mx-auto max-w-3xl text-center">
+          <Reveal>
+            <p className="wn-caption mx-auto mb-4 text-[rgba(255,255,255,0.8)]">Start a Project</p>
+          </Reveal>
+          <Reveal delay={0.08}>
+            <h2 id="work-final-heading" className="font-editorial text-[clamp(2.25rem,5vw,4rem)] font-semibold leading-[1.02] tracking-[-0.02em] text-white">
+              Let&apos;s Create Work Worth <Underline>Remembering</Underline>
+            </h2>
+          </Reveal>
+          <Reveal delay={0.16}>
+            <p className="mx-auto mt-5 max-w-xl text-base text-[rgba(255,255,255,0.88)] sm:text-lg">
+              Have a brand idea, digital requirement, campaign, or creative challenge in mind? Let&apos;s turn it into work that feels distinctive, communicates clearly, and gives people a reason to remember your brand.
+            </p>
+          </Reveal>
+          <Reveal delay={0.24}>
+            <p className="mx-auto mt-3 max-w-xl text-base text-[rgba(255,255,255,0.88)]">
+              Whether you need one focused creative service or a complete connected experience, watNidea can help you define the direction and bring it to life.
+            </p>
+          </Reveal>
+          <Reveal delay={0.32}>
+            <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">
+              <CTAButton href="/book-strategy-call" className="bg-[#101010] text-white hover:bg-[#2a2a2a]">Start Your Project</CTAButton>
+              <a
+                href="mailto:hello@watnidea.com"
+                className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full border border-[rgba(255,255,255,0.35)] bg-transparent px-7 py-3 text-sm font-semibold text-white transition-colors hover:bg-[rgba(255,255,255,0.10)]"
+              >
+                Talk to Our Creative Team
+              </a>
+            </div>
+          </Reveal>
+        </div>
+      </Container>
+    </Section>
+  )
+}

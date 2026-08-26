@@ -1,0 +1,15 @@
+/**
+ * FAQ data for Kinetic Studio (Video Production) page — plain data.
+ */
+export const KINETIC_FAQS = [
+  { q: 'What does a video production company do?', a: 'A video production company plans, creates and delivers videos — from concept and script to filming, editing and final export. This includes creative direction, storyboarding, production coordination, editing, motion graphics, sound and colour. The company connects business goals to video content that communicates clearly.' },
+  { q: 'What video production services do you provide?', a: 'We provide brand video production, corporate videos, promotional videos, product videos, social media video content, explainer videos, event video production and video editing with post-production. Each service works on its own or as part of a complete video project.' },
+  { q: 'Do you provide corporate video production?', a: 'Yes. We produce corporate videos — company profiles, interviews, brand films, product demonstrations, training videos and internal communication content. We handle creative direction, editing and post-production in-house, and coordinate filming through trusted production partners when needed.' },
+  { q: 'Do you offer promotional video production?', a: 'Yes. We create promotional videos for products, services, launches, offers and campaigns — designed to work across social media, websites and advertising. Each video is built around the message, the audience and the platform.' },
+  { q: 'What is brand video production?', a: 'Brand video production is the process of creating videos that communicate what a brand stands for — its story, values and personality. These videos go beyond product features to build an emotional connection with the audience through storytelling, visuals and sound.' },
+  { q: 'Do you provide brand video production services?', a: 'Yes. We produce brand videos that tell the brand story, communicate purpose and create a memorable visual experience. We handle concept, script, direction, editing and post-production.' },
+  { q: 'Do you provide promotional video production for businesses?', a: 'Yes. We create promotional videos for businesses of all sizes — from startups launching their first product to established brands running multi-platform campaigns. The scope scales to fit the budget and the goal.' },
+  { q: 'Do you provide corporate video production services?', a: 'Yes. We produce corporate videos for internal and external communication — company profiles, leadership messages, recruitment content, training videos and event coverage. We handle creative direction and post-production in-house.' },
+  { q: 'Can you create videos for social media?', a: 'Yes. We create short-form video content designed for social platforms — reels, stories, carousels and ads. Each format is built to work natively on the platform, not just resized from a longer video.' },
+  { q: 'How long does video production take?', a: 'Video production typically takes 3–8 weeks depending on scope — from a focused social video to a complete brand film with multiple shoot days. We give a clear timeline after the discovery call.' },
+]

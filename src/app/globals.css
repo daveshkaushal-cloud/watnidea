@@ -1,0 +1,683 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-display: var(--font-display);
+  --font-mono: var(--font-geist-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* ============================================================
+   WatNidea — Brand palette + motion system
+   65% light / colourful, 35% dark (charcoal).
+   Charcoal reserved for hero, showreel, selected work,
+   and cinematic moments. About / Process / Insights / FAQ
+   use warm off-white, cream and sand backgrounds.
+   ============================================================ */
+
+:root {
+  /* WatNidea vibrant palette — per creative redesign brief */
+  --wn-paper: #FFF7E9;       /* Warm Paper — calm editorial sections */
+  --wn-ink: #111111;          /* Deep Ink — text and limited dark sections */
+  --wn-red: #F13D32;         /* Signal Red — primary CTA and brand signal */
+  --wn-blue: #3D5AFE;        /* Cobalt Blue — digital, web, interactive */
+  --wn-lime: #C8F542;        /* Acid Lime — social, culture, energetic */
+  --wn-orange: #FF7A1A;      /* Signal Orange — campaign and action */
+  --wn-violet: #7657F6;      /* Electric Violet — AI and experimental */
+  --wn-aqua: #66DFC0;        /* Fresh Aqua — search, information accents */
+  --wn-yellow: #FFC83D;       /* Warm Yellow — Echo System */
+  --wn-teal: #157468;         /* Deep Teal — Growth Alchemy */
+
+  /* Legacy compatibility aliases */
+  --wn-charcoal: var(--wn-ink);
+  --wn-warm-white: var(--wn-paper);
+  --wn-cream: #EFE9DC;
+  --wn-sand: #EAE0D1;
+  --wn-red-soft: #FF6B63;
+  --wn-red-deep: #A8201D;
+  --wn-amber: #F2B544;
+  --wn-body: var(--wn-ink);
+  --wn-muted: #555255;
+
+  /* Semantic surface aliases (default = light theme) */
+  --wn-bg: var(--wn-paper);
+  --wn-fg: var(--wn-ink);
+  --wn-surface: #FFFFFF;
+  --wn-surface-2: var(--wn-cream);
+  --wn-surface-3: var(--wn-sand);
+  --wn-border-subtle: rgba(17, 17, 17, 0.08);
+  --wn-border-strong: rgba(17, 17, 17, 0.16);
+  --wn-accent: var(--wn-red);
+}
+
+/* Dark (charcoal) surface mode — opt-in via .wn-dark wrapper */
+.wn-dark {
+  --wn-bg: var(--wn-charcoal);
+  --wn-fg: #FFFFFF;
+  --wn-surface: #1A1A1A;
+  --wn-surface-2: #232323;
+  --wn-surface-3: #2C2C2C;
+  --wn-border-subtle: rgba(255, 255, 255, 0.10);
+  --wn-border-strong: rgba(255, 255, 255, 0.20);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--wn-bg);
+  color: var(--wn-fg);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-weight: 400;
+}
+
+/* Editorial serif display — for headlines and pull-quotes */
+.font-editorial {
+  font-family: var(--font-editorial), Georgia, 'Times New Roman', serif;
+  font-feature-settings: "liga", "kern";
+}
+
+/* Custom cursor layer: hidden by default (touch / coarse pointers),
+   shown only on fine-pointer (desktop) devices via the media query below.
+   IMPORTANT: this default rule MUST come BEFORE the @media block —
+   same-specificity rules resolve by source order, so the media-query
+   override (display:block) only wins if it appears later in source. */
+.wn-cursor-layer {
+  display: none;
+}
+
+/* Reveal the custom cursor layer on fine-pointer (desktop) devices.
+   IMPORTANT (Task 14-fix-pointer-v2): the native cursor is NEVER hidden.
+   The custom cursor (red dot + white ring) is a visual ENHANCEMENT that
+   trails the native cursor on top — it does NOT REPLACE it. This
+   guarantees the user always has a visible, functional system cursor,
+   even in embedded / iframe / preview-panel contexts where the custom
+   cursor's mousemove listener or motion-value animation may not fire
+   reliably (a failure mode that previously left users with NO visible
+   cursor at all because the native cursor was force-hidden via
+   `cursor: none !important` while the custom layer never rendered).
+   On touch / coarse-pointer devices the layer stays hidden
+   (`display: none` above) and native touch works normally. */
+@media (pointer: fine) {
+  .wn-cursor-layer {
+    display: block;
+  }
+}
+
+/* Selection */
+::selection {
+  background: #e53935;
+  color: #ffffff;
+}
+::-moz-selection {
+  background: #e53935;
+  color: #ffffff;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #141414;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(229,57,53,0.55), rgba(122,20,20,0.5));
+  border-radius: 999px;
+  border: 2px solid #141414;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, rgba(255,90,82,0.7), rgba(229,57,53,0.65));
+}
+
+/* Film grain overlay */
+.wn-grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 60;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: wn-grain-shift 0.6s steps(3) infinite;
+}
+
+@keyframes wn-grain-shift {
+  0% { transform: translate(0, 0); }
+  33% { transform: translate(-2%, 1%); }
+  66% { transform: translate(1%, -2%); }
+  100% { transform: translate(0, 0); }
+}
+
+/* Vignette — softened for layered-neutral background */
+.wn-vignette {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 55;
+  background: radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,0.45) 100%);
+}
+
+/* Chrome text shimmer */
+.wn-chrome-text {
+  background: linear-gradient(
+    100deg,
+    #ffffff 0%,
+    #cfcfcf 20%,
+    #ffffff 40%,
+    #8a8a8a 55%,
+    #ffffff 75%,
+    #cfcfcf 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: wn-chrome-sweep 6s linear infinite;
+}
+
+@keyframes wn-chrome-sweep {
+  to { background-position: 200% center; }
+}
+
+/* Red glow pulse — softened for ambient lighting */
+@keyframes wn-red-pulse {
+  0%, 100% { opacity: 0.35; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.04); }
+}
+
+/* Slow float */
+@keyframes wn-float {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  50% { transform: translateY(-18px) translateX(6px); }
+}
+
+/* Marquee */
+@keyframes wn-marquee {
+  to { transform: translateX(-50%); }
+}
+
+.wn-marquee-track {
+  display: inline-flex;
+  white-space: nowrap;
+  animation: wn-marquee 28s linear infinite;
+}
+
+/* Animated conic spin */
+@keyframes wn-spin-slow {
+  to { transform: rotate(360deg); }
+}
+
+/* Cinema scanning line — used by ScenePreview (synthetic-cinema-section),
+   Navbar service preview, and ServicesSection preview.
+   Animates `top` via CSS @keyframes (NOT Framer Motion) to avoid WAAPI
+   errors when animating layout properties in certain browser/Next.js versions.
+   Uses CSS custom properties --scan-start / --scan-end with fallbacks
+   so different components can set their own range. */
+@keyframes cinema-scanline {
+  0%, 100% { top: var(--scan-start, 8%); }
+  50% { top: var(--scan-end, 92%); }
+}
+
+/* One-way scan line — moves top→bottom then jumps back to start
+   (matches Framer Motion `top: [start, end]` with repeat: Infinity).
+   Used by showcase-gallery + book/services-selector scan bars. */
+@keyframes cinema-scanline-oneway {
+  0% { top: var(--scan-start, -10%); }
+  100% { top: var(--scan-end, 100%); }
+}
+
+/* Falling particle — moves top→bottom while fading in then out
+   (matches Framer Motion `top: ['0%','100%'], opacity: [0,1,0]`).
+   Used by echo/section-7 future-of-search rail particles. */
+@keyframes cinema-scanline-fall {
+  0% { top: var(--scan-start, 0%); opacity: 0; }
+  50% { opacity: 1; }
+  100% { top: var(--scan-end, 100%); opacity: 0; }
+}
+
+/* === Synthetic Cinema — CSS @keyframes replacements for Framer Motion ===
+   These replace `animate={{ keyframe array }} + transition={{ repeat: Infinity }}`
+   patterns that internally call element.animate() (WAAPI) and can throw runtime
+   errors in certain Next.js / browser combinations. CSS keyframes are bulletproof.
+   Uses the individual `scale` CSS property (not `transform: scale()`) where
+   Tailwind translate classes are present, to avoid transform property conflicts. */
+
+/* CinemaAmbient orb 1 — FM: { opacity: [0.5,0.9,0.5], scale: [1,1.14,1] }
+   Uses `scale` (individual CSS prop) not `transform: scale()` because the
+   element has Tailwind -translate-x-1/2 -translate-y-1/2 on `transform`. */
+@keyframes cinema-ambient-1 {
+  0%, 100% { opacity: 0.5; scale: 1; }
+  50% { opacity: 0.9; scale: 1.14; }
+}
+
+/* CinemaAmbient orb 2 — FM: { opacity: [0.3,0.6,0.3] } */
+@keyframes cinema-ambient-2 {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+}
+
+/* RedStreaks light leak — FM: { x: ['-30%','130%'], opacity: [0,1,0] } */
+@keyframes cinema-streak {
+  0% { transform: translateX(-30%); opacity: 0; }
+  50% { opacity: 1; }
+  100% { transform: translateX(130%); opacity: 0; }
+}
+
+/* ScenePreview generative blob 1 — FM: { x: [0,40,0], y: [0,-20,0], scale: [1,1.3,1] } */
+@keyframes cinema-blob-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(40px, -20px) scale(1.3); }
+}
+
+/* ScenePreview generative blob 2 — FM: { x: [0,-30,0], y: [0,15,0] } */
+@keyframes cinema-blob-2 {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(-30px, 15px); }
+}
+
+/* ScenePreview generating frame bars — FM: { opacity: [0.1,0.7,0.1], scaleX: [1,1.5,1] } */
+@keyframes cinema-bar {
+  0%, 100% { opacity: 0.1; transform: scaleX(1); }
+  50% { opacity: 0.7; transform: scaleX(1.5); }
+}
+
+/* ScenePreview wireframe terrain paths — FM: { opacity: [0.3,0.8,0.3] } */
+@keyframes cinema-path {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.8; }
+}
+
+/* REC / rendering blink — FM: { opacity: [1,0.3,1] }
+   Used by ScenePreview REC indicator + section header REC dot. */
+@keyframes cinema-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* CTA tile play button pulse — FM: { scale: [1,1.08,1] } */
+@keyframes cinema-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+
+/* Glow ring border — softened to subtle ambient lighting */
+.wn-glow-ring {
+  box-shadow:
+    0 0 0 1px rgba(229, 57, 53, 0.22),
+    0 0 18px rgba(229, 57, 53, 0.14),
+    inset 0 0 10px rgba(229, 57, 53, 0.06);
+}
+
+/* Utility: thin uppercase tracking — used sparingly, never on body copy */
+.wn-eyebrow {
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--wn-muted);
+}
+.wn-dark .wn-eyebrow { color: rgba(255,255,255,0.6); }
+
+/* Accent text helpers */
+.text-accent { color: var(--wn-accent); }
+.text-muted-fg { color: var(--wn-muted); }
+.wn-dark .text-muted-fg { color: rgba(255,255,255,0.6); }
+
+/* Surface helpers */
+.bg-surface { background-color: var(--wn-surface); }
+.bg-surface-2 { background-color: var(--wn-surface-2); }
+.bg-surface-3 { background-color: var(--wn-surface-3); }
+.bg-app { background-color: var(--wn-bg); }
+.border-subtle { border-color: var(--wn-border-subtle); }
+.border-strong { border-color: var(--wn-border-strong); }
+
+/* Section rhythm */
+.wn-section { padding-top: 5rem; padding-bottom: 5rem; }
+@media (min-width: 768px) { .wn-section { padding-top: 7rem; padding-bottom: 7rem; } }
+
+/* Focus visibility for keyboard users */
+:where(a, button, input, textarea, select, [tabindex]):focus-visible {
+  outline: 2px solid var(--wn-accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Custom scrollbar — adapts to surface */
+.wn-dark ::-webkit-scrollbar-track { background: #141414; }
+
+/* ============================================================
+   EDITORIAL DIGITAL PLAYGROUND — Gen-Z visual language
+   Reusable surface + motif utilities. Token-driven via siteTokens.
+   ============================================================ */
+
+/* Surface helpers — section background + auto text colour */
+.wn-surface-paper { background:#FFF7E9; color:#111111; }
+.wn-surface-sand  { background:#EAE0D1; color:#111111; }
+.wn-surface-white { background:#FFFFFF; color:#111111; }
+.wn-surface-ink   { background:#111111; color:#FFFFFF; }
+.wn-surface-red   { background:#F13D32; color:#FFFFFF; }
+.wn-surface-yellow{ background:#FFC83D; color:#111111; }
+.wn-surface-lime  { background:#C8F542; color:#111111; }
+.wn-surface-blue  { background:#3D5AFE; color:#FFFFFF; }
+.wn-surface-violet{ background:#7657F6; color:#FFFFFF; }
+.wn-surface-teal  { background:#157468; color:#FFFFFF; }
+.wn-surface-mint  { background:#66DFC0; color:#111111; }
+.wn-surface-coral { background:#FF6B62; color:#111111; }
+.wn-surface-orange{ background:#FF7A1A; color:#FFFFFF; }
+.wn-surface-aqua  { background:#66DFC0; color:#111111; }
+/* Soft tint surfaces */
+.wn-surface-blush   { background:#FFE1DC; color:#111111; }
+.wn-surface-bluemist{ background:#E3EAFF; color:#111111; }
+.wn-surface-softmint{ background:#DCF8EE; color:#111111; }
+.wn-surface-lemon   { background:#FFF1B8; color:#111111; }
+.wn-surface-lilac   { background:#E9E4FF; color:#111111; }
+
+/* Muted text helper that adapts to light/dark surfaces */
+.wn-surface-ink .wn-muted,
+.wn-surface-red .wn-muted,
+.wn-surface-blue .wn-muted,
+.wn-surface-violet .wn-muted,
+.wn-surface-teal .wn-muted,
+.wn-surface-orange .wn-muted { color: rgba(255,255,255,0.70); }
+.wn-surface-paper .wn-muted,
+.wn-surface-sand .wn-muted,
+.wn-surface-white .wn-muted,
+.wn-surface-yellow .wn-muted,
+.wn-surface-lime .wn-muted,
+.wn-surface-mint .wn-muted,
+.wn-surface-coral .wn-muted,
+.wn-surface-aqua .wn-muted,
+.wn-surface-blush .wn-muted,
+.wn-surface-bluemist .wn-muted,
+.wn-surface-softmint .wn-muted,
+.wn-surface-lemon .wn-muted,
+.wn-surface-lilac .wn-muted { color: #555255; }
+
+/* Section rhythm (refined) */
+.wn-section { padding-top: 4rem; padding-bottom: 4rem; }
+@media (min-width: 768px) { .wn-section { padding-top: 5rem; padding-bottom: 5rem; } }
+@media (min-width: 1024px) { .wn-section { padding-top: 6rem; padding-bottom: 6rem; } }
+
+/* Focus visibility for keyboard users */
+:where(a, button, input, textarea, select, [tabindex]):focus-visible {
+  outline: 2px solid var(--wn-accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ---- Paper grain — subtle, never distracting ---- */
+.wn-grain-paper {
+  position: relative;
+}
+.wn-grain-paper::after {
+  content: "";
+  position: absolute; inset: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
+}
+
+/* ---- Halftone dot texture (for colour blocks) ---- */
+.wn-halftone {
+  background-image: radial-gradient(rgba(16,16,16,0.18) 1px, transparent 1.4px);
+  background-size: 8px 8px;
+}
+.wn-halftone-light {
+  background-image: radial-gradient(rgba(255,255,255,0.20) 1px, transparent 1.4px);
+  background-size: 8px 8px;
+}
+
+/* ---- Sticker — sticker-like label, tape-friendly ---- */
+.wn-sticker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  background: #FFFDF8;
+  color: #101010;
+  border: 1.5px solid #101010;
+  box-shadow: 0 4px 0 rgba(16,16,16,0.12), 0 8px 16px -8px rgba(16,16,16,0.25);
+  white-space: nowrap;
+  transition: transform 200ms cubic-bezier(0.16,1,0.3,1);
+}
+.wn-sticker:hover { transform: rotate(-2deg) translateY(-1px); }
+.wn-sticker--tilt-l { transform: rotate(-4deg); }
+.wn-sticker--tilt-r { transform: rotate(3deg); }
+
+/* ---- Tape strip (decorative, corner-tape look) ---- */
+.wn-tape {
+  position: absolute;
+  width: 92px; height: 26px;
+  background: rgba(255,200,61,0.85);
+  border-left: 1px dashed rgba(16,16,16,0.15);
+  border-right: 1px dashed rgba(16,16,16,0.15);
+  box-shadow: 0 2px 6px rgba(16,16,16,0.12);
+  opacity: 0.92;
+}
+
+/* ---- Outlined editorial word (for headlines) ---- */
+.wn-outline-text {
+  color: transparent;
+  -webkit-text-stroke: 1.5px currentColor;
+}
+
+/* ---- Underline SVG hand-drawn (applied to <span> wrapper) ---- */
+.wn-underline-hand {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 12' preserveAspectRatio='none'%3E%3Cpath d='M3 7 C 60 2, 120 11, 180 5 S 280 3, 297 6' stroke='%23F13D32' stroke-width='3.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 100% 0.34em;
+  padding-bottom: 0.12em;
+}
+
+/* ---- Idea stamp (rotating seal) ---- */
+.wn-stamp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 2.5px solid currentColor;
+  border-radius: 999px;
+  font-family: var(--font-editorial), serif;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  position: relative;
+  animation: wn-stamp-spin 18s linear infinite;
+}
+@keyframes wn-stamp-spin { to { transform: rotate(360deg); } }
+.wn-stamp--static { animation: none; }
+
+/* ---- Marquee ---- */
+.wn-marquee {
+  display: flex;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+          mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+.wn-marquee__track {
+  display: inline-flex;
+  flex-shrink: 0;
+  gap: 2.5rem;
+  padding-right: 2.5rem;
+  animation: wn-marquee-scroll 28s linear infinite;
+  white-space: nowrap;
+}
+.wn-marquee:hover .wn-marquee__track { animation-play-state: paused; }
+@keyframes wn-marquee-scroll { to { transform: translateX(-100%); } }
+
+/* ---- Card hover depth ---- */
+.wn-card {
+  background: #FFFDF8;
+  border: 1px solid rgba(16,16,16,0.10);
+  border-radius: 22px;
+  box-shadow: 0 1px 0 rgba(16,16,16,0.04), 0 8px 24px -14px rgba(16,16,16,0.18);
+  transition: transform 260ms cubic-bezier(0.16,1,0.3,1), box-shadow 260ms cubic-bezier(0.16,1,0.3,1);
+}
+.wn-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 1px 0 rgba(16,16,16,0.05), 0 18px 40px -16px rgba(16,16,16,0.28);
+}
+
+/* ---- Oversized number (graphical element) ---- */
+.wn-bignum {
+  font-family: var(--font-editorial), serif;
+  font-weight: 700;
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+}
+
+/* ---- Editorial caption (zine-style) ---- */
+.wn-caption {
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #5D5A54;
+  font-weight: 600;
+}
+
+/* ---- Magnetic CTA (desktop pointer only; harmless on touch) ---- */
+.wn-magnetic {
+  transition: transform 220ms cubic-bezier(0.34,1.56,0.64,1);
+}
+
+/* ---- Reduced motion ---- */
+@media (prefers-reduced-motion: reduce) {
+  .wn-grain { animation: none; }
+  .wn-chrome-text { animation: none; }
+  .wn-marquee-track { animation: none; }
+  .wn-marquee__track { animation: none; }
+  .wn-stamp { animation: none; }
+  .wn-card { transition: none; }
+  .wn-sticker { transition: none; }
+  .wn-magnetic { transition: none; }
+}
+
+/* Touch / coarse pointer — disable hover-only flourishes */
+@media (pointer: coarse) {
+  .wn-sticker:hover { transform: none; }
+  .wn-card:hover { transform: none; }
+}
