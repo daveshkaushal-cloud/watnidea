@@ -7,7 +7,6 @@ import {
   ServicesSection,
   PrinciplesSection,
   ProcessSection,
-  AudienceSection,
   WhySection,
   OutcomesSection,
   FaqSection,
@@ -58,7 +57,6 @@ export default function Home() {
         <ServicesSection />
         <PrinciplesSection />
         <ProcessSection />
-        <AudienceSection />
         <WhySection />
         <OutcomesSection />
         <FaqSection />
