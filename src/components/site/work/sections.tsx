@@ -47,70 +47,172 @@ const COMPACT_SM = 'py-8 lg:!py-8'
  * ============================================================ */
 export function WorkHero() {
   return (
-    <Section surface="blue" className="relative overflow-hidden !pt-[calc(72px+2.75rem)] pb-10 sm:!pt-[calc(72px+3.25rem)] sm:pb-12 lg:!pb-10" ariaLabelledBy="work-hero-heading">
-      <div aria-hidden className="pointer-events-none absolute inset-0">
-        <div className="absolute -left-24 top-10 h-[240px] w-[240px] rounded-full opacity-15 blur-[100px]" style={{ background: RED }} />
-        <div className="absolute right-10 top-32 h-[120px] w-[120px] rounded-full opacity-20 blur-[80px]" style={{ background: '#FFC83D' }} />
+    <Section
+      surface="paper"
+      className="relative overflow-hidden !pt-[calc(72px+3rem)] pb-12 sm:!pt-[calc(72px+4rem)] sm:pb-16 lg:pb-20"
+      ariaLabelledBy="work-hero-heading"
+    >
+      {/* Background decoration */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 overflow-hidden"
+      >
+        <div className="absolute -left-24 top-20 h-64 w-64 rounded-full bg-[#FFC83D] opacity-35 blur-[90px]" />
+        <div className="absolute -right-20 bottom-0 h-72 w-72 rounded-full bg-[#F13D32] opacity-15 blur-[110px]" />
+        <div className="absolute right-[38%] top-10 h-32 w-32 rounded-full bg-[#66DFC0] opacity-25 blur-[70px]" />
       </div>
+
       <Container className="relative">
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-8">
-          <div className="lg:col-span-7">
-            <Reveal><p className="wn-caption mb-3 text-white">Work · Creative Portfolio</p></Reveal>
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-10">
+
+          {/* Left content */}
+          <div className="lg:col-span-6">
+            <Reveal>
+              <div className="mb-5 flex flex-wrap items-center gap-3">
+                <span className="inline-flex rotate-[-2deg] rounded-full bg-[#101010] px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-white shadow-[0_3px_0_#F13D32]">
+                  Work · Creative Portfolio
+                </span>
+
+                <span className="text-xs font-medium uppercase tracking-[0.12em] text-[#5D5A54]">
+                  Selected projects and explorations
+                </span>
+              </div>
+            </Reveal>
+
             <Reveal delay={0.08}>
-              <h1 id="work-hero-heading" className="max-w-[18ch] font-editorial text-[clamp(2.25rem,5.5vw,4.5rem)] font-medium leading-[1.02] tracking-[-0.02em] text-white">
-                Creative Work Built From <Underline>Clear</Underline> Ideas
+              <h1
+                id="work-hero-heading"
+                className="max-w-[11ch] font-editorial text-[clamp(3.2rem,6.2vw,6.5rem)] font-medium leading-[0.92] tracking-[-0.045em] text-[#101010]"
+              >
+                Ideas made{' '}
+                <span className="relative inline-block text-[#F13D32]">
+                  visible.
+                  <span
+                    aria-hidden
+                    className="absolute -bottom-2 left-0 h-[7px] w-full rounded-full bg-[#F13D32]"
+                  />
+                </span>
               </h1>
             </Reveal>
+
             <Reveal delay={0.16}>
-              <p className="mt-5 max-w-xl text-base leading-relaxed text-white opacity-90 sm:text-lg">
-                Explore how watNidea turns strategy, creativity, technology, and communication into distinctive brand identities, digital experiences, content, films, and campaigns.
+              <p className="mt-8 max-w-xl text-base leading-relaxed text-[#5D5A54] sm:text-lg">
+                A focused selection of branding, websites, social campaigns
+                and AI-assisted advertising—built from clear ideas and shaped
+                for real-world use.
               </p>
             </Reveal>
+
             <Reveal delay={0.24}>
-              <p className="mt-4 max-w-xl text-base leading-relaxed text-white opacity-90">
-                A strong portfolio should show more than polished visuals. It should reveal the thinking, structure, and creative decisions that give the work meaning. Every project and concept presented here is clearly identified, so you can understand what was created, why it was created, and how the idea could work in the real world.
-              </p>
-            </Reveal>
-            <Reveal delay={0.32}>
-              <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
-                <a href="#selected-work" className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full bg-[#FFC83D] px-6 py-3 text-sm font-semibold text-[#111111] shadow-[0_3px_0_rgba(0,0,0,0.20)] transition-transform hover:-translate-y-0.5">
-                  Explore Selected Work <ArrowUpRight className="h-4 w-4" aria-hidden />
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+                <a
+                  href="#selected-work"
+                  className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-full bg-[#F13D32] px-6 py-3 text-sm font-semibold text-white shadow-[0_4px_0_#101010] transition-transform hover:-translate-y-1"
+                >
+                  Explore Selected Work
+                  <ArrowUpRight className="h-4 w-4" aria-hidden />
                 </a>
-                <a href="/book-strategy-call" className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full border border-[rgba(255,255,255,0.40)] bg-transparent px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[rgba(255,255,255,0.10)]">Start Your Project</a>
+
+                <Link
+                  href="/book-strategy-call"
+                  className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-full border border-[rgba(16,16,16,0.20)] bg-white px-6 py-3 text-sm font-semibold text-[#101010] transition-colors hover:border-[#F13D32] hover:text-[#F13D32]"
+                >
+                  Start Your Project
+                </Link>
+              </div>
+            </Reveal>
+
+            <Reveal delay={0.3}>
+              <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs font-semibold uppercase tracking-wider text-[#5D5A54]">
+                <span>Branding</span>
+                <span className="h-1.5 w-1.5 rounded-full bg-[#F13D32]" />
+                <span>Digital</span>
+                <span className="h-1.5 w-1.5 rounded-full bg-[#3D5AFE]" />
+                <span>Campaigns</span>
+                <span className="h-1.5 w-1.5 rounded-full bg-[#7657F6]" />
+                <span>AI Creative</span>
               </div>
             </Reveal>
           </div>
-          {/* Editorial portfolio visual */}
-          <div className="hidden lg:col-span-5 lg:block">
-            <Reveal delay={0.2}>
-              <div className="relative overflow-hidden rounded-[22px] border border-[rgba(16,16,16,0.16)] bg-[#FFFDF8] p-5 shadow-[0_10px_30px_-18px_rgba(16,16,16,0.25)]">
-                <div className="absolute -right-3 -top-3 z-10"><IdeaStamp label="Work" size={84} color={RED} /></div>
-                <p className="wn-caption text-[#5D5A54]">Creative Direction</p>
-                <div className="mt-3 grid grid-cols-2 gap-2">
-                  {/* Mini portfolio tiles with controlled service colours */}
-                  <div className="aspect-[4/5] rounded-lg p-2" style={{ background: '#F13D32' }}>
-                    <span className="text-[0.5rem] font-bold uppercase tracking-wider text-white">Identity</span>
-                  </div>
-                  <div className="aspect-[4/5] rounded-lg p-2" style={{ background: '#3D5AFE' }}>
-                    <span className="text-[0.5rem] font-bold uppercase tracking-wider text-white">Digital</span>
-                  </div>
-                  <div className="aspect-[4/5] rounded-lg p-2" style={{ background: '#C8F542' }}>
-                    <span className="text-[0.5rem] font-bold uppercase tracking-wider text-[#101010]">Social</span>
-                  </div>
-                  <div className="aspect-[4/5] rounded-lg p-2" style={{ background: '#F97316' }}>
-                    <span className="text-[0.5rem] font-bold uppercase tracking-wider text-white">Film</span>
-                  </div>
-                  <div className="aspect-[4/5] rounded-lg p-2" style={{ background: '#7657F6' }}>
-                    <span className="text-[0.5rem] font-bold uppercase tracking-wider text-white">AI Ads</span>
-                  </div>
-                  <div className="aspect-[4/5] rounded-lg p-2" style={{ background: '#FFC83D' }}>
-                    <span className="text-[0.5rem] font-bold uppercase tracking-wider text-[#101010]">Search</span>
+
+          {/* Right-side portfolio collage */}
+          <div className="lg:col-span-6">
+            <Reveal delay={0.18}>
+              <div className="relative mx-auto max-w-[650px]">
+
+                {/* Main AI campaign video */}
+                <div className="relative aspect-[16/10] overflow-hidden rounded-[26px] border border-[rgba(16,16,16,0.16)] bg-[#101010] shadow-[0_28px_70px_-35px_rgba(16,16,16,0.55)]">
+                  <video
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="metadata"
+                    aria-label="watNidea AI advertising campaign showcase"
+                    className="absolute inset-0 h-full w-full object-cover"
+                  >
+                    <source
+                      src="/watnidea-ai-campaign-loop-1600x1000.mp4"
+                      type="video/mp4"
+                    />
+                  </video>
+
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 to-transparent p-5 pt-16">
+                    <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/75">
+                      AI-Assisted Creative
+                    </p>
+                    <p className="mt-1 font-editorial text-2xl font-semibold text-white">
+                      Ideas in motion
+                    </p>
                   </div>
                 </div>
-                <p className="mt-3 font-editorial text-xs italic text-[#5D5A54]">“What should people understand, feel, remember, or do?”</p>
-                <p className="mt-1 text-[0.55rem] text-center uppercase tracking-wider text-[#5D5A54]">Original visual — illustrative</p>
+
+                {/* Branding image */}
+                <div className="absolute -bottom-12 -left-8 hidden w-[42%] rotate-[-4deg] overflow-hidden rounded-[18px] border-[6px] border-[#FFF7E9] bg-white shadow-[0_18px_45px_-20px_rgba(16,16,16,0.55)] sm:block">
+                  <div className="relative aspect-[16/10]">
+                    <Image
+                      src="/project-branding.webp"
+                      alt="Brand transformation project by watNidea"
+                      fill
+                      sizes="280px"
+                      className="object-cover"
+                    />
+                  </div>
+                </div>
+
+                {/* Website image */}
+                <div className="absolute -right-7 -top-8 hidden w-[38%] rotate-[4deg] overflow-hidden rounded-[18px] border-[6px] border-[#FFF7E9] bg-white shadow-[0_18px_45px_-20px_rgba(16,16,16,0.55)] sm:block">
+                  <div className="relative aspect-[16/10]">
+                    <Image
+                      src="/project-website.webp"
+                      alt="Website project by watNidea"
+                      fill
+                      sizes="260px"
+                      className="object-cover"
+                    />
+                  </div>
+                </div>
+
+                {/* Decorative labels */}
+                <span className="absolute -left-3 top-8 rotate-[-8deg] rounded-full bg-[#C8F542] px-4 py-2 text-xs font-bold uppercase tracking-wider text-[#101010] shadow-[0_3px_0_#101010]">
+                  Built with purpose
+                </span>
+
+                <span className="absolute -bottom-4 right-6 rotate-[3deg] rounded-full bg-[#FFC83D] px-4 py-2 text-xs font-bold uppercase tracking-wider text-[#101010] shadow-[0_3px_0_#101010]">
+                  Strategy × Creativity
+                </span>
+
+                <span
+                  aria-hidden
+                  className="wn-tape"
+                  style={{
+                    left: '44%',
+                    top: '-16px',
+                    transform: 'rotate(-4deg)',
+                    background: 'rgba(255,200,61,0.9)',
+                  }}
+                />
               </div>
-              <span aria-hidden className="wn-tape" style={{ left: '50%', top: '-10px', transform: 'translateX(-50%) rotate(-3deg)', background: 'rgba(255,200,61,0.85)' }} />
             </Reveal>
           </div>
         </div>
