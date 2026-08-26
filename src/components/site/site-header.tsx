@@ -119,7 +119,7 @@ export default function SiteHeader({ tone = 'light' }: { tone?: 'light' | 'dark'
           className="flex shrink-0 items-center"
         >
           <Image
-            src="/watnidea-logo-navbar.png"
+            src="/watnidea-logo-original.png"
             alt={`${site.name} logo`}
             width={160}
             height={27}
