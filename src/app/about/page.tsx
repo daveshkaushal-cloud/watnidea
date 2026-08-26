@@ -385,7 +385,9 @@ const REASONS = [
 
 function AboutWhyChoose() {
   return (
-    <Section surface="lime" ariaLabelledBy="about-why-heading">
+    <Section
+  surface="paper"
+  className="bg-[#F2F7DC]">
       <Container>
         <SectionLabel number="04" accent="#F13D32">Why Businesses Choose watNidea</SectionLabel>
         <Reveal delay={0.08}>
