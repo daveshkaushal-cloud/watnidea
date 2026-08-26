@@ -129,7 +129,7 @@ export function ServicesSection() {
   return (
     <Section surface="lilac" id="services">
       <Container>
-        <SectionLabel number="03" accent="#F13D32">Creative Services</SectionLabel>
+        <SectionLabel number="02" accent="#F13D32">Creative Services</SectionLabel>
         <Reveal delay={0.08}>
           <EditorialHeading as="h2" className="mt-4 max-w-[20ch]">
             Built around <Underline>your brand</Underline>.
@@ -187,7 +187,7 @@ export function PrinciplesSection() {
   return (
     <Section surface="lime">
       <Container>
-        <SectionLabel number="04" accent="#F13D32">Creativity With a Clear Purpose</SectionLabel>
+        <SectionLabel number="03" accent="#F13D32">Creativity With a Clear Purpose</SectionLabel>
         <Reveal delay={0.08}>
           <EditorialHeading as="h2" className="mt-4 max-w-[20ch]">
             Four principles that <Underline>guide</Underline> the work.
@@ -224,7 +224,7 @@ export function ProcessSection() {
   return (
     <Section surface="ink">
       <Container>
-        <SectionLabel number="05" accent="#FFC83D">From First Idea to Final Execution</SectionLabel>
+        <SectionLabel number="04" accent="#FFC83D">From First Idea to Final Execution</SectionLabel>
         <Reveal delay={0.08}>
           <EditorialHeading as="h2" className="mt-4 max-w-[18ch] text-white">
             Five steps. One <Underline>connected</Underline> process.
@@ -295,7 +295,7 @@ export function WhySection() {
   return (
     <Section surface="mint">
       <Container>
-        <SectionLabel number="06" accent="#F13D32">Why Businesses Work With watNidea</SectionLabel>
+        <SectionLabel number="05" accent="#F13D32">Why Businesses Work With watNidea</SectionLabel>
         <Reveal delay={0.08}>
           <EditorialHeading as="h2" className="mt-4 max-w-[20ch]">
             Five reasons brands <Underline>choose</Underline> the studio.
@@ -337,7 +337,7 @@ export function OutcomesSection() {
   return (
     <Section surface="orange">
       <Container>
-        <SectionLabel number="07" accent="#FFC83D">Branding That Connects With People</SectionLabel>
+        <SectionLabel number="06" accent="#FFC83D">Branding That Connects With People</SectionLabel>
         <Reveal delay={0.08}>
           <EditorialHeading as="h2" className="mt-4 max-w-[20ch] text-white">
             Six outcomes the work is <Underline>built for</Underline>.
@@ -385,7 +385,7 @@ export function FaqSection() {
       <Container>
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-12">
           <div className="lg:col-span-4">
-            <SectionLabel number="08" accent="#F13D32">Frequently Asked Questions</SectionLabel>
+            <SectionLabel number="07" accent="#F13D32">Frequently Asked Questions</SectionLabel>
             <Reveal delay={0.08}>
               <EditorialHeading as="h2" className="mt-4">
                 Questions, <Underline>honestly</Underline> answered.

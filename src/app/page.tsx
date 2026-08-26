@@ -3,7 +3,6 @@ import SiteFooter from '@/components/site/site-footer'
 import { HomeHero } from '@/components/site/home/hero'
 import {
   PositioningSection,
-  StatsSection,
   ServicesSection,
   PrinciplesSection,
   ProcessSection,
@@ -53,7 +52,6 @@ export default function Home() {
       <main className="flex-1">
         <HomeHero />
         <PositioningSection />
-        <StatsSection />
         <ServicesSection />
         <PrinciplesSection />
         <ProcessSection />
