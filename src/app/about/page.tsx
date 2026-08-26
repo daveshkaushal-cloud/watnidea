@@ -1,18 +1,31 @@
 import SiteHeader from '@/components/site/site-header'
 import SiteFooter from '@/components/site/site-footer'
-import {
-  PageHero, Section, Container, SectionLabel, EditorialHeading,
-  Reveal, CTAButton, Sticker, Underline, IdeaStamp, EndingCTA,
-} from '@/components/site/primitives'
-import { site } from '@/lib/siteContent'
+import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight, ArrowUpRight } from 'lucide-react'
+import {
+  Section,
+  Container,
+  SectionLabel,
+  EditorialHeading,
+  Reveal,
+  CTAButton,
+  Underline,
+  IdeaStamp,
+  EndingCTA,
+} from '@/components/site/primitives'
+import { site } from '@/lib/siteContent'
 
 /* Helpers */
 function isLightHex(hex: string): boolean {
-  const c = hex.replace('#', ''); if (c.length !== 6) return false
-  const r = parseInt(c.slice(0, 2), 16), g = parseInt(c.slice(2, 4), 16), b = parseInt(c.slice(4, 6), 16)
-  return (0.299 * r + 0.587 * g + 0.114 * b) / 255 > 0.6
+  const color = hex.replace('#', '')
+  if (color.length !== 6) return false
+
+  const red = parseInt(color.slice(0, 2), 16)
+  const green = parseInt(color.slice(2, 4), 16)
+  const blue = parseInt(color.slice(4, 6), 16)
+
+  return (0.299 * red + 0.587 * green + 0.114 * blue) / 255 > 0.6
 }
 
 /* ============================================================
@@ -20,60 +33,172 @@ function isLightHex(hex: string): boolean {
  * ============================================================ */
 function AboutHero() {
   return (
-    <PageHero
-      surface="violet"
-      eyebrow="About watNidea"
-      title={
-        <>
-          Identity With <span style={{ color: '#FFC83D' }}><Underline>Purpose</Underline></span>. Creativity With <span style={{ color: '#FFC83D' }}>Direction</span>
-        </>
-      }
-      subtitle="watNidea is a branding and creative agency built around a simple idea: brands that mean something outlast brands that just look good. We combine strategy, design, content and performance to build brands people recognize, understand and remember."
-      accent="#FFC83D"
+    <Section
+      surface="paper"
+      className="relative overflow-hidden !pt-[calc(72px+3rem)] pb-14 sm:!pt-[calc(72px+4rem)] sm:pb-20"
+      ariaLabelledBy="about-hero-heading"
     >
-      {/* Purpose / Direction identity specimen — desktop only */}
-      <div className="hidden lg:block">
-        <div className="relative overflow-hidden rounded-[22px] border border-[rgba(16,16,16,0.16)] bg-[#FFFDF8] p-5 shadow-[0_10px_30px_-18px_rgba(16,16,16,0.25)]" style={{ maxWidth: '320px' }}>
-          <div className="absolute -right-3 -top-3 z-10"><IdeaStamp label="Purpose" size={84} color="#F13D32" /></div>
-          <p className="wn-caption text-[#5D5A54]">Identity Specimen</p>
-          <p className="mt-1 font-editorial text-2xl font-bold leading-none tracking-tight text-[#101010]">wat<span style={{ color: '#F13D32' }}>N</span>idea</p>
-          <p className="mt-1 text-[0.65rem] uppercase tracking-[0.2em] text-[#5D5A54]">Branding &amp; Creative Agency</p>
-          <div className="my-4 h-px bg-[rgba(16,16,16,0.12)]" />
-          <div className="grid grid-cols-2 gap-2">
-            <div className="rounded-lg border border-[rgba(16,16,16,0.10)] bg-[#F7F2E8] p-3">
-              <span className="font-editorial text-lg font-bold text-[#F13D32]">Purpose</span>
-              <p className="mt-1 text-[0.6rem] text-[#5D5A54]">Why the brand exists</p>
-            </div>
-            <div className="rounded-lg border border-[rgba(16,16,16,0.10)] bg-[#F7F2E8] p-3">
-              <span className="font-editorial text-lg font-bold text-[#3D5AFE]">Direction</span>
-              <p className="mt-1 text-[0.6rem] text-[#5D5A54]">Where it&apos;s going</p>
-            </div>
+      {/* Background atmosphere */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 overflow-hidden"
+      >
+        <div className="absolute -left-20 top-16 h-64 w-64 rounded-full bg-[#FFC83D] opacity-30 blur-[100px]" />
+        <div className="absolute -right-24 bottom-0 h-80 w-80 rounded-full bg-[#F13D32] opacity-15 blur-[120px]" />
+        <div className="absolute right-[35%] top-12 h-40 w-40 rounded-full bg-[#66DFC0] opacity-20 blur-[80px]" />
+      </div>
+
+      <Container className="relative">
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-14">
+
+          {/* Story */}
+          <div className="lg:col-span-6">
+            <Reveal>
+              <div className="mb-6 flex flex-wrap items-center gap-3">
+                <span className="inline-flex rotate-[-2deg] rounded-full bg-[#101010] px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] text-white shadow-[0_3px_0_#F13D32]">
+                  About watNidea
+                </span>
+
+                <span className="text-xs font-semibold uppercase tracking-[0.12em] text-[#5D5A54]">
+                  Strategy × Creativity
+                </span>
+              </div>
+            </Reveal>
+
+            <Reveal delay={0.08}>
+              <h1
+                id="about-hero-heading"
+                className="max-w-[11ch] font-editorial text-[clamp(3.2rem,6vw,6.25rem)] font-medium leading-[0.94] tracking-[-0.045em] text-[#101010]"
+              >
+                We build brands with{' '}
+                <span className="relative inline-block text-[#F13D32]">
+                  meaning.
+                  <span
+                    aria-hidden
+                    className="absolute -bottom-2 left-0 h-[7px] w-full rounded-full bg-[#F13D32]"
+                  />
+                </span>
+              </h1>
+            </Reveal>
+
+            <Reveal delay={0.16}>
+              <p className="mt-8 max-w-xl text-base leading-relaxed text-[#5D5A54] sm:text-lg">
+                watNidea is a branding and creative agency connecting strategy,
+                design, content and growth to build brands people recognise,
+                understand and remember.
+              </p>
+            </Reveal>
+
+            <Reveal delay={0.24}>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <CTAButton
+                  href="/work"
+                  icon={<ArrowUpRight className="h-4 w-4" />}
+                  aria-label="Explore our selected work"
+                >
+                  Explore Our Work
+                </CTAButton>
+
+                <CTAButton
+                  href="/book-strategy-call"
+                  variant="secondary"
+                  icon={<ArrowRight className="h-4 w-4" />}
+                  aria-label="Start a project with watNidea"
+                >
+                  Start Your Project
+                </CTAButton>
+              </div>
+            </Reveal>
+
+            <Reveal delay={0.3}>
+              <div className="mt-8 grid max-w-lg grid-cols-2 gap-3 sm:grid-cols-4">
+                {[
+                  ['01', 'Strategy'],
+                  ['02', 'Identity'],
+                  ['03', 'Digital'],
+                  ['04', 'Growth'],
+                ].map(([number, label]) => (
+                  <div
+                    key={number}
+                    className="rounded-[14px] border border-[rgba(16,16,16,0.12)] bg-white/70 p-3 backdrop-blur-sm"
+                  >
+                    <span className="text-xs font-bold text-[#F13D32]">
+                      {number}
+                    </span>
+                    <p className="mt-1 text-sm font-semibold text-[#101010]">
+                      {label}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </Reveal>
           </div>
-          <div className="mt-3 flex flex-wrap gap-1.5">
-            {['Strategy', 'Identity', 'Digital', 'Content', 'Growth'].map((label) => (
-              <span key={label} className="inline-flex items-center rounded-full border border-[rgba(16,16,16,0.14)] bg-[#FFFDF8] px-2 py-0.5 text-[0.55rem] font-medium text-[#101010]">{label}</span>
-            ))}
-          </div>
-          <div className="mt-3 flex items-center justify-between border-t border-[rgba(16,16,16,0.10)] pt-2">
-            <span className="font-editorial text-[0.65rem] italic text-[#5D5A54]">Identity with Soul. Strategy with Teeth.</span>
+
+          {/* Visual brand story */}
+          <div className="lg:col-span-6">
+            <Reveal delay={0.18}>
+              <div className="relative mx-auto max-w-[620px]">
+
+                <div className="relative aspect-[16/10] overflow-hidden rounded-[26px] border border-[rgba(16,16,16,0.14)] bg-[#101010] shadow-[0_28px_65px_-32px_rgba(16,16,16,0.48)]">
+                  <Image
+                    src="/project-branding.webp"
+                    alt="Brand transformation project demonstrating watNidea's creative approach"
+                    fill
+                    priority
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    className="object-cover"
+                  />
+
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 to-transparent p-5 pt-16">
+                    <p className="text-xs font-bold uppercase tracking-[0.14em] text-white/75">
+                      Identity with purpose
+                    </p>
+                    <p className="mt-1 font-editorial text-2xl font-semibold text-white">
+                      From an idea to a recognisable brand
+                    </p>
+                  </div>
+                </div>
+
+                {/* Floating purpose card */}
+                <div className="absolute -bottom-10 -left-5 hidden max-w-[230px] rotate-[-4deg] rounded-[18px] border-[5px] border-[#FFF7E9] bg-[#F13D32] p-5 text-white shadow-[0_18px_40px_-20px_rgba(16,16,16,0.55)] sm:block">
+                  <p className="text-xs font-bold uppercase tracking-wider text-white/75">
+                    Purpose
+                  </p>
+                  <p className="mt-2 font-editorial text-xl font-semibold leading-tight">
+                    Why the brand should matter.
+                  </p>
+                </div>
+
+                {/* Floating direction card */}
+                <div className="absolute -right-4 -top-8 hidden max-w-[210px] rotate-[4deg] rounded-[18px] border-[5px] border-[#FFF7E9] bg-[#3D5AFE] p-5 text-white shadow-[0_18px_40px_-20px_rgba(16,16,16,0.55)] sm:block">
+                  <p className="text-xs font-bold uppercase tracking-wider text-white/75">
+                    Direction
+                  </p>
+                  <p className="mt-2 font-editorial text-xl font-semibold leading-tight">
+                    Where the idea can go.
+                  </p>
+                </div>
+
+                <span className="absolute -bottom-5 right-8 rotate-[3deg] rounded-full bg-[#C8F542] px-4 py-2 text-xs font-bold uppercase tracking-wider text-[#101010] shadow-[0_3px_0_#101010]">
+                  Identity with soul
+                </span>
+
+                <span
+                  aria-hidden
+                  className="wn-tape"
+                  style={{
+                    left: '46%',
+                    top: '-14px',
+                    transform: 'rotate(-4deg)',
+                    background: 'rgba(255,200,61,0.9)',
+                  }}
+                />
+              </div>
+            </Reveal>
           </div>
         </div>
-      </div>
-
-      {/* Additional intro paragraphs */}
-      <div className="mt-5 max-w-2xl space-y-4">
-        <p className="text-base leading-relaxed text-[#101010] opacity-85">
-          We work with founders, teams and businesses who want more than a logo — they want a brand system that works across identity, websites, content, campaigns and growth. Every project starts with understanding the business and ends with creative work that performs.
-        </p>
-        <p className="text-base leading-relaxed text-[#101010] opacity-85">
-          From first idea to final execution, our process is built to keep strategy and creativity connected — so every design choice has a reason, and every campaign has a direction.
-        </p>
-      </div>
-
-      <div className="mt-7">
-        <CTAButton href="/work" variant="secondary" icon={<ArrowUpRight className="h-4 w-4" />} aria-label="Explore our work">Explore Our Work</CTAButton>
-      </div>
-    </PageHero>
+      </Container>
+    </Section>
   )
 }
 
@@ -124,7 +249,16 @@ function AboutMeaning() {
 /* ============================================================
  * S3 — What We Do (sand, asymmetric capability grid)
  * ============================================================ */
-const CAPABILITIES = [
+type Capability = {
+  n: string
+  t: string
+  d: string
+  href: string | null
+  accent: string
+  subLinks?: Array<{ label: string; href: string }>
+}
+
+const CAPABILITIES: Capability[] = [
   { n: '01', t: 'Brand Identity', d: 'Brand strategy, naming, visual identity, voice and guidelines — built so your brand stays recognizable across every surface.', href: '/aura-architecture', accent: '#F13D32' },
   { n: '02', t: 'Creative Design', d: 'Visual design, art direction, campaign concepts and creative systems that bring the brand to life across formats.', href: '/work', accent: '#FFC83D' },
   { n: '03', t: 'Website & Digital', d: 'Design systems, marketing sites and product interfaces — fast, accessible, conversion-focused and maintainable.', href: '/the-digital-hq', accent: '#3D5AFE' },
