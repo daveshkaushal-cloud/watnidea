@@ -10,11 +10,11 @@
  */
 
 import Link from 'next/link'
-import { useState } from 'react'
+import Image from 'next/image'
 import { ArrowUpRight, ArrowRight } from 'lucide-react'
 import {
   Section, Container, SectionLabel, EditorialHeading, Reveal,
-  CTAButton, Sticker, Underline, IdeaStamp, FAQAccordion,
+  CTAButton, Underline, IdeaStamp, FAQAccordion,
 } from '@/components/site/primitives'
 import { DHQ_FAQS as FAQS } from '@/lib/dhq-faq-data'
 
@@ -22,75 +22,98 @@ import { DHQ_FAQS as FAQS } from '@/lib/dhq-faq-data'
  * S1 — Hero (paper) with responsive-interface visual
  * ============================================================ */
 export function DhqHero() {
-  const [device, setDevice] = useState<'desktop' | 'tablet' | 'mobile'>('desktop')
-  const frames = {
-    desktop: { w: 'w-full max-w-sm', cols: 'grid-cols-3', label: '1440px' },
-    tablet: { w: 'w-44', cols: 'grid-cols-2', label: '768px' },
-    mobile: { w: 'w-28', cols: 'grid-cols-1', label: '375px' },
-  }
-  const f = frames[device]
   return (
-    <Section surface="paper" className="relative overflow-hidden !pt-[calc(72px+2.75rem)] pb-10 sm:!pt-[calc(72px+3.25rem)] sm:pb-16" ariaLabelledBy="dhq-hero-heading">
-      <div aria-hidden className="pointer-events-none absolute inset-0">
-        <div className="absolute -left-24 top-0 h-[240px] w-[240px] rounded-full opacity-12 blur-[100px]" style={{ background: '#3D5AFE' }} />
+    <Section
+      surface="paper"
+      className="relative overflow-hidden !pt-[calc(72px+3rem)] pb-16 sm:!pt-[calc(72px+4rem)] sm:pb-20 lg:pb-24"
+      ariaLabelledBy="dhq-hero-heading"
+    >
+      <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="absolute -left-24 top-16 h-72 w-72 rounded-full bg-[#66DFC0] opacity-30 blur-[105px]" />
+        <div className="absolute -right-20 bottom-0 h-80 w-80 rounded-full bg-[#3D5AFE] opacity-15 blur-[120px]" />
+        <div className="absolute right-[38%] top-10 h-40 w-40 rounded-full bg-[#FFC83D] opacity-20 blur-[85px]" />
       </div>
+
       <Container className="relative">
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-8">
-          <div className="lg:col-span-7">
-            <Reveal><p className="wn-caption mb-3 text-[#3D5AFE]">The Digital HQ · Website Development</p></Reveal>
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-14">
+          <div className="lg:col-span-6">
+            <Reveal>
+              <div className="mb-6 flex flex-wrap items-center gap-3">
+                <span className="inline-flex rotate-[-2deg] rounded-full bg-[#101010] px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] text-white shadow-[0_3px_0_#3D5AFE]">
+                  The Digital HQ
+                </span>
+                <span className="text-xs font-semibold uppercase tracking-[0.12em] text-[#5D5A54]">
+                  Strategy × Design × Development
+                </span>
+              </div>
+            </Reveal>
+
             <Reveal delay={0.08}>
-              <h1 id="dhq-hero-heading" className="max-w-[16ch] font-editorial text-[clamp(2.25rem,5.5vw,4.5rem)] font-medium leading-[1.02] tracking-[-0.02em]">
-                Website Development Agency for <span style={{ color: '#3D5AFE' }}><Underline>Growing</Underline></span> Businesses
+              <h1
+                id="dhq-hero-heading"
+                className="max-w-[11ch] font-editorial text-[clamp(3.15rem,5.8vw,6.1rem)] font-medium leading-[0.94] tracking-[-0.045em] text-[#101010]"
+              >
+                Digital experiences built to{' '}
+                <span className="relative inline-block text-[#3D5AFE]">
+                  move.
+                  <span aria-hidden className="absolute -bottom-2 left-0 h-[7px] w-full rounded-full bg-[#3D5AFE]" />
+                </span>
               </h1>
             </Reveal>
+
             <Reveal delay={0.16}>
-              <p className="mt-5 max-w-xl text-base leading-relaxed text-[#111111] opacity-85 sm:text-lg">
-                A website is the centre of your digital presence. At watNidea, we design and develop websites that combine clear strategy, thoughtful design and reliable technology — built to communicate your value, engage your audience and support your growth.
+              <p className="mt-8 max-w-xl text-base leading-relaxed text-[#5D5A54] sm:text-lg">
+                We design and build clear, distinctive websites that connect brand, content and technology—helping people understand, trust and act.
               </p>
             </Reveal>
+
             <Reveal delay={0.24}>
-              <p className="mt-3 max-w-xl text-base font-medium text-[#111111]">
-                Build a website that represents your brand, engages your customers, and supports your growth.
-              </p>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+                <CTAButton href="/book-strategy-call" style={{ background: '#3D5AFE' }} aria-label="Start your website project">
+                  Start Your Website Project
+                </CTAButton>
+                <CTAButton href="#digital-work" variant="secondary" icon={<ArrowUpRight className="h-4 w-4" />} aria-label="Explore our website work">
+                  See Digital Work
+                </CTAButton>
+              </div>
             </Reveal>
-            <Reveal delay={0.32}>
-              <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
-                <CTAButton href="/book-strategy-call" style={{ background: '#3D5AFE' }} aria-label="Start your website project">Start Your Website Project</CTAButton>
-                <CTAButton href="/work" variant="secondary" icon={<ArrowUpRight className="h-4 w-4" />} aria-label="Explore our work">Explore Our Work</CTAButton>
+
+            <Reveal delay={0.3}>
+              <div className="mt-8 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs font-bold uppercase tracking-wider text-[#5D5A54]">
+                <span>UX</span><span className="h-1.5 w-1.5 rounded-full bg-[#3D5AFE]" />
+                <span>Web Design</span><span className="h-1.5 w-1.5 rounded-full bg-[#66DFC0]" />
+                <span>Development</span><span className="h-1.5 w-1.5 rounded-full bg-[#FFC83D]" />
+                <span>Performance</span>
               </div>
             </Reveal>
           </div>
-          {/* Responsive-interface visual */}
-          <div className="hidden lg:col-span-5 lg:block">
-            <Reveal delay={0.2}>
-              <div className="relative overflow-hidden rounded-[22px] border border-[rgba(17,17,17,0.16)] bg-[#FFFFFF] p-5 shadow-[0_10px_30px_-18px_rgba(17,17,17,0.25)]">
-                <div className="absolute -right-3 -top-3 z-10"><IdeaStamp label="Digital" size={84} color="#3D5AFE" /></div>
-                <p className="wn-caption text-[#555255]">Responsive Preview</p>
-                <div className="mt-3 flex gap-2">
-                  {(['desktop', 'tablet', 'mobile'] as const).map((d) => (
-                    <button key={d} type="button" onClick={() => setDevice(d)} aria-label={`Preview ${d}`} aria-pressed={device === d}
-                      className={`inline-flex min-h-[36px] items-center rounded-full px-3 py-1.5 text-xs font-medium transition-colors ${device === d ? 'bg-[#3D5AFE] text-white' : 'border border-[rgba(17,17,17,0.18)] bg-[#FFF7E9] text-[#111111]'}`}>
-                      {d}
-                    </button>
-                  ))}
-                </div>
-                <div className="mt-3 flex justify-center">
-                  <div className={`rounded-lg border-2 border-[rgba(17,17,17,0.18)] bg-[#FFF7E9] p-2 ${f.w}`}>
-                    <div className="mb-1.5 h-2 rounded bg-[#3D5AFE] opacity-80" />
-                    <div className={`grid ${f.cols} gap-1`}>
-                      {Array.from({ length: device === 'desktop' ? 6 : device === 'tablet' ? 4 : 2 }).map((_, i) => (
-                        <div key={i} className="h-3 rounded bg-[rgba(61,90,254,0.15)]" />
-                      ))}
-                    </div>
-                    <div className="mt-1.5 h-4 rounded bg-[rgba(17,17,17,0.08)]" />
+
+          <div className="lg:col-span-6">
+            <Reveal delay={0.18}>
+              <div className="relative mx-auto max-w-[650px]">
+                <div className="relative aspect-[16/10] overflow-hidden rounded-[26px] border border-[rgba(16,16,16,0.14)] bg-[#101010] shadow-[0_28px_70px_-34px_rgba(16,16,16,0.55)]">
+                  <Image
+                    src="/work/highway-hub-showcase.webp"
+                    alt="Highway Hub website experience designed by watNidea"
+                    fill
+                    priority
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    className="object-cover transition-transform duration-700 hover:scale-[1.02]"
+                  />
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-5 pt-20">
+                    <p className="text-xs font-bold uppercase tracking-[0.14em] text-white/75">Website design & development</p>
+                    <p className="mt-1 font-editorial text-2xl font-semibold text-white">Highway Hub</p>
                   </div>
                 </div>
-                <p className="mt-2 text-center text-[0.6rem] uppercase tracking-wider text-[#555255]">{device} · {f.label}</p>
-                <div className="mt-3 flex items-center justify-between border-t border-[rgba(17,17,17,0.10)] pt-3">
-                  <span className="font-editorial text-xs italic text-[#555255]">Grid · Components · Performance</span>
-                </div>
+
+                <span className="absolute -left-4 top-8 rotate-[-6deg] rounded-full bg-[#C8F542] px-4 py-2 text-xs font-bold uppercase tracking-wider text-[#101010] shadow-[0_3px_0_#101010]">
+                  Real project
+                </span>
+                <span className="absolute -bottom-5 right-8 rotate-[3deg] rounded-full bg-[#FFC83D] px-4 py-2 text-xs font-bold uppercase tracking-wider text-[#101010] shadow-[0_3px_0_#101010]">
+                  Strategy × Experience
+                </span>
+                <span aria-hidden className="wn-tape" style={{ left: '46%', top: '-14px', transform: 'rotate(-4deg)', background: 'rgba(102,223,192,0.9)' }} />
               </div>
-              <span aria-hidden className="wn-tape" style={{ left: '50%', top: '-10px', transform: 'translateX(-50%) rotate(-3deg)', background: 'rgba(61,90,254,0.85)' }} />
             </Reveal>
           </div>
         </div>
@@ -248,7 +271,7 @@ export function DhqServices() {
   return (
     <Section surface="blue" ariaLabelledBy="dhq-services-heading">
       <Container>
-        <SectionLabel number="03" accent="#3D5AFE">Complete Website Design &amp; Development Services</SectionLabel>
+        <SectionLabel number="02" accent="#3D5AFE">Complete Website Design &amp; Development Services</SectionLabel>
         <Reveal delay={0.08}>
           <EditorialHeading as="h2" id="dhq-services-heading" className="mt-4 max-w-[20ch]">
             Nine services across <Underline>three stages</Underline>.
@@ -279,6 +302,81 @@ export function DhqServices() {
               </div>
             </Reveal>
           ))}
+        </div>
+      </Container>
+    </Section>
+  )
+}
+
+/* ============================================================
+ * Selected Digital Work — real project proof
+ * ============================================================ */
+export function DhqSelectedWork() {
+  return (
+    <Section
+      surface="paper"
+      id="digital-work"
+      ariaLabelledBy="dhq-work-heading"
+    >
+      <Container>
+        <SectionLabel number="03" accent="#3D5AFE">Selected Digital Work</SectionLabel>
+        <Reveal delay={0.08}>
+          <EditorialHeading as="h2" id="dhq-work-heading" className="mt-4 max-w-[19ch]">
+            Websites shaped around <Underline>real businesses</Underline>.
+          </EditorialHeading>
+        </Reveal>
+        <Reveal delay={0.16}>
+          <p className="mt-4 max-w-2xl text-base text-[#5D5A54]">
+            Two different businesses, two different challenges—and two digital systems designed around clarity, structure and a stronger experience.
+          </p>
+        </Reveal>
+
+        <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-2">
+          <Reveal delay={0.22}>
+            <article className="group h-full overflow-hidden rounded-[22px] border border-[rgba(16,16,16,0.12)] bg-white shadow-[0_18px_40px_-28px_rgba(16,16,16,0.35)]">
+              <div className="relative aspect-[16/10] overflow-hidden bg-[#101010]">
+                <Image
+                  src="/work/highway-hub-showcase.webp"
+                  alt="Highway Hub website design showcase"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-[1.025]"
+                />
+                <span className="absolute left-4 top-4 rounded-full bg-[#0C3048] px-3 py-1.5 text-[0.65rem] font-bold uppercase tracking-wider text-white">
+                  Digital experience
+                </span>
+              </div>
+              <div className="p-5 sm:p-6">
+                <h3 className="font-editorial text-2xl font-semibold text-[#101010]">Highway Hub</h3>
+                <p className="mt-2 text-sm leading-relaxed text-[#5D5A54]">
+                  A premium digital experience presenting India&apos;s organised highway retail ecosystem through clear storytelling and immersive visual design.
+                </p>
+              </div>
+            </article>
+          </Reveal>
+
+          <Reveal delay={0.3}>
+            <article className="group h-full overflow-hidden rounded-[22px] border border-[rgba(16,16,16,0.12)] bg-white shadow-[0_18px_40px_-28px_rgba(16,16,16,0.35)]">
+              <div className="relative aspect-[16/10] overflow-hidden bg-[#101010]">
+                <Image
+                  src="/work/saransh-website-transformation.webp"
+                  alt="Saransh Raj and Associates website before-and-after transformation"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-[1.025]"
+                />
+                <span className="absolute left-4 top-4 rounded-full bg-[#8C1D35] px-3 py-1.5 text-[0.65rem] font-bold uppercase tracking-wider text-white">
+                  Website transformation
+                </span>
+              </div>
+              <div className="p-5 sm:p-6">
+                <h3 className="font-editorial text-2xl font-semibold text-[#101010]">Saransh Raj &amp; Associates</h3>
+                <p className="mt-2 text-sm leading-relaxed text-[#5D5A54]">
+                  A clearer hierarchy and a more distinctive editorial system designed to make complex legal expertise easier to understand.
+                </p>
+              </div>
+            </article>
+          </Reveal>
         </div>
       </Container>
     </Section>
@@ -445,7 +543,7 @@ export function DhqProcess() {
   return (
     <Section surface="white" ariaLabelledBy="dhq-process-heading">
       <Container>
-        <SectionLabel number="07" accent="#3D5AFE">Website Development Process</SectionLabel>
+        <SectionLabel number="04" accent="#3D5AFE">Website Development Process</SectionLabel>
         <Reveal delay={0.08}>
           <EditorialHeading as="h2" id="dhq-process-heading" className="mt-4 max-w-[18ch]">
             Six steps from brief to <Underline>live</Underline>.
@@ -486,7 +584,7 @@ export function DhqWhyChoose() {
   return (
     <Section surface="bluemist" ariaLabelledBy="dhq-why-heading">
       <Container>
-        <SectionLabel number="08" accent="#3D5AFE">Why Businesses Choose watNidea</SectionLabel>
+        <SectionLabel number="05" accent="#3D5AFE">Why Businesses Choose watNidea</SectionLabel>
         <Reveal delay={0.08}>
           <EditorialHeading as="h2" id="dhq-why-heading" className="mt-4 max-w-[20ch]">
             Six reasons brands <Underline>choose</Underline> the studio.
@@ -624,7 +722,7 @@ export function DhqFaq() {
       <Container>
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-12">
           <div className="lg:col-span-4">
-            <SectionLabel number="12" accent="#3D5AFE">Frequently Asked Questions</SectionLabel>
+            <SectionLabel number="06" accent="#3D5AFE">Frequently Asked Questions</SectionLabel>
             <Reveal delay={0.08}>
               <EditorialHeading as="h2" id="dhq-faq-heading" className="mt-4">
                 Questions, <Underline>honestly</Underline> answered.
