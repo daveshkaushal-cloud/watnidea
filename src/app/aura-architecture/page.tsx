@@ -3,8 +3,13 @@ import SiteFooter from '@/components/site/site-footer'
 import { site, getService } from '@/lib/siteContent'
 import { EndingCTA } from '@/components/site/primitives'
 import {
-  AuraHero, AuraProblems, AuraWhatIs, AuraServices,
-  AuraProcess, AuraWhyChoose, AuraIndustries, AuraFaq,
+  AuraHero,
+  AuraProblems,
+  AuraWhatIs,
+  AuraServices,
+  AuraProcess,
+  AuraWhyChoose,
+  AuraFaq,
 } from '@/components/site/services/aura-architecture/sections'
 import { AURA_FAQS } from '@/lib/aura-faq-data'
 
@@ -50,7 +55,6 @@ export default function AuraArchitecturePage() {
         <AuraServices />
         <AuraProcess />
         <AuraWhyChoose />
-        <AuraIndustries />
         <AuraFaq />
         <EndingCTA
           surface="red"

@@ -19,6 +19,7 @@
  */
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { ArrowUpRight, ArrowRight } from 'lucide-react'
 import {
   Section, Container, SectionLabel, EditorialHeading, Reveal,
@@ -37,70 +38,126 @@ function isLightHex(hex: string): boolean {
  * ============================================================ */
 export function AuraHero() {
   return (
-    <Section surface="red" className="relative overflow-hidden !pt-[calc(72px+2.75rem)] pb-10 sm:!pt-[calc(72px+3.25rem)] sm:pb-16" ariaLabelledBy="aura-hero-heading">
-      <div aria-hidden className="pointer-events-none absolute inset-0">
-        <div className="absolute -left-24 top-0 h-[240px] w-[240px] rounded-full opacity-15 blur-[100px]" style={{ background: '#FF6B62' }} />
+    <Section
+      surface="paper"
+      className="relative overflow-hidden !pt-[calc(72px+3rem)] pb-16 sm:!pt-[calc(72px+4rem)] sm:pb-20 lg:pb-24"
+      ariaLabelledBy="aura-hero-heading"
+    >
+      <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="absolute -left-24 top-16 h-72 w-72 rounded-full bg-[#FFC83D] opacity-30 blur-[105px]" />
+        <div className="absolute -right-20 bottom-0 h-80 w-80 rounded-full bg-[#F13D32] opacity-15 blur-[120px]" />
+        <div className="absolute right-[38%] top-10 h-40 w-40 rounded-full bg-[#66DFC0] opacity-20 blur-[85px]" />
       </div>
+
       <Container className="relative">
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-8">
-          <div className="lg:col-span-7">
-            <Reveal><p className="wn-caption mb-3 text-white">Aura Architecture · Brand Identity</p></Reveal>
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-14">
+          <div className="lg:col-span-6">
+            <Reveal>
+              <div className="mb-6 flex flex-wrap items-center gap-3">
+                <span className="inline-flex rotate-[-2deg] rounded-full bg-[#101010] px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] text-white shadow-[0_3px_0_#F13D32]">
+                  Aura Architecture
+                </span>
+                <span className="text-xs font-semibold uppercase tracking-[0.12em] text-[#5D5A54]">
+                  Brand strategy × Identity
+                </span>
+              </div>
+            </Reveal>
+
             <Reveal delay={0.08}>
-              <h1 id="aura-hero-heading" className="max-w-[16ch] font-editorial text-[clamp(2.25rem,5.5vw,4.5rem)] font-medium leading-[1.02] tracking-[-0.02em] text-white">
-                Brand Identity Agency for <span style={{ color: '#FFC83D' }}><Underline>Memorable</Underline></span> Business Brands
+              <h1
+                id="aura-hero-heading"
+                className="max-w-[10ch] font-editorial text-[clamp(3.25rem,6vw,6.25rem)] font-medium leading-[0.93] tracking-[-0.045em] text-[#101010]"
+              >
+                Brands people{' '}
+                <span className="relative inline-block text-[#F13D32]">
+                  remember.
+                  <span aria-hidden className="absolute -bottom-2 left-0 h-[7px] w-full rounded-full bg-[#F13D32]" />
+                </span>
               </h1>
             </Reveal>
+
             <Reveal delay={0.16}>
-              <p className="mt-5 max-w-xl text-base leading-relaxed text-white opacity-90 sm:text-lg">
-                A brand is more than a logo. It&apos;s how your business is recognized, understood and remembered. At watNidea, we build brand identities that combine strategy, design and storytelling — creating a presence that connects with your audience and stands out in your market.
+              <p className="mt-8 max-w-xl text-base leading-relaxed text-[#5D5A54] sm:text-lg">
+                We turn business ideas into clear, distinctive brand systems—connecting strategy, identity, voice and real-world applications.
               </p>
             </Reveal>
+
             <Reveal delay={0.24}>
-              <p className="mt-3 max-w-xl text-base font-medium text-white">
-                Build a brand people remember with watNidea.
-              </p>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+                <CTAButton href="/book-strategy-call" aria-label="Start your brand project">
+                  Start Your Brand Project
+                </CTAButton>
+                <CTAButton
+                  href="/work"
+                  variant="secondary"
+                  icon={<ArrowUpRight className="h-4 w-4" />}
+                  aria-label="Explore our branding work"
+                >
+                  Explore Our Work
+                </CTAButton>
+              </div>
             </Reveal>
-            <Reveal delay={0.32}>
-              <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
-                <CTAButton href="/book-strategy-call" className="bg-[#111111] text-white hover:bg-[#2a2a2a]" aria-label="Start your brand project">Start Your Brand Project</CTAButton>
-                <CTAButton href="/work" variant="secondary" icon={<ArrowUpRight className="h-4 w-4" />} className="border-white/40 text-white hover:bg-white/10" aria-label="Explore our work">Explore Our Work</CTAButton>
+
+            <Reveal delay={0.3}>
+              <div className="mt-8 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs font-bold uppercase tracking-wider text-[#5D5A54]">
+                <span>Strategy</span>
+                <span className="h-1.5 w-1.5 rounded-full bg-[#F13D32]" />
+                <span>Identity</span>
+                <span className="h-1.5 w-1.5 rounded-full bg-[#3D5AFE]" />
+                <span>Guidelines</span>
+                <span className="h-1.5 w-1.5 rounded-full bg-[#FFC83D]" />
+                <span>Applications</span>
               </div>
             </Reveal>
           </div>
-          {/* Identity-system visual */}
-          <div className="hidden lg:col-span-5 lg:block">
-            <Reveal delay={0.2}>
-              <div className="relative overflow-hidden rounded-[22px] border border-[rgba(17,17,17,0.16)] bg-[#FFFFFF] p-5 shadow-[0_10px_30px_-18px_rgba(17,17,17,0.25)]">
-                <div className="absolute -right-3 -top-3 z-10"><IdeaStamp label="Identity" size={84} color="#F13D32" /></div>
-                <p className="wn-caption text-[#555255]">Identity System</p>
-                {/* Wordmark variations */}
-                <div className="mt-3 space-y-2">
-                  <p className="font-editorial text-3xl font-bold tracking-tight text-[#111111]">wat<span style={{ color: '#F13D32' }}>N</span>idea</p>
-                  <p className="font-editorial text-lg font-medium text-[#555255]">watNidea</p>
-                  <div className="flex items-center gap-1.5"><span className="h-6 w-6 rounded border-2 border-[#F13D32]" aria-hidden /><span className="text-xs text-[#555255]">Mark</span></div>
+
+          <div className="lg:col-span-6">
+            <Reveal delay={0.18}>
+              <div className="relative mx-auto max-w-[620px]">
+                <div className="relative aspect-[16/10] overflow-hidden rounded-[26px] border border-[rgba(16,16,16,0.14)] bg-[#101010] shadow-[0_28px_65px_-32px_rgba(16,16,16,0.52)]">
+                  <Image
+                    src="/project-branding.webp"
+                    alt="Brand identity transformation project by watNidea"
+                    fill
+                    priority
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    className="object-cover transition-transform duration-700 hover:scale-[1.02]"
+                  />
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-5 pt-20">
+                    <p className="text-xs font-bold uppercase tracking-[0.14em] text-white/75">
+                      Brand transformation
+                    </p>
+                    <p className="mt-1 font-editorial text-2xl font-semibold text-white">
+                      Strategy made visible
+                    </p>
+                  </div>
                 </div>
-                <div className="my-4 h-px bg-[rgba(17,17,17,0.12)]" />
-                {/* Colour tokens */}
-                <p className="wn-caption text-[#555255]">Colour tokens</p>
-                <div className="mt-2 flex gap-2">
-                  <span className="h-8 w-8 rounded-lg" style={{ background: '#F13D32' }} aria-hidden />
-                  <span className="h-8 w-8 rounded-lg" style={{ background: '#FF6B62' }} aria-hidden />
-                  <span className="h-8 w-8 rounded-lg" style={{ background: '#111111' }} aria-hidden />
-                  <span className="h-8 w-8 rounded-lg border border-[rgba(17,17,17,0.12)]" style={{ background: '#FFF7E9' }} aria-hidden />
+
+                <div className="absolute -bottom-9 -left-5 hidden max-w-[220px] rotate-[-4deg] rounded-[18px] border-[5px] border-[#FFF7E9] bg-[#F13D32] p-5 text-white shadow-[0_18px_40px_-20px_rgba(16,16,16,0.55)] sm:block">
+                  <p className="text-xs font-bold uppercase tracking-wider text-white/75">Strategy</p>
+                  <p className="mt-2 font-editorial text-xl font-semibold leading-tight">A reason behind every choice.</p>
                 </div>
-                <div className="my-4 h-px bg-[rgba(17,17,17,0.12)]" />
-                {/* Typography samples */}
-                <p className="wn-caption text-[#555255]">Typography</p>
-                <div className="mt-2 flex flex-col gap-1">
-                  <span className="font-editorial text-2xl font-bold leading-none">Aa</span>
-                  <span className="font-editorial text-sm font-medium leading-none">Aa</span>
-                  <span className="text-xs leading-none text-[#555255]">Aa</span>
+
+                <div className="absolute -right-4 -top-8 hidden max-w-[210px] rotate-[4deg] rounded-[18px] border-[5px] border-[#FFF7E9] bg-[#3D5AFE] p-5 text-white shadow-[0_18px_40px_-20px_rgba(16,16,16,0.55)] sm:block">
+                  <p className="text-xs font-bold uppercase tracking-wider text-white/75">Identity</p>
+                  <p className="mt-2 font-editorial text-xl font-semibold leading-tight">A system built to be recognised.</p>
                 </div>
-                <div className="mt-4 flex items-center justify-between border-t border-[rgba(17,17,17,0.10)] pt-3">
-                  <span className="font-editorial text-xs italic text-[#555255]">Strategy · Identity · Guidelines</span>
-                </div>
+
+                <span className="absolute -bottom-5 right-8 rotate-[3deg] rounded-full bg-[#C8F542] px-4 py-2 text-xs font-bold uppercase tracking-wider text-[#101010] shadow-[0_3px_0_#101010]">
+                  Built to be remembered
+                </span>
+
+                <span
+                  aria-hidden
+                  className="wn-tape"
+                  style={{
+                    left: '46%',
+                    top: '-14px',
+                    transform: 'rotate(-4deg)',
+                    background: 'rgba(255,200,61,0.9)',
+                  }}
+                />
               </div>
-              <span aria-hidden className="wn-tape" style={{ left: '50%', top: '-10px', transform: 'translateX(-50%) rotate(-3deg)' }} />
             </Reveal>
           </div>
         </div>
@@ -415,7 +472,7 @@ export function AuraFaq() {
       <Container>
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-12">
           <div className="lg:col-span-4">
-            <SectionLabel number="07" accent="#F13D32">Frequently Asked Questions</SectionLabel>
+            <SectionLabel number="06" accent="#F13D32">Frequently Asked Questions</SectionLabel>
             <Reveal delay={0.08}>
               <EditorialHeading as="h2" id="aura-faq-heading" className="mt-4">
                 Questions, <Underline>honestly</Underline> answered.
