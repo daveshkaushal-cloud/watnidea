@@ -34,7 +34,7 @@
  *     (cursorLabel="Book") with CalendarDays icon.
  *   - Secondary CTA: CyanMagneticButton secondary "See The System".
  *   - Final micro-line: "The Echo System — 07 / 07".
- *   - Contact: hello@watnidea.com (mailto, hover cyan).
+ *   - Contact: info@watnidea.com (mailto, hover cyan).
  *   - Scroll parallax: useScroll on section → contentY/contentOpacity.
  *
  * All hooks declared UNCONDITIONALLY at the TOP of every component
@@ -80,7 +80,7 @@ const subheadline =
   'Your audience is searching, asking, comparing. We make sure they find you — everywhere.'
 const primaryCtaLabel = 'Book Strategy Call'
 const secondaryCtaLabel = 'See The System'
-const contactEmail = 'hello@watnidea.com'
+const contactEmail = 'info@watnidea.com'
 const serviceNumber = 'The Echo System — 07 / 07'
 
 /* ===================================================================

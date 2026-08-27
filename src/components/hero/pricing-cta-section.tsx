@@ -36,9 +36,9 @@ const sectionSub =
   'Three engagement models. One philosophy. Every package is engineered to compound attention into revenue — no retainers wasted, no deliverables orphaned.'
 
 const pricingFootnote =
-  'All engagements include a strategy kickoff, brand audit, and a written growth surface map. Custom retainers available on request — hello@watnidea.com'
+  'All engagements include a strategy kickoff, brand audit, and a written growth surface map. Custom retainers available on request — info@watnidea.com'
 
-const contactEmail = 'hello@watnidea.com'
+const contactEmail = 'info@watnidea.com'
 
 /* ----- Tier data ----- */
 type Tier = {

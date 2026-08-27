@@ -34,7 +34,7 @@
  *   - CTAs: PurpleMagneticButton primary "Book Strategy Call" →
  *     /book-strategy-call + secondary "Explore Our Work" → /work.
  *     Real client-side navigation (no href="#", no no-op onClick).
- *   - Contact: hello@watnidea.com (mailto, hover purple).
+ *   - Contact: info@watnidea.com (mailto, hover purple).
  *   - Meta row: "Creative Growth Agency · Now accepting selected projects ·
  *     Now accepting selected projects".
  *   - Scroll parallax: useScroll on section → contentY/contentOpacity.
@@ -88,7 +88,7 @@ const primaryCtaLabel = 'Book Strategy Call'
 const primaryCtaHref = '/book-strategy-call'
 const secondaryCtaLabel = 'Explore Our Work'
 const secondaryCtaHref = '/work'
-const contactEmail = 'hello@watnidea.com'
+const contactEmail = 'info@watnidea.com'
 const metaItems = [
   'Creative Growth Agency',
   'Now accepting selected projects',

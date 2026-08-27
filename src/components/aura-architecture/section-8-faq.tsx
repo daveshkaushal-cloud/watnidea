@@ -60,7 +60,7 @@ type FaqItem = {
 const faqItems: FaqItem[] = [
   {
     q: 'What\u2019s included in an Aura Architecture engagement?',
-    a: 'All engagements include a strategy kickoff, brand audit, and a written growth surface map. Custom retainers available on request — hello@watnidea.com',
+    a: 'All engagements include a strategy kickoff, brand audit, and a written growth surface map. Custom retainers available on request — info@watnidea.com',
   },
   {
     q: 'How does the strategy call work?',
@@ -286,10 +286,10 @@ export default function AuraFaq() {
           >
             Still curious?{' '}
             <a
-              href="mailto:hello@watnidea.com"
+              href="mailto:info@watnidea.com"
               className="font-medium text-[#E53935] transition-colors duration-300 hover:text-[#ff6b63]"
             >
-              hello@watnidea.com
+              info@watnidea.com
             </a>
           </motion.p>
         </div>

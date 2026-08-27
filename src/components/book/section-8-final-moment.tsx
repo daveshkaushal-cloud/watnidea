@@ -30,7 +30,7 @@
  *   - CTAs: BookingMagneticButton variant="convergence" "Book a
  *     Strategy Call" (cursorLabel="Book") + variant="secondary"
  *     "Explore Our Work" (cursorLabel="Work", onClick → /work).
- *   - Email link: hello@watnidea.com.
+ *   - Email link: info@watnidea.com.
  *   - Meta strip: "Creative Growth Agency" · "Est. 2024 — Studio
  *     Namma" · "Now accepting selected projects".
  *   - Service tag: "Book a Strategy Call — 00 / 07".
@@ -71,7 +71,7 @@ const finalManifesto =
   'We don\u2019t just build brands. We engineer attention, create unforgettable experiences, and design growth systems that turn businesses into category leaders.'
 const primaryCtaLabel = 'Book a Strategy Call'
 const secondaryCtaLabel = 'Explore Our Work'
-const contactEmail = 'hello@watnidea.com'
+const contactEmail = 'info@watnidea.com'
 const metaItems = ['Creative Growth Agency', 'Now accepting selected projects', 'Now accepting selected projects']
 const serviceTag = 'Book a Strategy Call \u2014 00 / 07'
 

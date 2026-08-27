@@ -67,11 +67,11 @@ export function KineticFaq() {
             <Reveal delay={0.24}>
               <div className="mt-6">
                 <CTAButton
-                  href="mailto:hello@watnidea.com"
+                  href="mailto:info@watnidea.com"
                   variant="secondary"
-                  aria-label="Email the studio at hello@watnidea.com"
+                  aria-label="Email the studio at info@watnidea.com"
                 >
-                  hello@watnidea.com
+                  info@watnidea.com
                 </CTAButton>
               </div>
             </Reveal>

@@ -9,7 +9,7 @@ import { site } from '@/lib/siteContent'
  * Section 8 — Final CTA (CHARCOAL — second dark moment)
  *
  * "Let's build something memorable." + Book a Strategy Call button
- * → /book-strategy-call. Secondary "Email us" → mailto:hello@watnidea.com.
+ * → /book-strategy-call. Secondary "Email us" → mailto:info@watnidea.com.
  *
  * Same charcoal surface tokens as the hero, with a quiet red accent
  * glow. No fake metrics, no countdown timer, no dark-pattern urgency.

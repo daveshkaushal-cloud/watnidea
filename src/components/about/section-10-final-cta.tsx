@@ -16,7 +16,7 @@
  *   - Manifesto (curly apostrophe)
  *   - 2 MagneticButtons: primary `Book a Strategy Call` (cursorLabel
  *     `Book`) + secondary `Explore Our Work` (cursorLabel `Explore`)
- *   - Contact mailto `hello@watnidea.com`
+ *   - Contact mailto `info@watnidea.com`
  *   - Meta row: Creative Growth Agency · Now accepting selected projects · Now accepting selected projects
  */
 
@@ -52,7 +52,7 @@ const finalManifesto =
   'We don\u2019t just build brands. We engineer attention, create unforgettable experiences, and design growth systems that turn businesses into category leaders.'
 const primaryCtaLabel = 'Book a Strategy Call'
 const secondaryCtaLabel = 'Explore Our Work'
-const contactEmail = 'hello@watnidea.com'
+const contactEmail = 'info@watnidea.com'
 const metaItems = ['Creative Growth Agency', 'Now accepting selected projects', 'Now accepting selected projects']
 
 /* ===================================================================

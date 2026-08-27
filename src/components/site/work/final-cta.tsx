@@ -19,7 +19,7 @@ export function WorkFinalCta() {
       body="Tell us what you're building — we'll tell you if it's a fit."
       primaryHref="/book-strategy-call"
       primaryLabel="Book a Strategy Call"
-      secondaryHref="mailto:hello@watnidea.com"
+      secondaryHref="mailto:info@watnidea.com"
       secondaryLabel="Email us"
     />
   )

@@ -28,7 +28,7 @@
  *   - Manifesto (verbatim, curly apostrophe in Let's).
  *   - CTAs: GreenMagneticButton primary "Book Strategy Call" + secondary
  *     "Explore Our Work".
- *   - Contact: hello@watnidea.com (mailto, hover emerald).
+ *   - Contact: info@watnidea.com (mailto, hover emerald).
  *   - Meta row: "Creative Growth Agency · Now accepting selected projects ·
  *     Now accepting selected projects".
  *   - Scroll parallax: useScroll on section → contentY/contentOpacity.
@@ -76,7 +76,7 @@ const manifesto =
   'Most agencies run ads. WatNidea builds growth practices — where every rupee has a path, every path has a metric, and every metric becomes visible. Let\u2019s build your growth engine.'
 const primaryCtaLabel = 'Book Strategy Call'
 const secondaryCtaLabel = 'Explore Our Work'
-const contactEmail = 'hello@watnidea.com'
+const contactEmail = 'info@watnidea.com'
 const metaItems = [
   'Creative Growth Agency',
   'Now accepting selected projects',

@@ -328,10 +328,10 @@ export function DhqFaq() {
           >
             Still curious?{' '}
             <a
-              href="mailto:hello@watnidea.com"
+              href="mailto:info@watnidea.com"
               className="text-[#E53935] underline-offset-4 transition-colors duration-300 hover:text-[#ff6b63] hover:underline"
             >
-              hello@watnidea.com
+              info@watnidea.com
             </a>
           </motion.p>
         </div>

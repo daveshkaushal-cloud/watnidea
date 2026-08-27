@@ -622,7 +622,7 @@ export function WorkFinalCta() {
             <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <CTAButton href="/book-strategy-call" className="bg-[#101010] text-white hover:bg-[#2a2a2a]">Start Your Project</CTAButton>
               <a
-                href="mailto:hello@watnidea.com"
+                href="mailto:info@watnidea.com"
                 className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full border border-[rgba(255,255,255,0.35)] bg-transparent px-7 py-3 text-sm font-semibold text-white transition-colors hover:bg-[rgba(255,255,255,0.10)]"
               >
                 Talk to Our Creative Team

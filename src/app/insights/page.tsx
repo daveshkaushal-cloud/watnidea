@@ -77,7 +77,7 @@ export default function InsightsPage() {
           body="Tell us what you're building."
           primaryHref="/book-strategy-call"
           primaryLabel="Book a Strategy Call"
-          secondaryHref="mailto:hello@watnidea.com"
+          secondaryHref="mailto:info@watnidea.com"
           secondaryLabel="Email us"
         />
       </main>

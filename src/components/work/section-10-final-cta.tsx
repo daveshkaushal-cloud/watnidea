@@ -11,7 +11,7 @@
  *   - H2: "Have a project in mind?"
  *   - Subhead
  *   - CTAs: "Book a Strategy Call" (primary → /book-strategy-call) +
- *     "Email us" (secondary → mailto:hello@watnidea.com)
+ *     "Email us" (secondary → mailto:info@watnidea.com)
  *   - Status pill: site.status
  *
  * Reduced-motion: Reveal collapses to a pure opacity fade.

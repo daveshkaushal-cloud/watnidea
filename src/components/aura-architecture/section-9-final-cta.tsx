@@ -20,9 +20,9 @@
  *   - 2 MagneticButtons: primary `Book a Strategy Call` (cursorLabel
  *     `Book`, CalendarDays icon) + secondary `Explore Our Work`
  *     (cursorLabel `Explore`, ArrowUpRight icon)
- *   - Contact mailto `hello@watnidea.com`
+ *   - Contact mailto `info@watnidea.com`
  *   - Meta row: Creative Growth Agency · Now accepting selected projects · Now accepting selected projects
- *
+ *info@watnidea.com
  * Motion: MagneticButton (built-in), cursor-follow (EnergySphere + dynamic
  * lighting overlay), MaskLine motion typography, content parallax fade as
  * you scroll past (useScroll contentY + contentOpacity).
@@ -57,7 +57,7 @@ const finalManifesto =
   'We don\u2019t just build brands. We engineer attention, create unforgettable experiences, and design growth systems that turn businesses into category leaders.'
 const primaryCtaLabel = 'Book a Strategy Call'
 const secondaryCtaLabel = 'Explore Our Work'
-const contactEmail = 'hello@watnidea.com'
+const contactEmail = 'info@watnidea.com'
 const metaItems = ['Creative Growth Agency', 'Now accepting selected projects', 'Now accepting selected projects']
 
 /* ===================================================================

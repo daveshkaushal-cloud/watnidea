@@ -29,7 +29,7 @@
  *     systems that turn businesses into category leaders."
  *   - CTAs: MagneticButton primary "Book Strategy Call" + secondary
  *     "Explore Our Work".
- *   - Contact: hello@watnidea.com (mailto, hover red).
+ *   - Contact: info@watnidea.com (mailto, hover red).
  *   - Meta row: "Creative Growth Agency · Now accepting selected projects ·
  *     Now accepting selected projects".
  *   - Scroll parallax: useScroll on section → contentY/contentOpacity.
@@ -77,7 +77,7 @@ const manifesto =
   'We don\u2019t just build brands. We engineer attention, create unforgettable experiences, and design growth systems that turn businesses into category leaders.'
 const primaryCtaLabel = 'Book Strategy Call'
 const secondaryCtaLabel = 'Explore Our Work'
-const contactEmail = 'hello@watnidea.com'
+const contactEmail = 'info@watnidea.com'
 const metaItems = [
   'Creative Growth Agency',
   'Now accepting selected projects',

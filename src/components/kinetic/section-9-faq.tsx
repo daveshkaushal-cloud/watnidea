@@ -338,10 +338,10 @@ export function KineticFaq() {
           >
             Still curious?{' '}
             <a
-              href="mailto:hello@watnidea.com"
+              href="mailto:info@watnidea.com"
               className="text-[#F97316] underline-offset-4 transition-colors duration-300 hover:text-[#fdba74] hover:underline"
             >
-              hello@watnidea.com
+              info@watnidea.com
             </a>
           </motion.p>
         </div>

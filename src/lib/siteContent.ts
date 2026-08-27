@@ -21,11 +21,15 @@ export const site = {
   description: 'Creative Growth Agency',
   longDescription:
     'watNidea is a creative growth agency. We build brand identities, websites, content systems and performance campaigns — engineered to be memorable and to convert.',
-  email: 'hello@watnidea.com',
+  email: 'info@watnidea.com',
+address:
+  '2nd Floor, G-283, G Block, Sector 63, Noida, Chotpur, Uttar Pradesh 201309',
+mapsUrl:
+  'https://maps.google.com/maps?vet=10CAAQoqAOahcKEwiQwOKQ3MCWAxUAAAAAHQAAAAAQCg..i&mstk=AUtExfDta55YsPbneSruIkc1Asce1Qz1tO6UQFTr-LVtWK9ULeX98u_eCF6ygpPkX0TKidYdT2PwANxEWWu4zx5qjRITaaxy97yQf6RTurirGDKwutTe5dIJctV_5DV_fooGXZTgc5zA426uPKJfSkbOqxQGb_0sDQDdT8yQvOGFIMhz3Tc&pvq=Cg0vZy8xMXl3XzNxeXhogAEBkAEB&fvr=1&cs=0&um=1&ie=UTF-8&fb=1&gl=in&sa=X&ftid=0x390cef19454659d3:0xe66134d0fd05605d',
   // Owner must provide real social URLs before these become live links.
   social: {
-    instagram: '',
-    linkedin: '',
+    instagram: 'https://www.instagram.com/watnidea?igsi=MTM0YW9wYWlndW51Yw==',
+    linkedin: 'https://www.linkedin.com/company/watnidea/',
     behance: '',
   },
   status: 'Now accepting selected projects',

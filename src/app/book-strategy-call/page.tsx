@@ -15,7 +15,7 @@
  *
  * Honesty:
  *   - NO invented email, phone, address, office, availability or response time.
- *   - Only verified contact info shown (hello@watnidea.com confirmed).
+ *   - Only verified contact info shown (info@watnidea.com confirmed).
  *   - Phone + Location hidden (not verified).
  *   - NO "free", "guaranteed" or specific-time call claims.
  *   - Success shown only after confirmed DB delivery.

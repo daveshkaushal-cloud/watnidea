@@ -342,10 +342,10 @@ export function SynthFaq() {
           >
             Still curious?{' '}
             <a
-              href="mailto:hello@watnidea.com"
+              href="mailto:info@watnidea.com"
               className="text-[#8B5CF6] underline-offset-4 transition-colors duration-300 hover:text-[#a78bfa] hover:underline"
             >
-              hello@watnidea.com
+              info@watnidea.com
             </a>
           </motion.p>
         </div>

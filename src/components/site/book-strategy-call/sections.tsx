@@ -11,7 +11,7 @@
  *
  * Honesty rules:
  *   - NO invented email, phone, address, office, availability or response time.
- *   - Only verified contact info shown (hello@watnidea.com confirmed).
+ *   - Only verified contact info shown (info@watnidea.com confirmed).
  *   - Phone + Location hidden (not verified).
  *   - NO "free", "guaranteed" or specific-time call claims.
  *   - Success shown only after confirmed DB delivery.
@@ -204,7 +204,7 @@ export function BookWhyConversation() {
 
 /* ============================================================
  * S6 — Direct Contact Information (paper, email-only card)
- * Only verified info: hello@watnidea.com. Phone + Location hidden.
+ * Only verified info: info@watnidea.com. Phone + Location hidden.
  * ============================================================ */
 export function BookDirectContact() {
   return (

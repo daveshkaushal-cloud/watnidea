@@ -30,7 +30,7 @@
  *   - CTAs: MagneticButton primary "Book Strategy Call" (cursorLabel "Book",
  *     CalendarDays icon) + MagneticButton secondary "Explore Our Work"
  *     (cursorLabel "Explore", ArrowUpRight icon).
- *   - Contact: hello@watnidea.com (mailto link, hover red).
+ *   - Contact: info@watnidea.com (mailto link, hover red).
  *   - Meta row: "Creative Growth Agency" · "Now accepting selected projects" ·
  *     "Now accepting selected projects" (wn-eyebrow, white/35, middot separators).
  *
@@ -66,7 +66,7 @@ const finalManifesto =
   'We don\u2019t just build brands. We engineer attention, create unforgettable experiences, and design growth systems that turn businesses into category leaders.'
 const primaryCtaLabel = 'Book Strategy Call'
 const secondaryCtaLabel = 'Explore Our Work'
-const contactEmail = 'hello@watnidea.com'
+const contactEmail = 'info@watnidea.com'
 const metaItems = [
   'Creative Growth Agency',
   'Now accepting selected projects',
