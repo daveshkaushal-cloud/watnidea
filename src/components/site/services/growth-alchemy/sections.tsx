@@ -29,6 +29,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { ArrowUpRight, ArrowRight } from 'lucide-react'
 import {
   Section,
@@ -72,50 +73,42 @@ const CAMPAIGN_STAGES = [
 export function GrowthHero() {
   return (
     <Section
-      surface="mint"
+      surface="paper"
       ariaLabelledBy="growth-hero-heading"
-      className="relative overflow-hidden !pt-[calc(72px+2.75rem)] pb-12 sm:!pt-[calc(72px+3.25rem)] sm:pb-16"
+      className="relative overflow-hidden !pt-[calc(72px+3rem)] pb-14 sm:!pt-[calc(72px+4rem)] sm:pb-20"
     >
-      <div aria-hidden className="pointer-events-none absolute inset-0">
-        <div
-          className="absolute -right-24 top-0 h-[260px] w-[260px] rounded-full opacity-20 blur-[100px]"
-          style={{ background: DEEP_TEAL }}
-        />
+      <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="absolute -left-24 top-20 h-72 w-72 rounded-full bg-[#66DFC0] opacity-30 blur-[110px]" />
+        <div className="absolute -right-24 bottom-0 h-80 w-80 rounded-full bg-[#FFC83D] opacity-20 blur-[120px]" />
       </div>
       <Container className="relative">
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-8">
-          <div className="lg:col-span-7">
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-12">
+          <div className="lg:col-span-6">
             <Reveal>
-              <p className="wn-caption mb-3" style={{ color: DEEP_TEAL }}>
-                Growth Alchemy · Performance Marketing
-              </p>
+              <span className="inline-flex rotate-[-2deg] rounded-full bg-[#101010] px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] text-white shadow-[0_3px_0_#66DFC0]">
+                Growth Alchemy · Paid Media
+              </span>
             </Reveal>
             <Reveal delay={0.08}>
               <h1
                 id="growth-hero-heading"
-                className="max-w-[18ch] font-editorial text-[clamp(2.25rem,5.5vw,4.5rem)] font-medium leading-[1.02] tracking-[-0.02em]"
+                className="mt-6 max-w-[10ch] font-editorial text-[clamp(3.2rem,6vw,6.25rem)] font-medium leading-[0.94] tracking-[-0.045em] text-[#101010]"
               >
-                Performance Marketing Agency for{' '}
-                <span style={{ color: DEEP_TEAL }}>
-                  <Underline>Measurable</Underline>
-                </span>{' '}
-                Growth
+                Paid media.{' '}
+                <span className="relative inline-block text-[#157468]">
+                  Clearer decisions.
+                  <span aria-hidden className="absolute -bottom-2 left-0 h-[7px] w-full rounded-full bg-[#66DFC0]" />
+                </span>
               </h1>
             </Reveal>
             <Reveal delay={0.16}>
-              <p className="mt-5 max-w-xl text-base leading-relaxed text-[#111111] opacity-85 sm:text-lg">
-                watNidea is a measurement-led performance marketing agency. We
-                plan, build and optimise paid campaigns across Google and Meta —
-                structured so every rupee of ad spend can be measured,
-                understood and improved.
+              <p className="mt-8 max-w-xl text-base leading-relaxed text-[#5D5A54] sm:text-lg">
+                We connect strategy, creative, paid media and tracking into one
+                campaign system—so you can see what is working, understand what
+                is not and decide what to test next.
               </p>
             </Reveal>
             <Reveal delay={0.24}>
-              <p className="mt-3 max-w-xl text-base font-medium text-[#111111]">
-                Reach the right audience. Make every campaign count.
-              </p>
-            </Reveal>
-            <Reveal delay={0.32}>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
                 <CTAButton
                   href="/book-strategy-call"
@@ -134,44 +127,35 @@ export function GrowthHero() {
                 </CTAButton>
               </div>
             </Reveal>
+            <Reveal delay={0.3}>
+              <div className="mt-8 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs font-bold uppercase tracking-wider text-[#5D5A54]">
+                <span>Google Ads</span><span className="h-1.5 w-1.5 rounded-full bg-[#66DFC0]" />
+                <span>Meta Ads</span><span className="h-1.5 w-1.5 rounded-full bg-[#FFC83D]" />
+                <span>Tracking</span><span className="h-1.5 w-1.5 rounded-full bg-[#F13D32]" />
+                <span>Optimisation</span>
+              </div>
+            </Reveal>
           </div>
 
-          {/* Campaign-system visual — 8-stage chain, labels only */}
-          <div className="lg:col-span-5">
+          <div className="lg:col-span-6">
             <Reveal delay={0.2}>
-              <div className="relative overflow-hidden rounded-[22px] border border-[rgba(17,17,17,0.16)] bg-[#FFFFFF] p-5 shadow-[0_10px_30px_-18px_rgba(17,17,17,0.25)]">
-                <span className="absolute right-3 top-3 z-10">
-                  <IdeaStamp label="Measurement" size={72} color={DEEP_TEAL} />
+              <div className="relative mx-auto max-w-[650px]">
+                <div className="relative aspect-[16/10] overflow-hidden rounded-[26px] border border-[rgba(16,16,16,0.16)] bg-[#101010] shadow-[0_28px_70px_-35px_rgba(16,16,16,0.55)]">
+                  <Image
+                    src="/work/performance-marketing-results.webp"
+                    alt="Performance marketing campaign dashboards and reporting collage"
+                    fill
+                    priority
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    className="object-cover"
+                  />
+                </div>
+                <span className="absolute -left-3 top-8 rotate-[-7deg] rounded-full bg-[#66DFC0] px-4 py-2 text-xs font-bold uppercase tracking-wider text-[#101010] shadow-[0_3px_0_#101010]">
+                  Measure what matters
                 </span>
-                <p className="wn-caption text-[#555255]">Campaign system</p>
-                <p className="mt-1 font-editorial text-base font-bold leading-tight text-[#111111]">
-                  The eight stages a campaign moves through
-                </p>
-                <ol className="mt-3 grid grid-cols-2 gap-1.5">
-                  {CAMPAIGN_STAGES.map((stage, i) => (
-                    <li
-                      key={stage}
-                      className="flex items-center gap-2 rounded-[8px] border border-[rgba(17,17,17,0.08)] bg-[#FFF7E9] px-2.5 py-1.5"
-                    >
-                      <span
-                        className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[0.55rem] font-bold"
-                        style={{
-                          background: i < 5 ? MINT : DEEP_TEAL,
-                          color: i < 5 ? INK : '#FFFFFF',
-                        }}
-                        aria-hidden
-                      >
-                        {String(i + 1).padStart(2, '0')}
-                      </span>
-                      <span className="text-[0.7rem] font-medium text-[#111111]">
-                        {stage}
-                      </span>
-                    </li>
-                  ))}
-                </ol>
-                <p className="mt-4 text-[0.65rem] font-semibold uppercase tracking-wider text-[#555255]">
-                  Concept interface — no client data
-                </p>
+                <span className="absolute -bottom-4 right-6 rotate-[3deg] rounded-full bg-[#FFC83D] px-4 py-2 text-xs font-bold uppercase tracking-wider text-[#101010] shadow-[0_3px_0_#101010]">
+                  Test · Learn · Improve
+                </span>
               </div>
             </Reveal>
           </div>
@@ -522,7 +506,7 @@ export function GrowthServices() {
   return (
     <Section surface="paper" ariaLabelledBy="growth-services-heading" className="lg:!py-16">
       <Container>
-        <SectionLabel number="03" accent={DEEP_TEAL}>
+        <SectionLabel number="02" accent={DEEP_TEAL}>
           Our Performance Marketing Services
         </SectionLabel>
         <Reveal delay={0.08}>
@@ -568,6 +552,66 @@ export function GrowthServices() {
             campaigns inside your own ad accounts.
           </p>
         </Reveal>
+      </Container>
+    </Section>
+  )
+}
+
+export function GrowthSelectedProof() {
+  return (
+    <Section surface="sand" ariaLabelledBy="growth-proof-heading" className="lg:!py-16">
+      <Container>
+        <SectionLabel number="03" accent={DEEP_TEAL}>
+          Campaign Evidence
+        </SectionLabel>
+        <div className="mt-8 grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-12">
+          <Reveal className="lg:col-span-7">
+            <div className="relative aspect-[16/10] overflow-hidden rounded-[24px] border border-[rgba(17,17,17,0.14)] bg-[#101010] shadow-[0_24px_60px_-32px_rgba(17,17,17,0.5)]">
+              <Image
+                src="/work/performance-marketing-results.webp"
+                alt="Paid media dashboards showing campaign reporting and optimisation work"
+                fill
+                sizes="(max-width: 1024px) 100vw, 58vw"
+                className="object-cover"
+              />
+            </div>
+          </Reveal>
+          <div className="lg:col-span-5">
+            <Reveal delay={0.08}>
+              <EditorialHeading as="h2" id="growth-proof-heading" className="max-w-[18ch]">
+                Reporting that leads to the <Underline>next decision</Underline>.
+              </EditorialHeading>
+            </Reveal>
+            <Reveal delay={0.16}>
+              <p className="mt-4 text-base leading-relaxed text-[#555255]">
+                We organise campaign data so the useful signals are visible:
+                audience response, creative performance, cost movement and the
+                path from click to business outcome.
+              </p>
+            </Reveal>
+            <Reveal delay={0.22}>
+              <ul className="mt-6 space-y-3">
+                {[
+                  'Clear account and campaign structure',
+                  'Documented tests and optimisation decisions',
+                  'Reporting connected to verified business outcomes',
+                ].map((item, index) => (
+                  <li key={item} className="flex gap-3 rounded-[14px] border border-[rgba(17,17,17,0.11)] bg-white/70 p-3 text-sm text-[#111111]">
+                    <span className="font-bold text-[#157468]">0{index + 1}</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
+            <Reveal delay={0.28}>
+              <p className="mt-5 text-xs leading-relaxed text-[#555255]">
+                Visuals show campaign interfaces from performance work. Past
+                performance is not a guarantee of future results; sensitive
+                account information should be anonymised before publication.
+              </p>
+            </Reveal>
+          </div>
+        </div>
       </Container>
     </Section>
   )
@@ -1110,7 +1154,7 @@ export function GrowthProcess() {
   return (
     <Section surface="teal" ariaLabelledBy="growth-process-heading" className="lg:!py-16">
       <Container>
-        <SectionLabel number="07" accent={MINT}>
+        <SectionLabel number="04" accent={MINT}>
           Performance Marketing Process
         </SectionLabel>
         <Reveal delay={0.08}>
@@ -1223,7 +1267,7 @@ export function GrowthWhyChoose() {
   return (
     <Section surface="softmint" ariaLabelledBy="growth-why-heading" className="lg:!py-16">
       <Container>
-        <SectionLabel number="08" accent={DEEP_TEAL}>
+        <SectionLabel number="05" accent={DEEP_TEAL}>
           Why Choose watNidea?
         </SectionLabel>
         <Reveal delay={0.08}>
@@ -1586,7 +1630,7 @@ export function GrowthFaq() {
       <Container>
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-12">
           <div className="lg:col-span-4">
-            <SectionLabel number="11" accent={DEEP_TEAL}>
+            <SectionLabel number="06" accent={DEEP_TEAL}>
               Frequently Asked Questions
             </SectionLabel>
             <Reveal delay={0.08}>

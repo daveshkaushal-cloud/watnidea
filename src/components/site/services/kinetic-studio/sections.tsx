@@ -12,7 +12,7 @@ import Link from 'next/link'
 import { ArrowUpRight, ArrowRight } from 'lucide-react'
 import {
   Section, Container, SectionLabel, EditorialHeading, Reveal,
-  CTAButton, Sticker, Underline, IdeaStamp, FAQAccordion,
+  CTAButton, Underline, IdeaStamp, FAQAccordion,
 } from '@/components/site/primitives'
 import { KINETIC_FAQS as FAQS } from '@/lib/kinetic-faq-data'
 
@@ -21,67 +21,95 @@ import { KINETIC_FAQS as FAQS } from '@/lib/kinetic-faq-data'
  * ============================================================ */
 export function KineticHero() {
   return (
-    <Section surface="coral" className="relative overflow-hidden !pt-[calc(72px+2.75rem)] pb-10 sm:!pt-[calc(72px+3.25rem)] sm:pb-16" ariaLabelledBy="kinetic-hero-heading">
-      <div aria-hidden className="pointer-events-none absolute inset-0">
-        <div className="absolute -left-24 top-0 h-[240px] w-[240px] rounded-full opacity-15 blur-[100px]" style={{ background: '#F97316' }} />
+    <Section
+      surface="paper"
+      className="relative overflow-hidden !pt-[calc(72px+3rem)] pb-16 sm:!pt-[calc(72px+4rem)] sm:pb-20 lg:pb-24"
+      ariaLabelledBy="kinetic-hero-heading"
+    >
+      <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="absolute -left-24 top-16 h-72 w-72 rounded-full bg-[#F97316] opacity-24 blur-[105px]" />
+        <div className="absolute -right-20 bottom-0 h-80 w-80 rounded-full bg-[#F13D32] opacity-14 blur-[120px]" />
+        <div className="absolute right-[38%] top-10 h-40 w-40 rounded-full bg-[#FFC83D] opacity-20 blur-[85px]" />
       </div>
+
       <Container className="relative">
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-8">
-          <div className="lg:col-span-7">
-            <Reveal><p className="wn-caption mb-3 text-[#F97316]">Kinetic Studio · Video Production</p></Reveal>
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-14">
+          <div className="lg:col-span-6">
+            <Reveal>
+              <div className="mb-6 flex flex-wrap items-center gap-3">
+                <span className="inline-flex rotate-[-2deg] rounded-full bg-[#101010] px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] text-white shadow-[0_3px_0_#F97316]">
+                  Kinetic Studio
+                </span>
+                <span className="text-xs font-semibold uppercase tracking-[0.12em] text-[#5D5A54]">
+                  Concept × Motion × Edit
+                </span>
+              </div>
+            </Reveal>
+
             <Reveal delay={0.08}>
-              <h1 id="kinetic-hero-heading" className="max-w-[16ch] font-editorial text-[clamp(2.25rem,5.5vw,4.5rem)] font-medium leading-[1.02] tracking-[-0.02em]">
-                Video Production Company for <span style={{ color: '#F13D32' }}><Underline>Powerful</Underline></span> Brand Stories
+              <h1
+                id="kinetic-hero-heading"
+                className="max-w-[10ch] font-editorial text-[clamp(3.15rem,5.8vw,6.1rem)] font-medium leading-[0.94] tracking-[-0.045em] text-[#101010]"
+              >
+                Ideas made to{' '}
+                <span className="relative inline-block text-[#F97316]">
+                  move.
+                  <span aria-hidden className="absolute -bottom-2 left-0 h-[7px] w-full rounded-full bg-[#F97316]" />
+                </span>
               </h1>
             </Reveal>
+
             <Reveal delay={0.16}>
-              <p className="mt-5 max-w-xl text-base leading-relaxed text-[#111111] opacity-85 sm:text-lg">
-                Video is how brands get remembered. At watNidea, we create videos that combine strategy, storytelling and craft — built to communicate clearly, connect emotionally and work across every platform.
+              <p className="mt-8 max-w-xl text-base leading-relaxed text-[#5D5A54] sm:text-lg">
+                We turn brand ideas into focused video stories—combining concept, editing, motion and sound for social, campaigns and digital experiences.
               </p>
             </Reveal>
+
             <Reveal delay={0.24}>
-              <p className="mt-3 max-w-xl text-base font-medium text-[#111111]">
-                Turn your ideas into videos people remember.
-              </p>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+                <CTAButton href="/book-strategy-call" style={{ background: '#F97316' }} aria-label="Start your video project">
+                  Start Your Video Project
+                </CTAButton>
+                <CTAButton href="#motion-work" variant="secondary" icon={<ArrowUpRight className="h-4 w-4" />} aria-label="Watch the showreel">
+                  Watch Showreel
+                </CTAButton>
+              </div>
             </Reveal>
-            <Reveal delay={0.32}>
-              <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
-                <CTAButton href="/book-strategy-call" style={{ background: '#F97316' }} aria-label="Start your video project">Start Your Video Project</CTAButton>
-                <CTAButton href="/work" variant="secondary" icon={<ArrowUpRight className="h-4 w-4" />} aria-label="Explore our work">Explore Our Work</CTAButton>
+
+            <Reveal delay={0.3}>
+              <div className="mt-8 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs font-bold uppercase tracking-wider text-[#5D5A54]">
+                <span>Concept</span><span className="h-1.5 w-1.5 rounded-full bg-[#F97316]" />
+                <span>Editing</span><span className="h-1.5 w-1.5 rounded-full bg-[#F13D32]" />
+                <span>Motion</span><span className="h-1.5 w-1.5 rounded-full bg-[#FFC83D]" />
+                <span>Delivery</span>
               </div>
             </Reveal>
           </div>
-          {/* Cinematic visual */}
-          <div className="hidden lg:col-span-5 lg:block">
-            <Reveal delay={0.2}>
-              <div className="relative overflow-hidden rounded-[22px] border border-[rgba(17,17,17,0.16)] bg-[#111111] p-5 shadow-[0_10px_30px_-18px_rgba(17,17,17,0.25)]">
-                <div className="absolute -right-3 -top-3 z-10"><IdeaStamp label="Kinetic" size={84} color="#F97316" /></div>
-                <p className="wn-caption text-[rgba(255,255,255,0.6)]">Storyboard</p>
-                <div className="mt-3 flex gap-2">
-                  {[1, 2, 3].map((n) => (
-                    <div key={n} className="relative aspect-video flex-1 overflow-hidden rounded-lg" style={{ background: `linear-gradient(135deg, rgba(249,115,22,0.${8 - n * 2}), rgba(17,17,17,0.9))` }}>
-                      <span className="absolute left-2 top-2 rounded-full bg-[rgba(255,255,255,0.16)] px-2 py-0.5 text-[0.5rem] font-bold uppercase tracking-wider text-white backdrop-blur-sm">S{n.toString().padStart(2, '0')}</span>
-                      <span className="absolute left-1.5 top-1.5 h-2 w-2 border-l border-t border-white/50" />
-                      <span className="absolute right-1.5 top-1.5 h-2 w-2 border-r border-t border-white/50" />
-                      <span className="absolute bottom-1.5 left-1.5 h-2 w-2 border-b border-l border-white/50" />
-                      <span className="absolute bottom-1.5 right-1.5 h-2 w-2 border-b border-r border-white/50" />
+
+          <div className="lg:col-span-6">
+            <Reveal delay={0.18}>
+              <div className="relative mx-auto max-w-[650px]">
+                <div className="relative aspect-[16/10] overflow-hidden rounded-[26px] border border-[rgba(16,16,16,0.16)] bg-[#101010] shadow-[0_28px_70px_-34px_rgba(16,16,16,0.6)]">
+                  <video autoPlay muted loop playsInline preload="metadata" aria-label="Kinetic Studio motion showreel" className="absolute inset-0 h-full w-full object-cover">
+                    <source src="/work/watnidea-ai-campaign-showreel.mp4" type="video/mp4" />
+                  </video>
+
+                  <div className="pointer-events-none absolute bottom-0 left-0 z-10 p-4 sm:p-5">
+                    <div className="rounded-full bg-[#101010] px-4 py-2 text-xs font-bold uppercase tracking-[0.12em] text-white shadow-lg">
+                      Kinetic Studio Showreel
                     </div>
-                  ))}
-                </div>
-                <div className="mt-3 flex items-center gap-2">
-                  <span className="text-[0.55rem] font-medium uppercase tracking-wider text-[rgba(255,255,255,0.5)]">Timeline</span>
-                  <div className="flex flex-1 items-center gap-1">
-                    {[0, 1, 2, 3, 4, 5, 6, 7].map((i) => (
-                      <span key={i} className="h-1 flex-1 rounded-full" style={{ background: i < 3 ? '#F97316' : 'rgba(255,255,255,0.18)' }} />
-                    ))}
                   </div>
-                  <span className="text-[0.55rem] text-[rgba(255,255,255,0.4)]">Edit</span>
+
+                  <span className="absolute right-4 top-4 rotate-[3deg] rounded-full bg-[#FFC83D] px-4 py-2 text-xs font-bold uppercase tracking-wider text-[#101010] shadow-[0_3px_0_#F97316]">
+                    6 sec loop
+                  </span>
                 </div>
-                <div className="mt-3 flex items-center justify-between border-t border-[rgba(255,255,255,0.10)] pt-3">
-                  <span className="font-editorial text-xs italic text-[rgba(255,255,255,0.6)]">Concept · Script · Edit · Deliver</span>
-                </div>
+
+                <span className="absolute -bottom-5 right-8 rotate-[3deg] rounded-full bg-[#F97316] px-4 py-2 text-xs font-bold uppercase tracking-wider text-white shadow-[0_3px_0_#101010]">
+                  Stories in motion
+                </span>
+                <span aria-hidden className="wn-tape" style={{ left: '46%', top: '-14px', transform: 'rotate(-4deg)', background: 'rgba(249,115,22,0.9)' }} />
               </div>
-              <span aria-hidden className="wn-tape" style={{ left: '50%', top: '-10px', transform: 'translateX(-50%) rotate(-3deg)', background: 'rgba(249,115,22,0.85)' }} />
             </Reveal>
           </div>
         </div>
@@ -234,7 +262,7 @@ export function KineticServices() {
   return (
     <Section surface="coral" ariaLabelledBy="kinetic-services-heading">
       <Container>
-        <SectionLabel number="03" accent="#F97316">Our Video Production Services</SectionLabel>
+        <SectionLabel number="02" accent="#F97316">Our Video Production Services</SectionLabel>
         <Reveal delay={0.08}>
           <EditorialHeading as="h2" id="kinetic-services-heading" className="mt-4 max-w-[20ch]">
             Nine services across <Underline>three stages</Underline>.
@@ -265,6 +293,62 @@ export function KineticServices() {
               </div>
             </Reveal>
           ))}
+        </div>
+      </Container>
+    </Section>
+  )
+}
+
+/* ============================================================
+ * Selected Motion Work — showreel
+ * ============================================================ */
+export function KineticSelectedWork() {
+  return (
+    <Section surface="ink" id="motion-work" ariaLabelledBy="kinetic-work-heading">
+      <Container>
+        <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-14">
+          <div className="lg:col-span-5">
+            <SectionLabel number="03" accent="#F97316">Selected Motion Work</SectionLabel>
+            <Reveal delay={0.08}>
+              <EditorialHeading as="h2" id="kinetic-work-heading" className="mt-4 max-w-[17ch] text-white">
+                Multiple ideas. One fast-moving <Underline>showreel</Underline>.
+              </EditorialHeading>
+            </Reveal>
+            <Reveal delay={0.16}>
+              <p className="mt-4 max-w-lg text-base leading-relaxed text-[rgba(255,255,255,0.74)]">
+                A compact collection of website, product, fashion and architectural motion—edited into one seamless loop for digital portfolios and campaign surfaces.
+              </p>
+            </Reveal>
+            <Reveal delay={0.24}>
+              <div className="mt-6 flex flex-wrap gap-2">
+                {['Creative direction', 'Video editing', 'Motion', 'Multi-format delivery'].map((item) => (
+                  <span key={item} className="rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-semibold text-white">
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </Reveal>
+          </div>
+
+          <div className="lg:col-span-7">
+            <Reveal delay={0.18}>
+              <div className="relative aspect-[16/10] overflow-hidden rounded-[26px] border border-white/15 bg-[#101010] shadow-[0_28px_70px_-34px_rgba(0,0,0,0.85)]">
+                <video autoPlay muted loop playsInline preload="metadata" aria-label="watNidea video editing and motion showreel" className="absolute inset-0 h-full w-full object-cover">
+                  <source src="/work/watnidea-ai-campaign-showreel.mp4" type="video/mp4" />
+                </video>
+
+                <div className="pointer-events-none absolute bottom-0 left-0 z-10 p-4 sm:p-5">
+                  <div className="rounded-full bg-[#101010] px-4 py-2 text-xs font-bold uppercase tracking-[0.12em] text-white shadow-lg">
+                    Kinetic Studio Showreel
+                  </div>
+                </div>
+
+                <span className="absolute right-4 top-4 rounded-full bg-[#F97316] px-4 py-2 text-xs font-bold uppercase tracking-wider text-white shadow-[0_3px_0_#101010]">
+                  Concept × Edit × Motion
+                </span>
+              </div>
+            </Reveal>
+          </div>
         </div>
       </Container>
     </Section>
@@ -437,7 +521,7 @@ export function KineticProcess() {
   return (
     <Section surface="sand" ariaLabelledBy="kinetic-process-heading">
       <Container>
-        <SectionLabel number="08" accent="#F97316">Video Production Process</SectionLabel>
+        <SectionLabel number="04" accent="#F97316">Video Production Process</SectionLabel>
         <Reveal delay={0.08}>
           <EditorialHeading as="h2" id="kinetic-process-heading" className="mt-4 max-w-[18ch]">
             Six steps from brief to <Underline>final export</Underline>.
@@ -478,7 +562,7 @@ export function KineticWhyChoose() {
   return (
     <Section surface="coral" ariaLabelledBy="kinetic-why-heading">
       <Container>
-        <SectionLabel number="09" accent="#F97316">Why Businesses Choose watNidea</SectionLabel>
+        <SectionLabel number="05" accent="#F97316">Why Businesses Choose watNidea</SectionLabel>
         <Reveal delay={0.08}>
           <EditorialHeading as="h2" id="kinetic-why-heading" className="mt-4 max-w-[20ch]">
             Six reasons brands <Underline>choose</Underline> the studio.
@@ -616,7 +700,7 @@ export function KineticFaq() {
       <Container>
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-12">
           <div className="lg:col-span-4">
-            <SectionLabel number="13" accent="#F97316">Frequently Asked Questions</SectionLabel>
+            <SectionLabel number="06" accent="#F97316">Frequently Asked Questions</SectionLabel>
             <Reveal delay={0.08}>
               <EditorialHeading as="h2" id="kinetic-faq-heading" className="mt-4">
                 Questions, <Underline>honestly</Underline> answered.

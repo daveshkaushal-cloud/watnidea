@@ -3,9 +3,13 @@ import SiteFooter from '@/components/site/site-footer'
 import { site, getService } from '@/lib/siteContent'
 import { EndingCTA } from '@/components/site/primitives'
 import {
-  HypeHero, HypeChallenges, HypeWhatIs, HypeStrategy, HypeServices, HypeForBusiness,
-  HypeSmallBusiness, HypeManagement, HypeEffective, HypeProcess, HypeWhyChoose,
-  HypePlatforms, HypeIndustries, HypeResults, HypeFaq,
+  HypeHero,
+  HypeChallenges,
+  HypeServices,
+  HypeSelectedWork,
+  HypeManagement,
+  HypeWhyChoose,
+  HypeFaq,
 } from '@/components/site/services/the-hype-engine/sections'
 import { HYPE_FAQS } from '@/lib/hype-faq-data'
 
@@ -16,7 +20,11 @@ const serviceJsonLd = {
   '@type': 'Service',
   name: 'Social Media Agency',
   serviceType: 'Social Media Marketing',
-  provider: { '@type': 'ProfessionalService', name: site.legalName, url: site.url },
+  provider: {
+    '@type': 'ProfessionalService',
+    name: site.legalName,
+    url: site.url,
+  },
   areaServed: 'Worldwide',
   description: service.description,
 }
@@ -26,7 +34,12 @@ const breadcrumbJsonLd = {
   '@type': 'BreadcrumbList',
   itemListElement: [
     { '@type': 'ListItem', position: 1, name: 'Home', item: site.url },
-    { '@type': 'ListItem', position: 2, name: service.name, item: `${site.url}${service.route}` },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: service.name,
+      item: `${site.url}${service.route}`,
+    },
   ],
 }
 
@@ -47,34 +60,35 @@ export default function TheHypeEnginePage() {
       <main className="flex-1">
         <HypeHero />
         <HypeChallenges />
-        <HypeWhatIs />
-        <HypeStrategy />
         <HypeServices />
-        <HypeForBusiness />
-        <HypeSmallBusiness />
+        <HypeSelectedWork />
         <HypeManagement />
-        <HypeEffective />
-        <HypeProcess />
         <HypeWhyChoose />
-        <HypePlatforms />
-        <HypeIndustries />
-        <HypeResults />
         <HypeFaq />
         <EndingCTA
           surface="lime"
-          eyebrow="Ready to grow?"
-          title="Ready to Grow Your Social Presence?"
-          body="Partner with a creative social media agency to build a presence that gets noticed, connects with the right audience and supports your business goals — without the noise."
+          eyebrow="Make the brand worth following"
+          title="Build a Social Presence People Remember"
+          body="Tell us what your brand needs to say, show and achieve. We will connect the strategy, campaign idea and content system into one recognisable social presence."
           primaryHref="/book-strategy-call"
-          primaryLabel="Get Started with watNidea"
-          secondaryHref="/book-strategy-call"
-          secondaryLabel="Contact Us"
+          primaryLabel="Start Your Social Project"
+          secondaryHref="/work"
+          secondaryLabel="Explore Our Work"
         />
       </main>
       <SiteFooter />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
     </div>
   )
 }

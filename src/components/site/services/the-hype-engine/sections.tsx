@@ -15,11 +15,12 @@
  */
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { useState } from 'react'
 import { ArrowUpRight, ArrowRight } from 'lucide-react'
 import {
   Section, Container, SectionLabel, EditorialHeading, Reveal,
-  CTAButton, Sticker, Underline, IdeaStamp, FAQAccordion,
+  CTAButton, Underline, IdeaStamp, FAQAccordion,
 } from '@/components/site/primitives'
 import { HYPE_FAQS as FAQS } from '@/lib/hype-faq-data'
 
@@ -32,68 +33,97 @@ const RED = '#F13D32'
  * ============================================================ */
 export function HypeHero() {
   return (
-    <Section surface="lime" className="relative overflow-hidden !pt-[calc(72px+2.75rem)] pb-10 sm:!pt-[calc(72px+3.25rem)] sm:pb-16" ariaLabelledBy="hype-hero-heading">
-      <div aria-hidden className="pointer-events-none absolute inset-0">
-        <div className="absolute -left-24 top-0 h-[240px] w-[240px] rounded-full opacity-30 blur-[100px]" style={{ background: ACID }} />
-        <div className="absolute right-10 top-20 h-[120px] w-[120px] rounded-full opacity-15 blur-[80px]" style={{ background: RED }} />
+    <Section
+      surface="paper"
+      className="relative overflow-hidden !pt-[calc(72px+3rem)] pb-16 sm:!pt-[calc(72px+4rem)] sm:pb-20 lg:pb-24"
+      ariaLabelledBy="hype-hero-heading"
+    >
+      <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="absolute -left-24 top-16 h-72 w-72 rounded-full bg-[#C8F542] opacity-35 blur-[105px]" />
+        <div className="absolute -right-20 bottom-0 h-80 w-80 rounded-full bg-[#F13D32] opacity-14 blur-[120px]" />
+        <div className="absolute right-[38%] top-10 h-40 w-40 rounded-full bg-[#FFC83D] opacity-20 blur-[85px]" />
       </div>
+
       <Container className="relative">
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-8">
-          <div className="lg:col-span-7">
-            <Reveal><p className="wn-caption mb-3" style={{ color: INK }}>The Hype Engine · Social Media</p></Reveal>
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-14">
+          <div className="lg:col-span-6">
+            <Reveal>
+              <div className="mb-6 flex flex-wrap items-center gap-3">
+                <span className="inline-flex rotate-[-2deg] rounded-full bg-[#101010] px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] text-white shadow-[0_3px_0_#C8F542]">
+                  The Hype Engine
+                </span>
+                <span className="text-xs font-semibold uppercase tracking-[0.12em] text-[#5D5A54]">
+                  Strategy × Content × Community
+                </span>
+              </div>
+            </Reveal>
+
             <Reveal delay={0.08}>
-              <h1 id="hype-hero-heading" className="max-w-[16ch] font-editorial text-[clamp(2.25rem,5.5vw,4.5rem)] font-medium leading-[1.02] tracking-[-0.02em]">
-                Social Media Agency for <Underline>Growing</Underline> Businesses
+              <h1
+                id="hype-hero-heading"
+                className="max-w-[11ch] font-editorial text-[clamp(3.15rem,5.8vw,6.1rem)] font-medium leading-[0.94] tracking-[-0.045em] text-[#101010]"
+              >
+                Social content worth{' '}
+                <span className="relative inline-block text-[#F13D32]">
+                  stopping for.
+                  <span aria-hidden className="absolute -bottom-2 left-0 h-[7px] w-full rounded-full bg-[#F13D32]" />
+                </span>
               </h1>
             </Reveal>
+
             <Reveal delay={0.16}>
-              <p className="mt-5 max-w-xl text-base leading-relaxed text-[#111111] opacity-85 sm:text-lg">
-                Social media is where audiences discover brands, form opinions and decide what to pay attention to. At watNidea, we build social media strategies that combine content, creativity and community — designed around how culture actually moves, not vanity metrics.
+              <p className="mt-8 max-w-xl text-base leading-relaxed text-[#5D5A54] sm:text-lg">
+                We build recognisable social systems—connecting strategy, design, short-form content and community into a presence people notice and remember.
               </p>
             </Reveal>
+
             <Reveal delay={0.24}>
-              <p className="mt-3 max-w-xl text-base font-medium text-[#111111]">
-                Build a stronger social presence that gets noticed.
-              </p>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+                <CTAButton href="/book-strategy-call" className="bg-[#111111] hover:bg-[#2a2a2a]" aria-label="Start your social project">
+                  Start Your Social Project
+                </CTAButton>
+                <CTAButton href="#social-work" variant="secondary" icon={<ArrowUpRight className="h-4 w-4" />} aria-label="View social campaign work">
+                  View Campaign Work
+                </CTAButton>
+              </div>
             </Reveal>
-            <Reveal delay={0.32}>
-              <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
-                <CTAButton href="/book-strategy-call" className="bg-[#111111] hover:bg-[#2a2a2a]" aria-label="Start your social project">Start Your Social Project</CTAButton>
-                <CTAButton href="/work" variant="secondary" icon={<ArrowUpRight className="h-4 w-4" />} aria-label="Explore our work">Explore Our Work</CTAButton>
+
+            <Reveal delay={0.3}>
+              <div className="mt-8 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs font-bold uppercase tracking-wider text-[#5D5A54]">
+                <span>Strategy</span><span className="h-1.5 w-1.5 rounded-full bg-[#C8F542]" />
+                <span>Campaigns</span><span className="h-1.5 w-1.5 rounded-full bg-[#F13D32]" />
+                <span>Reels</span><span className="h-1.5 w-1.5 rounded-full bg-[#FFC83D]" />
+                <span>Community</span>
               </div>
             </Reveal>
           </div>
-          {/* Social-content-engine visual */}
-          <div className="hidden lg:col-span-5 lg:block">
-            <Reveal delay={0.2}>
-              <div className="relative overflow-hidden rounded-[22px] border border-[rgba(17,17,17,0.16)] bg-[#FFFFFF] p-5 shadow-[0_10px_30px_-18px_rgba(17,17,17,0.25)]">
-                <div className="absolute -right-3 -top-3 z-10"><IdeaStamp label="Hype" size={84} color={ACID} /></div>
-                <p className="wn-caption text-[#555255]">Content Engine</p>
-                {/* Mini content calendar */}
-                <div className="mt-3 rounded-lg border border-[rgba(17,17,17,0.12)] bg-[#FFF7E9] p-3">
-                  <p className="text-[0.6rem] font-bold uppercase tracking-wider text-[#555255]">Content Calendar</p>
-                  <div className="mt-2 grid grid-cols-7 gap-1">
-                    {['M','T','W','T','F','S','S'].map((d, i) => (
-                      <div key={i} className="flex flex-col items-center gap-1">
-                        <span className="text-[0.5rem] text-[#555255]">{d}</span>
-                        <span className={`h-3 w-3 rounded ${i < 5 ? '' : 'bg-[rgba(17,17,17,0.08)]'}`} style={i < 5 ? { background: ACID } : undefined} />
-                      </div>
-                    ))}
+
+          <div className="lg:col-span-6">
+            <Reveal delay={0.18}>
+              <div className="relative mx-auto max-w-[650px]">
+                <div className="relative aspect-[16/10] overflow-hidden rounded-[26px] border border-[rgba(16,16,16,0.14)] bg-[#101010] shadow-[0_28px_70px_-34px_rgba(16,16,16,0.55)]">
+                  <Image
+                    src="/project-social-campaign.webp"
+                    alt="Social media campaign system designed by watNidea"
+                    fill
+                    priority
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    className="object-cover transition-transform duration-700 hover:scale-[1.02]"
+                  />
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-5 pt-20">
+                    <p className="text-xs font-bold uppercase tracking-[0.14em] text-white/75">Social campaign system</p>
+                    <p className="mt-1 font-editorial text-2xl font-semibold text-white">One idea. Many formats.</p>
                   </div>
                 </div>
-                {/* Format variations */}
-                <div className="mt-3 grid grid-cols-3 gap-2">
-                  <div className="aspect-square rounded-lg" style={{ background: `linear-gradient(135deg, ${ACID}, ${INK})` }} aria-hidden />
-                  <div className="aspect-[4/5] rounded-lg" style={{ background: `linear-gradient(135deg, ${INK}, ${RED})` }} aria-hidden />
-                  <div className="aspect-video rounded-lg" style={{ background: `linear-gradient(135deg, ${ACID}, ${RED})` }} aria-hidden />
-                </div>
-                <p className="mt-2 text-[0.55rem] text-center uppercase tracking-wider text-[#555255]">Square · Story · Carousel</p>
-                <div className="mt-3 flex items-center justify-between border-t border-[rgba(17,17,17,0.10)] pt-3">
-                  <span className="font-editorial text-xs italic text-[#555255]">Plan · Create · Publish · Engage</span>
-                  <span className="h-2 w-2 rounded-full" style={{ background: RED }} aria-hidden />
-                </div>
+
+                <span className="absolute -left-4 top-8 rotate-[-6deg] rounded-full bg-[#C8F542] px-4 py-2 text-xs font-bold uppercase tracking-wider text-[#101010] shadow-[0_3px_0_#101010]">
+                  Built to stop scrolls
+                </span>
+                <span className="absolute -bottom-5 right-8 rotate-[3deg] rounded-full bg-[#FFC83D] px-4 py-2 text-xs font-bold uppercase tracking-wider text-[#101010] shadow-[0_3px_0_#101010]">
+                  Idea × Culture
+                </span>
+                <span aria-hidden className="wn-tape" style={{ left: '46%', top: '-14px', transform: 'rotate(-4deg)', background: 'rgba(200,245,66,0.9)' }} />
               </div>
-              <span aria-hidden className="wn-tape" style={{ left: '50%', top: '-10px', transform: 'translateX(-50%) rotate(-3deg)', background: 'rgba(200,245,66,0.85)' }} />
             </Reveal>
           </div>
         </div>
@@ -322,7 +352,7 @@ export function HypeServices() {
   return (
     <Section surface="paper" ariaLabelledBy="hype-services-heading">
       <Container>
-        <SectionLabel number="04" accent={INK}>Social Media Marketing Services</SectionLabel>
+        <SectionLabel number="02" accent={INK}>Social Media Marketing Services</SectionLabel>
         <Reveal delay={0.08}>
           <EditorialHeading as="h2" id="hype-services-heading" className="mt-4 max-w-[20ch]">
             Nine services across <Underline>three stages</Underline>.
@@ -353,6 +383,67 @@ export function HypeServices() {
               </div>
             </Reveal>
           ))}
+        </div>
+      </Container>
+    </Section>
+  )
+}
+
+/* ============================================================
+ * Selected Social Campaign — real campaign visual
+ * ============================================================ */
+export function HypeSelectedWork() {
+  return (
+    <Section
+      surface="ink"
+      id="social-work"
+      ariaLabelledBy="hype-work-heading"
+    >
+      <Container>
+        <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-14">
+          <div className="lg:col-span-5">
+            <SectionLabel number="03" accent={ACID}>Selected Social Campaign</SectionLabel>
+            <Reveal delay={0.08}>
+              <EditorialHeading as="h2" id="hype-work-heading" className="mt-4 max-w-[17ch] text-white">
+                One campaign. A <Underline>connected</Underline> visual world.
+              </EditorialHeading>
+            </Reveal>
+            <Reveal delay={0.16}>
+              <p className="mt-4 max-w-lg text-base leading-relaxed text-[rgba(255,255,255,0.74)]">
+                A unified campaign system designed to stay recognisable across posts, stories, carousels and promotional formats—not a collection of unrelated content.
+              </p>
+            </Reveal>
+            <Reveal delay={0.24}>
+              <div className="mt-6 flex flex-wrap gap-2">
+                {['Campaign idea', 'Art direction', 'Social formats', 'Content system'].map((item) => (
+                  <span key={item} className="rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-semibold text-white">
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </Reveal>
+          </div>
+
+          <div className="lg:col-span-7">
+            <Reveal delay={0.18}>
+              <div className="group relative aspect-[16/10] overflow-hidden rounded-[26px] border border-white/15 bg-[#101010] shadow-[0_28px_70px_-34px_rgba(0,0,0,0.8)]">
+                <Image
+                  src="/project-social-campaign.webp"
+                  alt="Connected social media campaign designed by watNidea"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 58vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-[1.025]"
+                />
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-5 pt-20">
+                  <p className="text-xs font-bold uppercase tracking-[0.14em] text-white/70">Social media creative</p>
+                  <p className="mt-1 font-editorial text-2xl font-semibold text-white">Campaign System</p>
+                </div>
+                <span className="absolute right-4 top-4 rotate-[3deg] rounded-full bg-[#C8F542] px-4 py-2 text-xs font-bold uppercase tracking-wider text-[#101010] shadow-[0_3px_0_#F13D32]">
+                  Made to move
+                </span>
+              </div>
+            </Reveal>
+          </div>
         </div>
       </Container>
     </Section>
@@ -479,7 +570,7 @@ export function HypeManagement() {
   return (
     <Section surface="lime" ariaLabelledBy="hype-mgmt-heading">
       <Container>
-        <SectionLabel number="07" accent={INK}>Social Media Management Services</SectionLabel>
+        <SectionLabel number="04" accent={INK}>Social Media Management Services</SectionLabel>
         <Reveal delay={0.08}>
           <EditorialHeading as="h2" id="hype-mgmt-heading" className="mt-4 max-w-[20ch]">
             The weekly content <Underline>cycle</Underline>.
@@ -605,7 +696,7 @@ export function HypeWhyChoose() {
   return (
     <Section surface="lime" ariaLabelledBy="hype-why-heading">
       <Container>
-        <SectionLabel number="10" accent={INK}>Why Businesses Choose watNidea</SectionLabel>
+        <SectionLabel number="05" accent={INK}>Why Businesses Choose watNidea</SectionLabel>
         <Reveal delay={0.08}>
           <EditorialHeading as="h2" id="hype-why-heading" className="mt-4 max-w-[20ch]">
             Six reasons brands <Underline>choose</Underline> the studio.
@@ -761,7 +852,7 @@ export function HypeFaq() {
       <Container>
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-12">
           <div className="lg:col-span-4">
-            <SectionLabel number="14" accent={INK}>Frequently Asked Questions</SectionLabel>
+            <SectionLabel number="06" accent={INK}>Frequently Asked Questions</SectionLabel>
             <Reveal delay={0.08}>
               <EditorialHeading as="h2" id="hype-faq-heading" className="mt-4">
                 Questions, <Underline>honestly</Underline> answered.

@@ -3,9 +3,13 @@ import SiteFooter from '@/components/site/site-footer'
 import { site, getService } from '@/lib/siteContent'
 import { EndingCTA } from '@/components/site/primitives'
 import {
-  KineticHero, KineticChallenges, KineticWhatIs, KineticServices, KineticPromo,
-  KineticBrandVideo, KineticCorporate, KineticGreat, KineticProcess, KineticWhyChoose,
-  KineticAudiences, KineticIndustries, KineticGoals, KineticFaq,
+  KineticHero,
+  KineticChallenges,
+  KineticServices,
+  KineticSelectedWork,
+  KineticProcess,
+  KineticWhyChoose,
+  KineticFaq,
 } from '@/components/site/services/kinetic-studio/sections'
 import { KINETIC_FAQS } from '@/lib/kinetic-faq-data'
 
@@ -16,7 +20,11 @@ const serviceJsonLd = {
   '@type': 'Service',
   name: 'Video Production Company',
   serviceType: 'Video Production',
-  provider: { '@type': 'ProfessionalService', name: site.legalName, url: site.url },
+  provider: {
+    '@type': 'ProfessionalService',
+    name: site.legalName,
+    url: site.url,
+  },
   areaServed: 'Worldwide',
   description: service.description,
 }
@@ -26,7 +34,12 @@ const breadcrumbJsonLd = {
   '@type': 'BreadcrumbList',
   itemListElement: [
     { '@type': 'ListItem', position: 1, name: 'Home', item: site.url },
-    { '@type': 'ListItem', position: 2, name: service.name, item: `${site.url}${service.route}` },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: service.name,
+      item: `${site.url}${service.route}`,
+    },
   ],
 }
 
@@ -47,33 +60,35 @@ export default function KineticStudioPage() {
       <main className="flex-1">
         <KineticHero />
         <KineticChallenges />
-        <KineticWhatIs />
         <KineticServices />
-        <KineticPromo />
-        <KineticBrandVideo />
-        <KineticCorporate />
-        <KineticGreat />
+        <KineticSelectedWork />
         <KineticProcess />
         <KineticWhyChoose />
-        <KineticAudiences />
-        <KineticIndustries />
-        <KineticGoals />
         <KineticFaq />
         <EndingCTA
           surface="coral"
-          eyebrow="Bring your brand to life"
-          title="Bring Your Brand to Life"
-          body="Partner with a creative video production company to turn your ideas into videos that communicate clearly, connect emotionally and work across every platform."
+          eyebrow="Bring the idea to life"
+          title="Create Video People Want to Watch"
+          body="Tell us the message, audience and platform. We will shape the concept, editing and motion into a focused video experience built for where it needs to perform."
           primaryHref="/book-strategy-call"
-          primaryLabel="Get Started with watNidea"
-          secondaryHref="/book-strategy-call"
-          secondaryLabel="Contact Us"
+          primaryLabel="Start Your Video Project"
+          secondaryHref="/work"
+          secondaryLabel="Explore Our Work"
         />
       </main>
       <SiteFooter />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
     </div>
   )
 }
