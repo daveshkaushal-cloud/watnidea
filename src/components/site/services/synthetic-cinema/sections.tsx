@@ -66,14 +66,24 @@ export function CinemaHero() {
               </span>
             </Reveal>
             <Reveal delay={0.08}>
-              <h1 id="cinema-hero-heading" className="mt-6 max-w-[10ch] font-editorial text-[clamp(3.2rem,6vw,6.25rem)] font-medium leading-[0.94] tracking-[-0.045em] text-[#111111]">
-                Human ideas.{' '}
-                <span className="relative inline-block text-[#7657F6]">
-                  Expanded by AI.
-                  <span aria-hidden className="absolute -bottom-2 left-0 h-[7px] w-full rounded-full bg-[#F13D32]" />
-                </span>
-              </h1>
-            </Reveal>
+  <h1
+    id="cinema-hero-heading"
+    className="mt-6 max-w-[14ch] font-editorial text-[clamp(2.75rem,4.6vw,4.75rem)] font-medium leading-[0.96] tracking-[-0.04em] text-[#111111]"
+  >
+    An{' '}
+    <strong className="font-semibold">
+      AI Advertising Agency
+    </strong>{' '}
+    expanding human{' '}
+    <span className="relative inline-block text-[#7657F6]">
+      ideas.
+      <span
+        aria-hidden
+        className="absolute -bottom-2 left-0 h-[6px] w-full rounded-full bg-[#F13D32]"
+      />
+    </span>
+  </h1>
+</Reveal>
             <Reveal delay={0.16}>
               <p className="mt-8 max-w-xl text-base leading-relaxed text-[#5D5A54] sm:text-lg">
                 AI-assisted advertising and visual storytelling shaped by human strategy, creative direction and accountability—from the first concept to the final campaign asset.
@@ -136,7 +146,16 @@ export function CinemaServices() {
       <Container>
         <SectionLabel number="02" accent={PURPLE}>AI-Assisted Creative Services</SectionLabel>
         <Reveal delay={0.08}><EditorialHeading as="h2" id="cinema-services-heading" className="mt-4 max-w-[20ch]">One creative system. Six ways AI can <Underline>assist</Underline>.</EditorialHeading></Reveal>
-        <Reveal delay={0.16}><p className="mt-4 max-w-2xl text-base leading-relaxed text-[#5D5A54]">AI supports exploration and production; watNidea’s team owns the strategy, creative standard and final decision.</p></Reveal>
+        <Reveal delay={0.16}>
+  <p className="mt-4 max-w-2xl text-base leading-relaxed text-[#5D5A54]">
+    Our{' '}
+    <strong className="font-semibold text-[#111111]">
+      AI advertising solutions for small businesses
+    </strong>{' '}
+    support research, creative exploration, campaign variation and visual
+    production under human strategy, direction and review.
+  </p>
+</Reveal>
         <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           {SERVICES.map(([number, title, body], index) => (
             <Reveal key={title} delay={0.2 + index * 0.05}>

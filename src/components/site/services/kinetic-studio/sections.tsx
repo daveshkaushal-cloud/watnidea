@@ -46,18 +46,25 @@ export function KineticHero() {
               </div>
             </Reveal>
 
-            <Reveal delay={0.08}>
-              <h1
-                id="kinetic-hero-heading"
-                className="max-w-[10ch] font-editorial text-[clamp(3.15rem,5.8vw,6.1rem)] font-medium leading-[0.94] tracking-[-0.045em] text-[#101010]"
-              >
-                Ideas made to{' '}
-                <span className="relative inline-block text-[#F97316]">
-                  move.
-                  <span aria-hidden className="absolute -bottom-2 left-0 h-[7px] w-full rounded-full bg-[#F97316]" />
-                </span>
-              </h1>
-            </Reveal>
+           <Reveal delay={0.08}>
+  <h1
+    id="kinetic-hero-heading"
+    className="max-w-[14ch] font-editorial text-[clamp(2.75rem,4.6vw,4.75rem)] font-medium leading-[0.96] tracking-[-0.04em] text-[#101010]"
+  >
+    A{' '}
+    <strong className="font-semibold">
+      Video Production Company
+    </strong>{' '}
+    bringing ideas to{' '}
+    <span className="relative inline-block text-[#F97316]">
+      life.
+      <span
+        aria-hidden
+        className="absolute -bottom-2 left-0 h-[6px] w-full rounded-full bg-[#F97316]"
+      />
+    </span>
+  </h1>
+</Reveal>
 
             <Reveal delay={0.16}>
               <p className="mt-8 max-w-xl text-base leading-relaxed text-[#5D5A54] sm:text-lg">
@@ -91,7 +98,7 @@ export function KineticHero() {
               <div className="relative mx-auto max-w-[650px]">
                 <div className="relative aspect-[16/10] overflow-hidden rounded-[26px] border border-[rgba(16,16,16,0.16)] bg-[#101010] shadow-[0_28px_70px_-34px_rgba(16,16,16,0.6)]">
                   <video autoPlay muted loop playsInline preload="metadata" aria-label="Kinetic Studio motion showreel" className="absolute inset-0 h-full w-full object-cover">
-                    <source src="/work/watnidea-ai-campaign-showreel.mp4" type="video/mp4" />
+                    <source src="/watnidea-ai-campaign-loop-1600x1000.mp4" type="video/mp4" />
                   </video>
 
                   <div className="pointer-events-none absolute bottom-0 left-0 z-10 p-4 sm:p-5">
@@ -269,10 +276,15 @@ export function KineticServices() {
           </EditorialHeading>
         </Reveal>
         <Reveal delay={0.16}>
-          <p className="mt-4 max-w-2xl text-base text-[#111111] opacity-85">
-            From concept and direction to production, editing and delivery — each service works on its own or as part of a complete video project.
-          </p>
-        </Reveal>
+  <p className="mt-4 max-w-2xl text-base text-[#111111] opacity-85">
+    Our{' '}
+    <strong className="font-semibold">
+      video production services
+    </strong>{' '}
+    connect creative direction, filming, editing, motion, sound and delivery
+    into one complete production process.
+  </p>
+</Reveal>
         <div className="mt-8 grid grid-cols-1 gap-5 lg:grid-cols-3">
           {SERVICE_GROUPS.map((g, gi) => (
             <Reveal key={g.group} delay={0.24 + gi * 0.08}>
@@ -334,7 +346,10 @@ export function KineticSelectedWork() {
             <Reveal delay={0.18}>
               <div className="relative aspect-[16/10] overflow-hidden rounded-[26px] border border-white/15 bg-[#101010] shadow-[0_28px_70px_-34px_rgba(0,0,0,0.85)]">
                 <video autoPlay muted loop playsInline preload="metadata" aria-label="watNidea video editing and motion showreel" className="absolute inset-0 h-full w-full object-cover">
-                  <source src="/work/watnidea-ai-campaign-showreel.mp4" type="video/mp4" />
+                  <source
+  src="/watnidea-ai-campaign-loop-1600x1000.mp4"
+  type="video/mp4"
+/>
                 </video>
 
                 <div className="pointer-events-none absolute bottom-0 left-0 z-10 p-4 sm:p-5">

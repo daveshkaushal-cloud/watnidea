@@ -49,23 +49,42 @@ export function DhqHero() {
             </Reveal>
 
             <Reveal delay={0.08}>
-              <h1
-                id="dhq-hero-heading"
-                className="max-w-[11ch] font-editorial text-[clamp(3.15rem,5.8vw,6.1rem)] font-medium leading-[0.94] tracking-[-0.045em] text-[#101010]"
-              >
-                Digital experiences built to{' '}
-                <span className="relative inline-block text-[#3D5AFE]">
-                  move.
-                  <span aria-hidden className="absolute -bottom-2 left-0 h-[7px] w-full rounded-full bg-[#3D5AFE]" />
-                </span>
-              </h1>
-            </Reveal>
+  <h1
+    id="dhq-hero-heading"
+    className="max-w-[14ch] font-editorial text-[clamp(2.75rem,4.6vw,4.75rem)] font-medium leading-[0.96] tracking-[-0.04em] text-[#101010]"
+  >
+    A{' '}
+    <strong className="font-semibold">
+      Website Development Agency
+    </strong>{' '}
+    built for{' '}
+    <span className="relative inline-block text-[#3D5AFE]">
+      business.
+      <span
+        aria-hidden
+        className="absolute -bottom-2 left-0 h-[6px] w-full rounded-full bg-[#3D5AFE]"
+      />
+    </span>
+  </h1>
+</Reveal>
+
+<Reveal delay={0.16}>
+  <p className="mt-6 max-w-xl text-base leading-relaxed text-[#5D5A54] sm:text-lg">
+    We design and build distinctive websites that connect brand, content
+    and technology—helping people understand, trust and act.
+  </p>
+</Reveal>
 
             <Reveal delay={0.16}>
-              <p className="mt-8 max-w-xl text-base leading-relaxed text-[#5D5A54] sm:text-lg">
-                We design and build clear, distinctive websites that connect brand, content and technology—helping people understand, trust and act.
-              </p>
-            </Reveal>
+  <p className="mt-4 max-w-2xl text-base text-[#111111] opacity-85">
+    We provide{' '}
+    <strong className="font-semibold">
+      professional website design for businesses
+    </strong>
+    —from planning and user experience to development, launch and ongoing
+    support.
+  </p>
+</Reveal>
 
             <Reveal delay={0.24}>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">

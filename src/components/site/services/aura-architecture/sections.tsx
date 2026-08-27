@@ -64,23 +64,34 @@ export function AuraHero() {
             </Reveal>
 
             <Reveal delay={0.08}>
-              <h1
-                id="aura-hero-heading"
-                className="max-w-[10ch] font-editorial text-[clamp(3.25rem,6vw,6.25rem)] font-medium leading-[0.93] tracking-[-0.045em] text-[#101010]"
-              >
-                Brands people{' '}
-                <span className="relative inline-block text-[#F13D32]">
-                  remember.
-                  <span aria-hidden className="absolute -bottom-2 left-0 h-[7px] w-full rounded-full bg-[#F13D32]" />
-                </span>
-              </h1>
-            </Reveal>
-
-            <Reveal delay={0.16}>
-              <p className="mt-8 max-w-xl text-base leading-relaxed text-[#5D5A54] sm:text-lg">
-                We turn business ideas into clear, distinctive brand systems—connecting strategy, identity, voice and real-world applications.
-              </p>
-            </Reveal>
+  <h1
+    id="aura-hero-heading"
+    className="max-w-[11ch] font-editorial text-[clamp(3.25rem,6vw,6.25rem)] font-medium leading-[0.93] tracking-[-0.045em] text-[#101010]"
+  >
+    A{' '}
+    <strong className="font-semibold">
+      Brand Identity Agency
+    </strong>{' '}
+    building brands people{' '}
+    <span className="relative inline-block text-[#F13D32]">
+      remember.
+      <span
+        aria-hidden
+        className="absolute -bottom-2 left-0 h-[7px] w-full rounded-full bg-[#F13D32]"
+      />
+    </span>
+  </h1>
+</Reveal>
+<Reveal delay={0.16}>
+  <p className="mt-8 max-w-xl text-base leading-relaxed text-[#5D5A54] sm:text-lg">
+    As a{' '}
+    <strong className="font-semibold text-[#101010]">
+      branding and packaging agency
+    </strong>
+    , we turn business ideas into distinctive brand systems—connecting
+    strategy, identity, packaging, voice and real-world applications.
+  </p>
+</Reveal>
 
             <Reveal delay={0.24}>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -311,6 +322,10 @@ export function AuraServices() {
             From logo design to brand guidelines, each service is built to work on its own or as part of a complete brand system. Explore the one that fits where you are now.
           </p>
         </Reveal>
+        <p className="mt-4 max-w-2xl text-base leading-relaxed text-[#5D5A54]">
+  As a branding and packaging agency, we connect strategy, identity,
+  packaging and visual communication into one recognisable brand system.
+</p>
         <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {SERVICES_LIST.map((s, i) => {
             const isLight = isLightHex(s.accent)

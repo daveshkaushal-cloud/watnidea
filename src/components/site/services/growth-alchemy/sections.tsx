@@ -90,17 +90,24 @@ export function GrowthHero() {
               </span>
             </Reveal>
             <Reveal delay={0.08}>
-              <h1
-                id="growth-hero-heading"
-                className="mt-6 max-w-[10ch] font-editorial text-[clamp(3.2rem,6vw,6.25rem)] font-medium leading-[0.94] tracking-[-0.045em] text-[#101010]"
-              >
-                Paid media.{' '}
-                <span className="relative inline-block text-[#157468]">
-                  Clearer decisions.
-                  <span aria-hidden className="absolute -bottom-2 left-0 h-[7px] w-full rounded-full bg-[#66DFC0]" />
-                </span>
-              </h1>
-            </Reveal>
+  <h1
+    id="growth-hero-heading"
+    className="mt-6 max-w-[14ch] font-editorial text-[clamp(2.75rem,4.6vw,4.75rem)] font-medium leading-[0.96] tracking-[-0.04em] text-[#101010]"
+  >
+    A{' '}
+    <strong className="font-semibold">
+      Performance Marketing Agency
+    </strong>{' '}
+    for clearer{' '}
+    <span className="relative inline-block text-[#157468]">
+      decisions.
+      <span
+        aria-hidden
+        className="absolute -bottom-2 left-0 h-[6px] w-full rounded-full bg-[#66DFC0]"
+      />
+    </span>
+  </h1>
+</Reveal>
             <Reveal delay={0.16}>
               <p className="mt-8 max-w-xl text-base leading-relaxed text-[#5D5A54] sm:text-lg">
                 We connect strategy, creative, paid media and tracking into one
@@ -519,12 +526,15 @@ export function GrowthServices() {
           </EditorialHeading>
         </Reveal>
         <Reveal delay={0.16}>
-          <p className="mt-4 max-w-2xl text-base text-[#111111] opacity-85">
-            Each service works on its own or as part of a complete performance
-            system. They are organised by what they do inside a campaign &mdash;
-            reach, convert, measure and improve.
-          </p>
-        </Reveal>
+  <p className="mt-4 max-w-2xl text-base text-[#111111] opacity-85">
+    Our{' '}
+    <strong className="font-semibold">
+      performance marketing services for businesses
+    </strong>{' '}
+    connect paid media, creative testing, conversion tracking, remarketing
+    and campaign analysis into one measurable system.
+  </p>
+</Reveal>
 
         <div className="mt-8 grid grid-cols-1 gap-5 lg:grid-cols-12">
           {/* Reach — featured wide card, 2 items */}

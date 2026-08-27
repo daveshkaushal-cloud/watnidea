@@ -66,11 +66,23 @@ export function EchoHero() {
               <span className="inline-flex rotate-[-2deg] rounded-full bg-[#111111] px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] text-white shadow-[0_3px_0_#FFC83D]">The Echo System · AEO × SEO</span>
             </Reveal>
             <Reveal delay={0.08}>
-              <h1 id="echo-hero-heading" className="mt-6 max-w-[10ch] font-editorial text-[clamp(3.2rem,6vw,6.25rem)] font-medium leading-[0.94] tracking-[-0.045em] text-[#111111]">
-                Be found. Be understood.{' '}
-                <span className="relative inline-block text-[#157468]">Be useful.<span aria-hidden className="absolute -bottom-2 left-0 h-[7px] w-full rounded-full bg-[#FFC83D]" /></span>
-              </h1>
-            </Reveal>
+  <h1
+    id="echo-hero-heading"
+    className="mt-6 max-w-[14ch] font-editorial text-[clamp(2.75rem,4.6vw,4.75rem)] font-medium leading-[0.96] tracking-[-0.04em] text-[#111111]"
+  >
+    <strong className="font-semibold">
+      AEO and SEO Services
+    </strong>{' '}
+    built for modern{' '}
+    <span className="relative inline-block text-[#157468]">
+      search.
+      <span
+        aria-hidden
+        className="absolute -bottom-2 left-0 h-[6px] w-full rounded-full bg-[#FFC83D]"
+      />
+    </span>
+  </h1>
+</Reveal>
             <Reveal delay={0.16}><p className="mt-8 max-w-xl text-base leading-relaxed text-[#5D5A54] sm:text-lg">AEO and SEO for modern search—combining technical foundations, useful content and answer-ready structure so people can discover and understand your expertise.</p></Reveal>
             <Reveal delay={0.24}>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -120,7 +132,16 @@ export function EchoServices() {
       <Container>
         <SectionLabel number="02" accent={TEAL}>AEO and SEO Services</SectionLabel>
         <Reveal delay={0.08}><EditorialHeading as="h2" id="echo-services-heading" className="mt-4 max-w-[20ch]">Search foundations for how people discover information <Underline>now</Underline>.</EditorialHeading></Reveal>
-        <Reveal delay={0.16}><p className="mt-4 max-w-2xl text-base leading-relaxed text-[#5D5A54]">SEO helps pages become discoverable and understandable. AEO helps content answer real questions clearly. Neither can guarantee rankings, snippets or AI citations.</p></Reveal>
+        <Reveal delay={0.16}>
+  <p className="mt-4 max-w-2xl text-base leading-relaxed text-[#5D5A54]">
+    As an{' '}
+    <strong className="font-semibold text-[#111111]">
+      SEO agency for small businesses and startups
+    </strong>
+    , we connect useful content, technical foundations, internal linking
+    and AI search readiness into one long-term search system.
+  </p>
+</Reveal>
         <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           {SERVICES.map(([number, title, body], index) => (
             <Reveal key={title} delay={0.2 + index * 0.05}>

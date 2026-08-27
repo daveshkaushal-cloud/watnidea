@@ -59,17 +59,24 @@ export function HypeHero() {
             </Reveal>
 
             <Reveal delay={0.08}>
-              <h1
-                id="hype-hero-heading"
-                className="max-w-[11ch] font-editorial text-[clamp(3.15rem,5.8vw,6.1rem)] font-medium leading-[0.94] tracking-[-0.045em] text-[#101010]"
-              >
-                Social content worth{' '}
-                <span className="relative inline-block text-[#F13D32]">
-                  stopping for.
-                  <span aria-hidden className="absolute -bottom-2 left-0 h-[7px] w-full rounded-full bg-[#F13D32]" />
-                </span>
-              </h1>
-            </Reveal>
+  <h1
+    id="hype-hero-heading"
+    className="max-w-[14ch] font-editorial text-[clamp(2.75rem,4.6vw,4.75rem)] font-medium leading-[0.96] tracking-[-0.04em] text-[#101010]"
+  >
+    A{' '}
+    <strong className="font-semibold">
+      Social Media Agency
+    </strong>{' '}
+    worth{' '}
+    <span className="relative inline-block text-[#F13D32]">
+      stopping for.
+      <span
+        aria-hidden
+        className="absolute -bottom-2 left-0 h-[6px] w-full rounded-full bg-[#F13D32]"
+      />
+    </span>
+  </h1>
+</Reveal>
 
             <Reveal delay={0.16}>
               <p className="mt-8 max-w-xl text-base leading-relaxed text-[#5D5A54] sm:text-lg">
@@ -359,10 +366,15 @@ export function HypeServices() {
           </EditorialHeading>
         </Reveal>
         <Reveal delay={0.16}>
-          <p className="mt-4 max-w-2xl text-base text-[#111111] opacity-85">
-            From strategy and content to campaigns and measurement — each service works on its own or as part of a connected social media plan.
-          </p>
-        </Reveal>
+  <p className="mt-4 max-w-2xl text-base text-[#111111] opacity-85">
+    As a{' '}
+    <strong className="font-semibold">
+      social media marketing agency
+    </strong>
+    , we connect strategy, content, campaigns, community management and
+    measurement into one recognisable social system.
+  </p>
+</Reveal>
         <div className="mt-8 grid grid-cols-1 gap-5 lg:grid-cols-3">
           {SERVICE_GROUPS.map((g, gi) => (
             <Reveal key={g.group} delay={0.24 + gi * 0.08}>

@@ -296,15 +296,22 @@ export default function AuraHero() {
         </motion.div>
 
         {/* Massive 2-line headline */}
-        <h2
-          className="text-6xl font-bold leading-[0.92] tracking-[-0.02em] sm:text-7xl md:text-8xl lg:text-9xl"
-          style={{ fontFamily: 'var(--font-display), sans-serif' }}
-        >
-          <MaskLine>Identity Lab</MaskLine>
-          <MaskLine delay={0.12}>
-            Built for <RedGradientText>Growth.</RedGradientText>
-          </MaskLine>
-        </h2>
+      <h1
+  id="aura-hero-heading"
+  className="text-6xl font-bold leading-[0.92] tracking-[-0.02em] sm:text-7xl md:text-8xl lg:text-9xl"
+  style={{ fontFamily: 'var(--font-display), sans-serif' }}
+>
+  <MaskLine>
+    A{' '}
+    <strong className="font-bold">
+      Brand Identity Agency
+    </strong>
+  </MaskLine>
+
+  <MaskLine delay={0.12}>
+    Built for <RedGradientText>Growth.</RedGradientText>
+  </MaskLine>
+</h1>
 
         {/* Sub — verbatim Aura description */}
         <motion.p
