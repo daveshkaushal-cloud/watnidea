@@ -202,7 +202,6 @@ export default function SiteHeader({ tone = 'light' }: { tone?: 'light' | 'dark'
             aria-label="Open navigation menu"
             aria-expanded={mobileOpen}
             className="flex h-11 w-11 items-center justify-center rounded-full border border-[rgba(16,16,16,0.16)] bg-[rgba(255,253,248,0.6)] backdrop-blur-sm transition-colors hover:border-[#F13D32] lg:hidden"
-            
           >
             <Menu className="h-5 w-5" style={{ color: '#111111' }} />
           </button>
@@ -255,13 +254,19 @@ export default function SiteHeader({ tone = 'light' }: { tone?: 'light' | 'dark'
           >
             <div className="flex h-full flex-col">
               <div className="flex items-center justify-between px-5 py-4">
-                <Link href="/" aria-label={`${site.name} home`}>
+                <Link
+                  href="/"
+                  aria-label={`${site.name} home`}
+                  className="inline-flex items-center"
+                  onClick={() => setMobileOpen(false)}
+                >
                   <Image
-                    src="/watnidea-logo-navbar.png"
+                    src="/watnidea-logo-original.png"
                     alt={`${site.name} logo`}
-                    width={140}
-                    height={24}
-                    className="h-[24px] w-auto"
+                    width={160}
+                    height={39}
+                    className="h-[32px] w-auto object-contain"
+                    priority
                   />
                 </Link>
                 <button
