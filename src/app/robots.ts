@@ -1,13 +1,13 @@
 import type { MetadataRoute } from 'next'
-import { site } from '@/lib/siteContent'
-
-export const dynamic = 'force-static'
 
 export default function robots(): MetadataRoute.Robots {
-  const base = site.url.replace(/\/$/, '')
   return {
-    rules: { userAgent: '*', allow: '/', disallow: ['/api/'] },
-    sitemap: `${base}/sitemap.xml`,
-    host: base,
+    rules: {
+      userAgent: '*',
+      allow: '/',
+      disallow: ['/api/'],
+    },
+    sitemap: 'https://watnidea.com/sitemap.xml',
+    host: 'https://watnidea.com',
   }
 }
