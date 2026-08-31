@@ -21,11 +21,12 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(site.url),
-  title: {
-    default: `${site.name} — ${site.tagline}`,
-    template: `%s`,
+  verification: {
+    google: 'EM7JIBer6u03L0M18NQqLIRu4FY8hiYeSiBavFf_mUI',
   },
+
+  // Keep your existing title, description and other metadata here
+
   description: site.longDescription,
   keywords: [
     site.name,
