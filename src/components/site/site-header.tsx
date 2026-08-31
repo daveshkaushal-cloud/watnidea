@@ -105,10 +105,11 @@ export default function SiteHeader({ tone = 'light' }: { tone?: 'light' | 'dark'
     <header
       ref={headerRef}
       className={cn(
-        'fixed inset-x-0 top-0 z-[70] transition-shadow duration-300',
+        'fixed inset-x-0 top-0 z-[90] transition-shadow duration-300',
         scrolled
           ? 'border-b border-[rgba(17,17,17,0.10)] bg-[rgba(255,247,233,0.95)] backdrop-blur-[12px] shadow-[0_4px_20px_-8px_rgba(17,17,17,0.12)]'
           : 'border-b border-[rgba(17,17,17,0.06)] bg-[rgba(255,247,233,0.95)] backdrop-blur-[12px]',
+        mobileOpen && 'h-[100dvh] !bg-[#FFF7E9] !backdrop-blur-none lg:h-auto',
       )}
     >
       <div className="mx-auto flex h-[72px] max-w-[1400px] items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
@@ -198,12 +199,16 @@ export default function SiteHeader({ tone = 'light' }: { tone?: 'light' | 'dark'
           {/* Mobile trigger — below lg */}
           <button
             type="button"
-            onClick={() => setMobileOpen(true)}
-            aria-label="Open navigation menu"
+            onClick={() => setMobileOpen((open) => !open)}
+            aria-label={mobileOpen ? 'Close navigation menu' : 'Open navigation menu'}
             aria-expanded={mobileOpen}
             className="flex h-11 w-11 items-center justify-center rounded-full border border-[rgba(16,16,16,0.16)] bg-[rgba(255,253,248,0.6)] backdrop-blur-sm transition-colors hover:border-[#F13D32] lg:hidden"
           >
-            <Menu className="h-5 w-5" style={{ color: '#111111' }} />
+            {mobileOpen ? (
+              <X className="h-5 w-5" style={{ color: '#111111' }} />
+            ) : (
+              <Menu className="h-5 w-5" style={{ color: '#111111' }} />
+            )}
           </button>
         </div>
       </div>
@@ -250,44 +255,18 @@ export default function SiteHeader({ tone = 'light' }: { tone?: 'light' | 'dark'
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-[80] bg-[#FFF7E9] lg:hidden"
+            className="absolute inset-x-0 bottom-0 top-[72px] z-[100] bg-[#FFF7E9] lg:hidden"
           >
-            <div className="flex h-full flex-col">
-              <div className="flex items-center justify-between px-5 py-4">
-                <Link
-                  href="/"
-                  aria-label={`${site.name} home`}
-                  className="inline-flex items-center"
-                  onClick={() => setMobileOpen(false)}
-                >
-                  <Image
-                    src="/watnidea-logo-original.png"
-                    alt={`${site.name} logo`}
-                    width={160}
-                    height={39}
-                    className="h-[32px] w-auto object-contain"
-                    priority
-                  />
-                </Link>
-                <button
-                  type="button"
-                  onClick={() => setMobileOpen(false)}
-                  aria-label="Close navigation menu"
-                  className="flex h-11 w-11 items-center justify-center rounded-full border border-[rgba(16,16,16,0.16)] bg-white"
-                >
-                  <X className="h-5 w-5 text-[#111111]" />
-                </button>
-              </div>
-
-              <nav className="flex flex-1 flex-col gap-1 overflow-y-auto px-5 pb-8" aria-label="Mobile">
-                <Link href="/work" className="rounded-2xl px-4 py-4 font-editorial text-2xl font-semibold text-[#111111] hover:bg-white">
+            <div className="flex h-full flex-col bg-[#FFF7E9]">
+              <nav className="relative z-[101] flex flex-1 flex-col gap-1 overflow-y-auto bg-[#FFF7E9] px-5 pb-8 pt-4" aria-label="Mobile">
+                <Link href="/work" className="rounded-2xl border-b border-black/10 px-4 py-4 font-editorial text-2xl font-semibold text-[#111111] hover:bg-white">
                   Work
                 </Link>
                 <button
                   type="button"
                   onClick={() => setMobileServices((s) => !s)}
                   aria-expanded={mobileServices}
-                  className="flex items-center justify-between rounded-2xl px-4 py-4 font-editorial text-2xl font-semibold text-[#111111] hover:bg-white"
+                  className="flex items-center justify-between rounded-2xl border-b border-black/10 px-4 py-4 font-editorial text-2xl font-semibold text-[#111111] hover:bg-white"
                 >
                   Services
                   <ChevronDown className={cn('h-5 w-5 transition-transform', mobileServices && 'rotate-180')} />
@@ -316,10 +295,10 @@ export default function SiteHeader({ tone = 'light' }: { tone?: 'light' | 'dark'
                     </motion.div>
                   )}
                 </AnimatePresence>
-                <Link href="/about" className="rounded-2xl px-4 py-4 font-editorial text-2xl font-semibold text-[#111111] hover:bg-white">
+                <Link href="/about" className="rounded-2xl border-b border-black/10 px-4 py-4 font-editorial text-2xl font-semibold text-[#111111] hover:bg-white">
                   About
                 </Link>
-                <Link href="/book-strategy-call" className="rounded-2xl px-4 py-4 font-editorial text-2xl font-semibold text-[#111111] hover:bg-white">
+                <Link href="/book-strategy-call" className="rounded-2xl border-b border-black/10 px-4 py-4 font-editorial text-2xl font-semibold text-[#111111] hover:bg-white">
                   Contact
                 </Link>
 
