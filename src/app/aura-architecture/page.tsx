@@ -1,3 +1,11 @@
+export const metadata = {
+  title: "Brand Identity Agency in Noida, Delhi NCR | watNidea",
+  description: "Brand identity agency in Noida, Delhi NCR for brand strategy, logo design, visual identity, packaging and rebranding. Start your project.",
+  alternates: {
+    canonical: "https://www.watnidea.com/aura-architecture",
+  }
+};
+
 import SiteHeader from '@/components/site/site-header'
 import SiteFooter from '@/components/site/site-footer'
 import { site, getService } from '@/lib/siteContent'

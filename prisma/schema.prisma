@@ -1,48 +1,122 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
+}
+
+enum Role {
+  SUPER_ADMIN
+  SEO_EDITOR
+}
+
+enum PostStatus {
+  DRAFT
+  PUBLISHED
+  SCHEDULED
+  TRASH
 }
 
 model User {
   id        String   @id @default(cuid())
   email     String   @unique
   name      String?
+  role      Role     @default(SEO_EDITOR)
+  bio       String?
+  avatar    String?
+  posts     Post[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model Post {
+  id              String     @id @default(cuid())
+  title           String
+  slug            String     @unique
+  excerpt         String?    @db.Text
+  content         String?    @db.Text
+  
+  // Media & Image SEO (1200x650 + WebP + Alt)
+  coverImage      String?
+  coverImageAlt   String?
+  
+  // Organization & Internal Linking
+  category        String     @default("General")
+  tags            String[]   @default([])
+  isFeatured      Boolean    @default(false)
+  relatedPostIds  String[]   @default([])
+  
+  // Publishing, Scheduling & Trash
+  status          PostStatus @default(DRAFT)
+  published       Boolean    @default(false)
+  scheduledAt     DateTime?
+  views           Int        @default(0)
+  
+  // Core SEO Settings
+  focusKeyword    String?
+  metaTitle       String?
+  metaDescription String?    @db.Text
+  canonicalUrl    String?
+  robotsIndex     Boolean    @default(true)
+  robotsFollow    Boolean    @default(true)
+  
+  // Social Sharing (Open Graph & Twitter/X)
+  ogTitle         String?
+  ogDescription   String?    @db.Text
+  ogImage         String?
+  twitterCard     String     @default("summary_large_image")
+  
+  // Schema Markup Type
+  schemaType      String     @default("BlogPosting") // Article, BlogPosting, NewsArticle
+  
+  // Author & Revision Tracking
+  authorId        String?
+  author          User?      @relation(fields: [authorId], references: [id])
+  revisions       Json?      // Stores auto-save & version history snapshots
+  
+  createdAt       DateTime   @default(now())
+  updatedAt       DateTime   @updatedAt
+}
+
+model Redirect {
+  id          String   @id @default(cuid())
+  sourcePath  String   @unique // e.g. "/old-blog-slug"
+  targetPath  String           // e.g. "/blog/new-blog-slug"
+  permanent   Boolean  @default(true) // true = 301, false = 302
+  createdAt   DateTime @default(now())
+}
+
+model BrokenLinkLog {
   id        String   @id @default(cuid())
-  title     String
-  content   String?
-  published Boolean  @default(false)
-  authorId  String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  path      String   @unique
+  hits      Int      @default(1)
+  lastHitAt DateTime @default(now())
+}
+
+model GlobalSeoConfig {
+  id                  String   @id @default("default")
+  siteName            String   @default("Watnidea")
+  defaultMetaTitle    String?
+  defaultMetaDesc     String?
+  defaultOgImage      String?
+  customRobotsTxt     String?  @db.Text
+  updatedAt           DateTime @updatedAt
 }
 
 model StrategyCallSubmission {
-  id           String   @id @default(cuid())
-  name         String
-  email        String
-  business     String
-  projectType  String
-  message      String
-  website      String?
-  phone        String?
-  budget       String?
+  id            String   @id @default(cuid())
+  name          String
+  email         String
+  business      String
+  projectType   String
+  message       String
+  website       String?
+  phone         String?
+  budget        String?
   preferredTime String?
-  createdAt    DateTime @default(now())
+  createdAt     DateTime @default(now())
 }
 
 model NewsletterSubscriber {

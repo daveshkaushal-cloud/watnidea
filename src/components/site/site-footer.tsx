@@ -177,6 +177,16 @@ export default function SiteFooter() {
                   About
                 </Link>
               </li>
+              
+              {/* <-- ADDED BLOG LINK HERE --> */}
+              <li>
+                <Link
+                  href="/blog"
+                  className="hover:text-[#F13D32]"
+                >
+                  Blog
+                </Link>
+              </li>
 
               <li>
                 <Link

@@ -1,3 +1,11 @@
+export const metadata = {
+  title: "Performance Marketing Agency in Noida, Delhi NCR | watNidea",
+  description: "Performance marketing agency in Noida, Delhi NCR for Google Ads, Meta ads, PPC and lead generation with clear tracking. Book a call.",
+  alternates: {
+    canonical: "https://www.watnidea.com/growth-alchemy",
+  }
+};
+
 import SiteHeader from '@/components/site/site-header'
 import SiteFooter from '@/components/site/site-footer'
 import { EndingCTA } from '@/components/site/primitives'

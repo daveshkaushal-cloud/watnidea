@@ -1,3 +1,11 @@
+export const metadata = {
+  title: "Video Production Company in Noida, Delhi NCR | watNidea",
+  description: "Video production company in Noida, Delhi NCR for brand films, corporate, promotional, product and social videos. Start your project.",
+  alternates: {
+    canonical: "https://www.watnidea.com/kinetic-studio",
+  }
+};
+
 import SiteHeader from '@/components/site/site-header'
 import SiteFooter from '@/components/site/site-footer'
 import { site, getService } from '@/lib/siteContent'

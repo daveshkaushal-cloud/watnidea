@@ -1,3 +1,11 @@
+export const metadata = {
+  title: "Website Development Agency in Noida, Delhi NCR | watNidea",
+  description: "Website development agency in Noida, Delhi NCR building fast, SEO-friendly websites for businesses. Design, development and launch support.",
+  alternates: {
+    canonical: "https://www.watnidea.com/the-digital-hq",
+  }
+};
+
 import SiteHeader from '@/components/site/site-header'
 import SiteFooter from '@/components/site/site-footer'
 import { site, getService } from '@/lib/siteContent'

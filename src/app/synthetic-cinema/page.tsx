@@ -1,3 +1,11 @@
+export const metadata = {
+  title: "AI Advertising Agency in Noida, Delhi NCR | watNidea",
+  description: "AI advertising agency in Noida, Delhi NCR creating AI-powered ad creatives and campaigns for Google, Meta and social platforms.",
+  alternates: {
+    canonical: "https://www.watnidea.com/synthetic-cinema", // Be sure to change 'synthetic-cinema' if your folder name is different!
+  }
+};
+
 import SiteHeader from '@/components/site/site-header'
 import SiteFooter from '@/components/site/site-footer'
 import { EndingCTA } from '@/components/site/primitives'

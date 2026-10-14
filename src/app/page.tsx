@@ -1,3 +1,4 @@
+
 import SiteHeader from '@/components/site/site-header'
 import SiteFooter from '@/components/site/site-footer'
 import { HomeHero } from '@/components/site/home/hero'
@@ -14,26 +15,12 @@ import {
 import { HOME_FAQS } from '@/components/site/home/faq-data'
 
 export const metadata = {
-  title: 'Branding and Creative Agency | watNidea',
-  description:
-    'watNidea is a branding and creative agency providing brand identity, websites, video production, social media creative, performance marketing, AI advertising, AEO, SEO and digital campaigns.',
-  alternates: { canonical: '/' },
-  openGraph: {
-    title: 'Branding and Creative Agency | watNidea',
-    description:
-      'watNidea is a branding and creative agency providing brand identity, websites, video production, social media creative, performance marketing, AI advertising, AEO, SEO and digital campaigns.',
-    type: 'website',
-    url: '/',
-    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'watNidea — Branding and Creative Agency' }],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Branding and Creative Agency | watNidea',
-    description:
-      'watNidea is a branding and creative agency providing brand identity, websites, video production, social media creative, performance marketing, AI advertising, AEO, SEO and digital campaigns.',
-    images: ['/og-image.png'],
-  },
-}
+  title: "Social Media Agency in Noida, Delhi NCR | watNidea",
+  description: "Social media agency in Noida, Delhi NCR for strategy, management, Instagram marketing, content and paid social. Book a call.",
+  alternates: {
+    canonical: "https://www.watnidea.com/the-hype-engine",
+  }
+};
 
 const faqJsonLd = {
   '@context': 'https://schema.org',

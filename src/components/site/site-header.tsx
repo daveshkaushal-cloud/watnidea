@@ -9,28 +9,11 @@ import { Menu, X, ChevronDown, CalendarDays } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { SERVICES, site } from '@/lib/siteContent'
 
-/**
- * SiteHeader — the ONE shared header for every page.
- *
- * Adaptive to light/dark sections (transparent over hero, paper-blur on
- * scroll), fixed top, never overlaps content (pages add top padding to
- * clear it).
- *
- * Responsive rules (per brief):
- *   - Full nav (logo + links + status + CTA) from 1024px upward.
- *   - Status sentence hidden below 1440px; only a status dot shown.
- *   - Compact mobile menu below 1024px (full-screen overlay).
- *   - "Book Strategy Call" CTA visible from 1024px upward.
- *   - Services mega menu on hover (desktop) / expandable (mobile).
- *
- * Hard requirement: logo, nav links, status and CTA never overlap at any
- * tested viewport (375 / 430 / 768 / 1024 / 1366 / 1440).
- */
-
 const NAV = [
   { label: 'Work', href: '/work' },
   { label: 'Services', href: '#services', mega: true },
   { label: 'About', href: '/about' },
+  { label: 'Blog', href: '/blog' },
   { label: 'Contact', href: '/book-strategy-call' },
 ]
 
@@ -41,7 +24,7 @@ export default function SiteHeader({ tone = 'light' }: { tone?: 'light' | 'dark'
   const [mobileOpen, setMobileOpen] = useState(false)
   const [mobileServices, setMobileServices] = useState(false)
 
-  // Scroll state — switch to paper-blur after 24px.
+  // Scroll state
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24)
     onScroll()
@@ -49,7 +32,7 @@ export default function SiteHeader({ tone = 'light' }: { tone?: 'light' | 'dark'
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  // Body scroll lock when any overlay open.
+  // Body scroll lock
   useEffect(() => {
     const lock = megaOpen || mobileOpen
     document.body.style.overflow = lock ? 'hidden' : ''
@@ -58,7 +41,7 @@ export default function SiteHeader({ tone = 'light' }: { tone?: 'light' | 'dark'
     }
   }, [megaOpen, mobileOpen])
 
-  // Escape closes overlays.
+  // Escape closes overlays
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -70,20 +53,16 @@ export default function SiteHeader({ tone = 'light' }: { tone?: 'light' | 'dark'
     return () => window.removeEventListener('keydown', onKey)
   }, [])
 
-  // Close menus on route change (ref-guard skips the first render so we
-  // don't trigger a redundant setState during mount).
   const firstRender = useRef(true)
   useEffect(() => {
     if (firstRender.current) {
       firstRender.current = false
       return
     }
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMegaOpen(false)
     setMobileOpen(false)
   }, [pathname])
 
-  // Outside-click closes the mega menu (desktop).
   const headerRef = useRef<HTMLElement>(null)
   useEffect(() => {
     if (!megaOpen) return
@@ -96,9 +75,6 @@ export default function SiteHeader({ tone = 'light' }: { tone?: 'light' | 'dark'
     return () => document.removeEventListener('mousedown', onClick)
   }, [megaOpen])
 
-  // The header ALWAYS uses the cream background + dark text.
-  // Scrolling only adds a slightly stronger shadow — no colour theme change.
-  // This prevents the transparent-over-light-hero contrast problem.
   const onDark = false
 
   return (
@@ -113,23 +89,21 @@ export default function SiteHeader({ tone = 'light' }: { tone?: 'light' | 'dark'
       )}
     >
       <div className="mx-auto flex h-[72px] max-w-[1400px] items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
-        {/* Logo */}
         <Link
           href="/"
           aria-label={`${site.name} home`}
           className="flex shrink-0 items-center"
         >
           <Image
-  src="/watnidea-logo-original.png"
-  alt={`${site.name} logo`}
-  width={180}
-  height={44}
-  priority
-  className="h-[34px] w-auto sm:h-[36px] lg:h-[38px]"
-/>
+            src="/watnidea-logo-original.png"
+            alt={`${site.name} logo`}
+            width={180}
+            height={44}
+            priority
+            className="h-[34px] w-auto sm:h-[36px] lg:h-[38px]"
+          />
         </Link>
 
-        {/* Desktop nav — lg+ (1024px). Natural width, sits between logo and right cluster. */}
         <nav className="hidden items-center gap-0.5 lg:flex" aria-label="Primary">
           {NAV.map((item) =>
             item.mega ? (
@@ -169,9 +143,7 @@ export default function SiteHeader({ tone = 'light' }: { tone?: 'light' | 'dark'
           )}
         </nav>
 
-        {/* Right cluster — status + CTA + mobile trigger */}
         <div className="flex items-center gap-2 sm:gap-3">
-          {/* Status sentence — xl+ (1440px) only; dot below */}
           <span className="hidden items-center gap-2 text-xs font-medium xl:flex" style={{ color: '#555255' }}>
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#F13D32] opacity-70" />
@@ -179,14 +151,12 @@ export default function SiteHeader({ tone = 'light' }: { tone?: 'light' | 'dark'
             </span>
             {site.status}
           </span>
-          {/* Status dot — lg to xl */}
           <span
             className="hidden h-2 w-2 rounded-full bg-[#F13D32] lg:flex xl:hidden"
             aria-label={site.status}
             title={site.status}
           />
 
-          {/* CTA — lg+. Icon-only below xl, full label at xl+. */}
           <Link
             href="/book-strategy-call"
             aria-label="Book Strategy Call"
@@ -196,7 +166,6 @@ export default function SiteHeader({ tone = 'light' }: { tone?: 'light' | 'dark'
             <span className="hidden xl:inline">Book Strategy Call</span>
           </Link>
 
-          {/* Mobile trigger — below lg */}
           <button
             type="button"
             onClick={() => setMobileOpen((open) => !open)}
@@ -213,7 +182,6 @@ export default function SiteHeader({ tone = 'light' }: { tone?: 'light' | 'dark'
         </div>
       </div>
 
-      {/* Desktop mega menu */}
       <AnimatePresence>
         {megaOpen && (
           <motion.div
@@ -247,7 +215,6 @@ export default function SiteHeader({ tone = 'light' }: { tone?: 'light' | 'dark'
         )}
       </AnimatePresence>
 
-      {/* Mobile full-screen menu */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -297,6 +264,9 @@ export default function SiteHeader({ tone = 'light' }: { tone?: 'light' | 'dark'
                 </AnimatePresence>
                 <Link href="/about" className="rounded-2xl border-b border-black/10 px-4 py-4 font-editorial text-2xl font-semibold text-[#111111] hover:bg-white">
                   About
+                </Link>
+                <Link href="/blog" className="rounded-2xl border-b border-black/10 px-4 py-4 font-editorial text-2xl font-semibold text-[#111111] hover:bg-white">
+                  Blog
                 </Link>
                 <Link href="/book-strategy-call" className="rounded-2xl border-b border-black/10 px-4 py-4 font-editorial text-2xl font-semibold text-[#111111] hover:bg-white">
                   Contact

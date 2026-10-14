@@ -3,6 +3,9 @@ import { Playfair_Display, Poppins } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { site } from "@/lib/siteContent";
+import SiteHeader from "@/components/site/site-header";
+import SiteFooter from "@/components/site/site-footer";
+import Script from "next/script"; // <-- Added Next.js Script import for Google Analytics
 
 const poppins = Poppins({
   variable: "--font-geist-sans",
@@ -11,7 +14,6 @@ const poppins = Poppins({
   display: "swap",
 });
 
-// Playfair Display — expressive editorial serif for H1/H2 headings.
 const playfair = Playfair_Display({
   variable: "--font-editorial",
   subsets: ["latin"],
@@ -24,10 +26,8 @@ export const metadata: Metadata = {
   verification: {
     google: 'EM7JIBer6u03L0M18NQqLIRu4FY8hiYeSiBavFf_mUI',
   },
-
-  // Keep your existing title, description and other metadata here
-
-  description: site.longDescription,
+  title: "Branding & Creative Agency in Noida, Delhi NCR | watNidea",
+  description: "Branding and creative agency in Noida, Delhi NCR for brand identity, websites, video, social media, performance marketing, AI advertising and SEO.",
   keywords: [
     site.name,
     "creative agency",
@@ -47,8 +47,8 @@ export const metadata: Metadata = {
   },
   alternates: { canonical: "/" },
   openGraph: {
-    title: `${site.name} — ${site.tagline}`,
-    description: site.longDescription,
+    title: `Branding & Creative Agency in Noida, Delhi NCR | watNidea`,
+    description: "Branding and creative agency in Noida, Delhi NCR for brand identity, websites, video, social media, performance marketing, AI advertising and SEO.",
     siteName: site.name,
     type: "website",
     url: site.url,
@@ -57,14 +57,14 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: `${site.name} — ${site.tagline}`,
+        alt: `Branding & Creative Agency in Noida, Delhi NCR | watNidea`,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${site.name} — ${site.tagline}`,
-    description: site.longDescription,
+    title: `Branding & Creative Agency in Noida, Delhi NCR | watNidea`,
+    description: "Branding and creative agency in Noida, Delhi NCR for brand identity, websites, video, social media, performance marketing, AI advertising and SEO.",
     images: ["/og-image.png"],
   },
   robots: {
@@ -105,7 +105,31 @@ export default function RootLayout({
       <body
         className={`${poppins.variable} ${playfair.variable} antialiased bg-[var(--wn-bg)] text-[var(--wn-fg)] overflow-x-hidden`}
       >
+        {/* --- GOOGLE ANALYTICS TAG --- */}
+        <Script
+          strategy="afterInteractive"
+          src="https://www.googletagmanager.com/gtag/js?id=G-TZ3BVFRJQ8"
+        />
+        <Script
+          id="google-analytics"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-TZ3BVFRJQ8');
+            `,
+          }}
+        />
+        {/* ---------------------------- */}
+
+        <SiteHeader />
+        
         {children}
+        
+        <SiteFooter /> 
+        
         <Toaster />
         <script
           type="application/ld+json"

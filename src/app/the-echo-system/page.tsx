@@ -1,3 +1,10 @@
+export const metadata = {
+  title: "AEO & SEO Services in Noida, Delhi NCR | watNidea",
+  description: "AEO and SEO services in Noida, Delhi NCR to help your business rank on Google and get cited in AI answers. Technical SEO, content and links.",
+  alternates: {
+    canonical: "https://www.watnidea.com/the-echo-system", // Make sure this matches your exact folder/URL name!
+  }
+};
 import SiteHeader from '@/components/site/site-header'
 import SiteFooter from '@/components/site/site-footer'
 import { EndingCTA } from '@/components/site/primitives'
