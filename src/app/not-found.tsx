@@ -78,7 +78,7 @@ export default function NotFound() {
           </div>
         </Container>
       </main>
-      <SiteFooter />
+    
     </div>
   )
 }

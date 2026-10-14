@@ -84,7 +84,7 @@ export default function KineticStudioPage() {
           secondaryLabel="Explore Our Work"
         />
       </main>
-      <SiteFooter />
+     
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}

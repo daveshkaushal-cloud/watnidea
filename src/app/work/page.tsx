@@ -91,7 +91,7 @@ export default function WorkPage() {
         <WorkFinalCta />        {/* 8 · Final CTA (red) */}
       </main>
 
-      <SiteFooter />
+    
 
       <script
         type="application/ld+json"

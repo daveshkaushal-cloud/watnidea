@@ -131,7 +131,7 @@ export default function TermsPage() {
           </Container>
         </Section>
       </main>
-      <SiteFooter />
+     
     </div>
   )
 }

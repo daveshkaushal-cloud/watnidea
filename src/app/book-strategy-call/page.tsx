@@ -93,8 +93,6 @@ export default function BookStrategyCallPage() {
         <BookFinalCta />          {/* 7 · Final CTA (red) */}
       </main>
 
-      <SiteFooter />
-
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(contactJsonLd) }}

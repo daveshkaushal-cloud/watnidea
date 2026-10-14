@@ -81,7 +81,7 @@ export default function InsightsPage() {
           secondaryLabel="Email us"
         />
       </main>
-      <SiteFooter />
+    
     </div>
   )
 }

@@ -77,7 +77,7 @@ export default function TheDigitalHqPage() {
           secondaryLabel="Contact Us"
         />
       </main>
-      <SiteFooter />
+      
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />

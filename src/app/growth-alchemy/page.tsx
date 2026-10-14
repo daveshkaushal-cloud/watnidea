@@ -92,7 +92,7 @@ export default function GrowthAlchemyPage() {
         />
       </main>
 
-      <SiteFooter />
+    
 
       <script
         type="application/ld+json"

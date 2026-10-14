@@ -94,7 +94,6 @@ export default async function ArticlePage({
           )}
         </article>
       </main>
-      <SiteFooter />
     </div>
   )
 }

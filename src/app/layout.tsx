@@ -3,9 +3,7 @@ import { Playfair_Display, Poppins } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { site } from "@/lib/siteContent";
-import SiteHeader from "@/components/site/site-header";
-import SiteFooter from "@/components/site/site-footer";
-import Script from "next/script"; // <-- Added Next.js Script import for Google Analytics
+import ClientLayoutWrapper from "@/components/ClientLayoutWrapper"; // We'll create this tiny wrapper
 
 const poppins = Poppins({
   variable: "--font-geist-sans",
@@ -105,31 +103,7 @@ export default function RootLayout({
       <body
         className={`${poppins.variable} ${playfair.variable} antialiased bg-[var(--wn-bg)] text-[var(--wn-fg)] overflow-x-hidden`}
       >
-        {/* --- GOOGLE ANALYTICS TAG --- */}
-        <Script
-          strategy="afterInteractive"
-          src="https://www.googletagmanager.com/gtag/js?id=G-TZ3BVFRJQ8"
-        />
-        <Script
-          id="google-analytics"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-TZ3BVFRJQ8');
-            `,
-          }}
-        />
-        {/* ---------------------------- */}
-
-        <SiteHeader />
-        
-        {children}
-        
-        <SiteFooter /> 
-        
+        <ClientLayoutWrapper>{children}</ClientLayoutWrapper>
         <Toaster />
         <script
           type="application/ld+json"

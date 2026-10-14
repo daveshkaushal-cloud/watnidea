@@ -5,6 +5,7 @@ export const metadata = {
     canonical: "https://www.watnidea.com/the-echo-system", // Make sure this matches your exact folder/URL name!
   }
 };
+
 import SiteHeader from '@/components/site/site-header'
 import SiteFooter from '@/components/site/site-footer'
 import { EndingCTA } from '@/components/site/primitives'
@@ -75,7 +76,7 @@ export default function TheEchoSystemPage() {
           secondaryLabel="Explore Our Work"
         />
       </main>
-      <SiteFooter />
+      
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />

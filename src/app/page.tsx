@@ -47,7 +47,6 @@ export default function Home() {
         <FaqSection />
         <FinalCtaSection />
       </main>
-      <SiteFooter />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}

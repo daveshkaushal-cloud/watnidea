@@ -392,7 +392,7 @@ export default async function CaseStudyPage({
           )}
         </CaseStudyShell>
       </main>
-      <SiteFooter />
+  
     </div>
   )
 }
