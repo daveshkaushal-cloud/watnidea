@@ -1,11 +1,15 @@
 "use client";
 
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import Link from "next/link";
 
 export default function SeoBlogAdminDashboard() {
   const [activeTab, setActiveTab] = useState<
     "posts" | "editor" | "redirects" | "404s" | "global" | "trash"
   >("posts");
+
+  const [filterStatus, setFilterStatus] = useState<"ALL" | "PUBLISHED" | "DRAFT" | "SCHEDULED" | "VIEWS" | "TRASH">("ALL");
+  const [previewPostId, setPreviewPostId] = useState<string | null>(null);
 
   const [password, setPassword] = useState("");
   const [posts, setPosts] = useState<any[]>([]);
@@ -21,7 +25,10 @@ export default function SeoBlogAdminDashboard() {
   const [content, setContent] = useState("");
   const [coverImage, setCoverImage] = useState("");
   const [coverImageAlt, setCoverImageAlt] = useState("");
-  const [category, setCategory] = useState("Digital Strategy");
+  
+  const [category, setCategory] = useState("AI & LLM SEO");
+  const [customCategory, setCustomCategory] = useState("");
+
   const [tags, setTags] = useState("");
   const [isFeatured, setIsFeatured] = useState(false);
   const [relatedPostIds, setRelatedPostIds] = useState<string[]>([]);
@@ -55,6 +62,8 @@ export default function SeoBlogAdminDashboard() {
     customRobotsTxt:
       "User-agent: *\nAllow: /\nDisallow: /admin/\nSitemap: https://www.watnidea.com/sitemap.xml",
   });
+
+  const contentRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
     const savedPass = sessionStorage.getItem("watnidea_seo_pass");
@@ -101,85 +110,45 @@ export default function SeoBlogAdminDashboard() {
     }
   };
 
-  const seoAnalysis = useMemo(() => {
-    const checks: { label: string; passed: boolean; points: number; tip: string }[] = [];
-    const kw = focusKeyword.trim().toLowerCase();
-    const effectiveMetaTitle = (metaTitle || title).trim();
-    const effectiveMetaDesc = (metaDescription || excerpt).trim();
-    const wordCount = content
-      .trim()
-      .split(/\s+/)
-      .filter(Boolean).length;
+  const applyFormatting = (type: "h2" | "h3" | "h4" | "bold" | "link" | "bullet" | "table" | "image") => {
+    const textarea = contentRef.current;
+    if (!textarea) return;
 
-    checks.push({
-      label: "Focus Keyword is set",
-      passed: kw.length > 2,
-      points: 15,
-      tip: "Add a target Focus Keyword to analyze on-page SEO.",
-    });
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+    const selectedText = content.substring(start, end);
 
-    checks.push({
-      label: "Focus Keyword in Meta Title",
-      passed: kw.length > 2 && effectiveMetaTitle.toLowerCase().includes(kw),
-      points: 15,
-      tip: "Include your exact Focus Keyword near the beginning of the Meta Title.",
-    });
+    let replacement = "";
+    if (type === "h2") {
+      replacement = `## ${selectedText || "Heading 2"}`;
+    } else if (type === "h3") {
+      replacement = `### ${selectedText || "Heading 3"}`;
+    } else if (type === "h4") {
+      replacement = `#### ${selectedText || "Heading 4"}`;
+    } else if (type === "bold") {
+      replacement = `**${selectedText || "Bold text"}**`;
+    } else if (type === "link") {
+      const url = prompt("Enter the URL for the link (e.g. /blog/slug or https://example.com):", "https://");
+      if (!url) return;
+      replacement = `[${selectedText || "Anchor Text"}](${url})`;
+    } else if (type === "bullet") {
+      replacement = `- ${selectedText || "List item"}`;
+    } else if (type === "table") {
+      replacement = `\n| Column 1 | Column 2 |\n| --- | --- |\n| Data 1 | Data 2 |\n`;
+    } else if (type === "image") {
+      const imgUrl = prompt("Enter the Image URL (or paste your WebP image link):", "https://");
+      if (!imgUrl) return;
+      const altText = prompt("Enter Image Alt Text for SEO:", selectedText || "Blog image description");
+      replacement = `![${altText || "Image"}](${imgUrl})`;
+    }
 
-    checks.push({
-      label: "Focus Keyword in URL Slug",
-      passed: kw.length > 2 && slug.toLowerCase().includes(kw.replace(/\s+/g, "-")),
-      points: 10,
-      tip: "Ensure the URL slug contains the Focus Keyword.",
-    });
+    const newContent = content.substring(0, start) + replacement + content.substring(end);
+    setContent(newContent);
 
-    checks.push({
-      label: "Focus Keyword in Meta Description",
-      passed: kw.length > 2 && effectiveMetaDesc.toLowerCase().includes(kw),
-      points: 10,
-      tip: "Include the Focus Keyword naturally inside the Meta Description.",
-    });
-
-    checks.push({
-      label: "Focus Keyword appears in Content",
-      passed: kw.length > 2 && content.toLowerCase().includes(kw),
-      points: 15,
-      tip: "Use the Focus Keyword in the first paragraph and subheadings (H2/H3).",
-    });
-
-    checks.push({
-      label: `Meta Title length (${effectiveMetaTitle.length}/60 chars)`,
-      passed: effectiveMetaTitle.length >= 30 && effectiveMetaTitle.length <= 60,
-      points: 10,
-      tip: "Keep Meta Title between 30 and 60 characters so Google doesn't truncate it.",
-    });
-
-    checks.push({
-      label: `Meta Description length (${effectiveMetaDesc.length}/160 chars)`,
-      passed: effectiveMetaDesc.length >= 110 && effectiveMetaDesc.length <= 160,
-      points: 10,
-      tip: "Write a compelling Meta Description between 110 and 160 characters.",
-    });
-
-    checks.push({
-      label: "Featured Image & Alt Text (1200x650 WebP)",
-      passed: Boolean(coverImage && coverImageAlt.trim().length > 3),
-      points: 10,
-      tip: "Upload a 1200x650 WebP image and provide descriptive Alt Text.",
-    });
-
-    checks.push({
-      label: `Article Word Count (${wordCount} words)`,
-      passed: wordCount >= 300,
-      points: 5,
-      tip: "Aim for at least 300-800 words for strong organic ranking.",
-    });
-
-    const score = checks.reduce((sum: number, c) => (c.passed ? sum + c.points : sum), 0);
-    return { score, checks, wordCount, effectiveMetaTitle, effectiveMetaDesc };
-  }, [focusKeyword, metaTitle, title, metaDescription, excerpt, slug, content, coverImage, coverImageAlt]);
-
-  const insertMarkdown = (syntax: string) => {
-    setContent((prev) => `${prev}\n${syntax}\n`);
+    setTimeout(() => {
+      textarea.focus();
+      textarea.setSelectionRange(start + replacement.length, start + replacement.length);
+    }, 50);
   };
 
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -214,7 +183,8 @@ export default function SeoBlogAdminDashboard() {
     setContent("");
     setCoverImage("");
     setCoverImageAlt("");
-    setCategory("Digital Strategy");
+    setCategory("AI & LLM SEO");
+    setCustomCategory("");
     setTags("");
     setIsFeatured(false);
     setRelatedPostIds([]);
@@ -242,6 +212,8 @@ export default function SeoBlogAdminDashboard() {
     sessionStorage.setItem("watnidea_seo_pass", password);
     setStatusMsg("Saving post & revision history...");
 
+    const finalCategory = category === "Custom..." ? (customCategory.trim() || "General") : category;
+
     const res = await fetch("/api/posts", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -254,7 +226,7 @@ export default function SeoBlogAdminDashboard() {
         content,
         coverImage,
         coverImageAlt,
-        category,
+        category: finalCategory,
         tags,
         isFeatured,
         relatedPostIds,
@@ -297,7 +269,26 @@ export default function SeoBlogAdminDashboard() {
     setContent(p.content || "");
     setCoverImage(p.coverImage || "");
     setCoverImageAlt(p.coverImageAlt || "");
-    setCategory(p.category || "Digital Strategy");
+    
+    const postCat = p.category || "AI & LLM SEO";
+    const standardCategories = [
+      "AI & LLM SEO",
+      "SEO",
+      "Digital Marketing",
+      "Technical SEO",
+      "eCommerce SEO",
+      "Local SEO",
+      "Content Marketing",
+      "Analytics & Search Trends",
+    ];
+    if (standardCategories.includes(postCat)) {
+      setCategory(postCat);
+      setCustomCategory("");
+    } else {
+      setCategory("Custom...");
+      setCustomCategory(postCat);
+    }
+
     setTags(Array.isArray(p.tags) ? p.tags.join(", ") : "");
     setIsFeatured(Boolean(p.isFeatured));
     setRelatedPostIds(Array.isArray(p.relatedPostIds) ? p.relatedPostIds : []);
@@ -373,14 +364,25 @@ export default function SeoBlogAdminDashboard() {
   };
 
   const activePosts = posts.filter((p: any) => p.status !== "TRASH");
-  const publishedCount = posts.filter((p: any) => p.status === "PUBLISHED").length;
-  const draftCount = posts.filter((p: any) => p.status === "DRAFT").length;
-  const scheduledCount = posts.filter((p: any) => p.status === "SCHEDULED").length;
+  const publishedPosts = posts.filter((p: any) => p.status === "PUBLISHED");
+  const draftPosts = posts.filter((p: any) => p.status === "DRAFT");
+  const scheduledPosts = posts.filter((p: any) => p.status === "SCHEDULED");
   const trashPosts = posts.filter((p: any) => p.status === "TRASH");
   const totalViews = posts.reduce((acc: number, p: any) => acc + (p.views || 0), 0);
 
+  const displayedPosts = (() => {
+    if (filterStatus === "PUBLISHED") return publishedPosts;
+    if (filterStatus === "DRAFT") return draftPosts;
+    if (filterStatus === "SCHEDULED") return scheduledPosts;
+    if (filterStatus === "TRASH") return trashPosts;
+    return activePosts;
+  })();
+
+  const effectiveMetaTitle = metaTitle || title || "Your Blog Title Appears Here";
+  const effectiveMetaDesc = metaDescription || excerpt || "Your meta description will appear here in Google search results...";
+
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 p-6 md:p-10">
+    <div className="min-h-screen bg-slate-950 text-slate-100 p-6 md:p-10 relative">
       <div className="max-w-7xl mx-auto space-y-8">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-800 pb-6">
           <div>
@@ -432,30 +434,60 @@ export default function SeoBlogAdminDashboard() {
         )}
 
         <div className="grid grid-cols-2 md:grid-cols-6 gap-4">
-          <div className="p-4 rounded-xl bg-slate-900 border border-slate-800">
+          <button
+            type="button"
+            onClick={() => { setActiveTab("posts"); setFilterStatus("ALL"); }}
+            className={`p-4 rounded-xl border text-left transition ${
+              filterStatus === "ALL" && activeTab === "posts" ? "bg-slate-800 border-blue-500" : "bg-slate-900 border-slate-800 hover:border-slate-700"
+            }`}
+          >
             <p className="text-xs text-slate-400">Total Blogs</p>
-            <p className="text-2xl font-bold mt-1">{activePosts.length}</p>
-          </div>
-          <div className="p-4 rounded-xl bg-slate-900 border border-slate-800">
+            <p className="text-2xl font-bold mt-1 text-white">{activePosts.length}</p>
+          </button>
+          <button
+            type="button"
+            onClick={() => { setActiveTab("posts"); setFilterStatus("PUBLISHED"); }}
+            className={`p-4 rounded-xl border text-left transition ${
+              filterStatus === "PUBLISHED" && activeTab === "posts" ? "bg-slate-800 border-emerald-500" : "bg-slate-900 border-slate-800 hover:border-slate-700"
+            }`}
+          >
             <p className="text-xs text-emerald-400">Published</p>
-            <p className="text-2xl font-bold mt-1 text-emerald-400">{publishedCount}</p>
-          </div>
-          <div className="p-4 rounded-xl bg-slate-900 border border-slate-800">
+            <p className="text-2xl font-bold mt-1 text-emerald-400">{publishedPosts.length}</p>
+          </button>
+          <button
+            type="button"
+            onClick={() => { setActiveTab("posts"); setFilterStatus("DRAFT"); }}
+            className={`p-4 rounded-xl border text-left transition ${
+              filterStatus === "DRAFT" && activeTab === "posts" ? "bg-slate-800 border-amber-500" : "bg-slate-900 border-slate-800 hover:border-slate-700"
+            }`}
+          >
             <p className="text-xs text-amber-400">Drafts</p>
-            <p className="text-2xl font-bold mt-1 text-amber-400">{draftCount}</p>
-          </div>
-          <div className="p-4 rounded-xl bg-slate-900 border border-slate-800">
+            <p className="text-2xl font-bold mt-1 text-amber-400">{draftPosts.length}</p>
+          </button>
+          <button
+            type="button"
+            onClick={() => { setActiveTab("posts"); setFilterStatus("SCHEDULED"); }}
+            className={`p-4 rounded-xl border text-left transition ${
+              filterStatus === "SCHEDULED" && activeTab === "posts" ? "bg-slate-800 border-purple-500" : "bg-slate-900 border-slate-800 hover:border-slate-700"
+            }`}
+          >
             <p className="text-xs text-purple-400">Scheduled</p>
-            <p className="text-2xl font-bold mt-1 text-purple-400">{scheduledCount}</p>
-          </div>
+            <p className="text-2xl font-bold mt-1 text-purple-400">{scheduledPosts.length}</p>
+          </button>
           <div className="p-4 rounded-xl bg-slate-900 border border-slate-800">
             <p className="text-xs text-cyan-400">Total Views</p>
             <p className="text-2xl font-bold mt-1 text-cyan-400">{totalViews}</p>
           </div>
-          <div className="p-4 rounded-xl bg-slate-900 border border-slate-800">
+          <button
+            type="button"
+            onClick={() => setActiveTab("trash")}
+            className={`p-4 rounded-xl border text-left transition ${
+              activeTab === "trash" ? "bg-slate-800 border-rose-500" : "bg-slate-900 border-slate-800 hover:border-slate-700"
+            }`}
+          >
             <p className="text-xs text-rose-400">In Trash</p>
             <p className="text-2xl font-bold mt-1 text-rose-400">{trashPosts.length}</p>
-          </div>
+          </button>
         </div>
 
         <div className="flex flex-wrap gap-2 border-b border-slate-800 pb-3">
@@ -470,7 +502,7 @@ export default function SeoBlogAdminDashboard() {
             <button
               type="button"
               key={t.id}
-              onClick={() => setActiveTab(t.id as any)}
+              onClick={() => { setActiveTab(t.id as any); if (t.id === "posts") setFilterStatus("ALL"); }}
               className={`px-4 py-2 rounded-lg text-sm font-medium transition ${
                 activeTab === t.id
                   ? "bg-blue-600 text-white"
@@ -484,79 +516,150 @@ export default function SeoBlogAdminDashboard() {
 
         {activeTab === "posts" && (
           <div className="space-y-3">
-            {activePosts.length === 0 ? (
+            {filterStatus !== "ALL" && (
+              <div className="flex items-center justify-between bg-slate-900 px-4 py-2 rounded-lg border border-slate-800 text-sm">
+                <span className="text-slate-300">
+                  Showing filter: <strong className="text-white">{filterStatus}</strong> ({displayedPosts.length} posts)
+                </span>
+                <button
+                  type="button"
+                  onClick={() => setFilterStatus("ALL")}
+                  className="text-xs text-blue-400 hover:underline"
+                >
+                  Clear Filter ✕
+                </button>
+              </div>
+            )}
+
+            {displayedPosts.length === 0 ? (
               <div className="p-12 text-center bg-slate-900 rounded-xl border border-slate-800 text-slate-400">
-                No blog posts yet. Click <strong>+ New Blog Post</strong> to publish your first article!
+                No blog posts found.
               </div>
             ) : (
-              activePosts.map((post: any) => (
-                <div
-                  key={post.id}
-                  className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-4 rounded-xl bg-slate-900 border border-slate-800"
-                >
-                  <div className="space-y-1">
-                    <div className="flex items-center gap-2 flex-wrap">
-                      <span
-                        className={`text-xs px-2.5 py-0.5 rounded-full font-medium ${
-                          post.status === "PUBLISHED"
-                            ? "bg-emerald-950 text-emerald-300 border border-emerald-700"
-                            : post.status === "SCHEDULED"
-                            ? "bg-purple-950 text-purple-300 border border-purple-700"
-                            : "bg-amber-950 text-amber-300 border border-amber-700"
-                        }`}
-                      >
-                        {post.status}
-                      </span>
-                      {post.isFeatured && (
-                        <span className="text-xs px-2 py-0.5 rounded bg-blue-950 text-blue-300">
-                          Featured
-                        </span>
-                      )}
-                      <span className="text-xs text-slate-400">{post.category}</span>
-                      <span className="text-xs text-cyan-400">{post.views || 0} views</span>
+              displayedPosts.map((post: any) => {
+                const isPreviewOpen = previewPostId === post.id;
+
+                return (
+                  <div key={post.id} className="space-y-2">
+                    {/* FIXED ALIGNMENT ROW: Title & Metadata on left, Single-line buttons on right */}
+                    <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-4 p-4 rounded-xl bg-slate-900 border border-slate-800">
+                      <div className="space-y-1.5 flex-1 min-w-0">
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <span
+                            className={`text-xs px-2.5 py-0.5 rounded-full font-medium shrink-0 ${
+                              post.status === "PUBLISHED"
+                                ? "bg-emerald-950 text-emerald-300 border border-emerald-700"
+                                : post.status === "SCHEDULED"
+                                ? "bg-purple-950 text-purple-300 border border-purple-700"
+                                : "bg-amber-950 text-amber-300 border border-amber-700"
+                            }`}
+                          >
+                            {post.status}
+                          </span>
+                          {post.isFeatured && (
+                            <span className="text-xs px-2 py-0.5 rounded bg-blue-950 text-blue-300 shrink-0">
+                              Featured
+                            </span>
+                          )}
+                          <span className="text-xs text-slate-400 truncate max-w-[200px]" title={post.category}>
+                            {post.category || "General"}
+                          </span>
+                          <span className="text-xs text-cyan-400 shrink-0">{post.views || 0} views</span>
+                        </div>
+                        <h3 className="text-lg font-semibold text-white truncate" title={post.title}>
+                          {post.title}
+                        </h3>
+                        <p className="text-xs text-slate-400 truncate">
+                          URL: <code className="text-slate-300">/blog/{post.slug}</code> · Category:{" "}
+                          <strong className="text-slate-200">{post.category || "General"}</strong>
+                        </p>
+                      </div>
+
+                      {/* SINGLE-LINE ACTION BUTTONS */}
+                      <div className="flex items-center gap-2 shrink-0 flex-wrap">
+                        <button
+                          type="button"
+                          onClick={() => setPreviewPostId(isPreviewOpen ? null : post.id)}
+                          className="px-3 py-1.5 rounded bg-cyan-600/20 border border-cyan-500/40 text-cyan-300 text-xs hover:bg-cyan-600/30 whitespace-nowrap"
+                        >
+                          {isPreviewOpen ? "Hide Preview" : "👁 View"}
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => handleEditPost(post)}
+                          className="px-3 py-1.5 rounded bg-blue-600/20 border border-blue-500/40 text-blue-300 text-xs hover:bg-blue-600/30 whitespace-nowrap"
+                        >
+                          Edit & SEO
+                        </button>
+                        {post.status === "PUBLISHED" ? (
+                          <button
+                            type="button"
+                            onClick={() => handleStatusChange(post.id, "DRAFT")}
+                            className="px-3 py-1.5 rounded bg-slate-800 text-amber-300 text-xs hover:bg-slate-700 whitespace-nowrap"
+                          >
+                            Unpublish
+                          </button>
+                        ) : (
+                          <button
+                            type="button"
+                            onClick={() => handleStatusChange(post.id, "PUBLISHED")}
+                            className="px-3 py-1.5 rounded bg-emerald-900/40 border border-emerald-700 text-emerald-300 text-xs whitespace-nowrap"
+                          >
+                            Publish Now
+                          </button>
+                        )}
+                        <button
+                          type="button"
+                          onClick={() => handleStatusChange(post.id, "TRASH")}
+                          className="px-3 py-1.5 rounded bg-rose-950/60 border border-rose-800 text-rose-300 text-xs hover:bg-rose-900 whitespace-nowrap"
+                        >
+                          Move to Trash
+                        </button>
+                      </div>
                     </div>
-                    <h3 className="text-lg font-semibold text-white">{post.title}</h3>
-                    <p className="text-xs text-slate-400">
-                      URL: <code className="text-slate-300">/blog/{post.slug}</code> · Focus Keyword:{" "}
-                      <strong className="text-slate-200">{post.focusKeyword || "Not set"}</strong> ·{" "}
-                      {post.robotsIndex ? "Index" : "Noindex"}
-                    </p>
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    <button
-                      type="button"
-                      onClick={() => handleEditPost(post)}
-                      className="px-3 py-1.5 rounded bg-blue-600/20 border border-blue-500/40 text-blue-300 text-xs hover:bg-blue-600/30"
-                    >
-                      Edit & SEO
-                    </button>
-                    {post.status === "PUBLISHED" ? (
-                      <button
-                        type="button"
-                        onClick={() => handleStatusChange(post.id, "DRAFT")}
-                        className="px-3 py-1.5 rounded bg-slate-800 text-amber-300 text-xs hover:bg-slate-700"
-                      >
-                        Unpublish
-                      </button>
-                    ) : (
-                      <button
-                        type="button"
-                        onClick={() => handleStatusChange(post.id, "PUBLISHED")}
-                        className="px-3 py-1.5 rounded bg-emerald-900/40 border border-emerald-700 text-emerald-300 text-xs"
-                      >
-                        Publish Now
-                      </button>
+
+                    {/* SMALL DROP-DOWN PREVIEW BOX */}
+                    {isPreviewOpen && (
+                      <div className="p-5 rounded-2xl bg-[#FFF7E9] text-[#111111] border border-black/10 shadow-lg space-y-4 ml-4 mr-4 animate-in fade-in duration-300">
+                        <div className="flex items-center justify-between border-b border-black/10 pb-3">
+                          <div className="flex items-center gap-2">
+                            <span className="px-2.5 py-0.5 rounded-full bg-[#F13D32] text-white text-[10px] font-bold uppercase">
+                              {post.category || "General"}
+                            </span>
+                            <span className="text-xs text-neutral-500">Live Preview Box</span>
+                          </div>
+                          <div className="flex items-center gap-3">
+                            <Link
+                              href={`/blog/${post.slug}`}
+                              target="_blank"
+                              className="text-xs font-bold text-[#F13D32] hover:underline"
+                            >
+                              Open Live Page ↗
+                            </Link>
+                            <button
+                              type="button"
+                              onClick={() => setPreviewPostId(null)}
+                              className="px-2.5 py-1 rounded-full bg-neutral-200 hover:bg-neutral-300 text-neutral-900 font-bold text-xs"
+                            >
+                              ✕ Close
+                            </button>
+                          </div>
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
+                          {post.coverImage && (
+                            <img src={post.coverImage} alt={post.title} className="w-full h-32 object-cover rounded-xl border border-black/10" />
+                          )}
+                          <div className={`${post.coverImage ? "md:col-span-2" : "md:col-span-3"} space-y-2`}>
+                            <h4 className="font-editorial text-xl font-bold">{post.title}</h4>
+                            <p className="text-xs text-neutral-600 line-clamp-2">{post.excerpt || "No summary provided."}</p>
+                          </div>
+                        </div>
+                      </div>
                     )}
-                    <button
-                      type="button"
-                      onClick={() => handleStatusChange(post.id, "TRASH")}
-                      className="px-3 py-1.5 rounded bg-rose-950/60 border border-rose-800 text-rose-300 text-xs hover:bg-rose-900"
-                    >
-                      Move to Trash
-                    </button>
                   </div>
-                </div>
-              ))
+                );
+              })
             )}
           </div>
         )}
@@ -603,28 +706,62 @@ export default function SeoBlogAdminDashboard() {
                 </div>
 
                 <div className="flex flex-wrap gap-1.5 pt-2">
-                  {[
-                    { label: "H2", code: "## Heading 2" },
-                    { label: "H3", code: "### Heading 3" },
-                    { label: "H4", code: "#### Heading 4" },
-                    { label: "Bold", code: "**Bold text**" },
-                    { label: "Internal Link", code: "[Anchor Text](/blog/related-slug)" },
-                    { label: "External Link", code: "[Source](https://example.com)" },
-                    { label: "Bullet List", code: "- List item 1\n- List item 2" },
-                    {
-                      label: "Insert Table",
-                      code: "| Column 1 | Column 2 |\n| --- | --- |\n| Data 1 | Data 2 |",
-                    },
-                  ].map((btn) => (
-                    <button
-                      type="button"
-                      key={btn.label}
-                      onClick={() => insertMarkdown(btn.code)}
-                      className="px-2.5 py-1 text-xs rounded bg-slate-800 hover:bg-slate-700 border border-slate-700"
-                    >
-                      {btn.label}
-                    </button>
-                  ))}
+                  <button
+                    type="button"
+                    onClick={() => applyFormatting("h2")}
+                    className="px-3 py-1 text-xs rounded bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-semibold"
+                  >
+                    H2
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => applyFormatting("h3")}
+                    className="px-3 py-1 text-xs rounded bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-semibold"
+                  >
+                    H3
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => applyFormatting("h4")}
+                    className="px-3 py-1 text-xs rounded bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-semibold"
+                  >
+                    H4
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => applyFormatting("bold")}
+                    className="px-3 py-1 text-xs rounded bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-semibold"
+                  >
+                    Bold
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => applyFormatting("link")}
+                    className="px-3 py-1 text-xs rounded bg-blue-600 hover:bg-blue-500 border border-blue-500 text-white font-semibold"
+                  >
+                    🔗 Link
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => applyFormatting("image")}
+                    className="px-3 py-1 text-xs rounded bg-emerald-600 hover:bg-emerald-500 border border-emerald-500 text-white font-semibold"
+                  >
+                    🖼 Image
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => applyFormatting("bullet")}
+                    className="px-3 py-1 text-xs rounded bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-semibold"
+                  >
+                    Bullet List
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => applyFormatting("table")}
+                    className="px-3 py-1 text-xs rounded bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-semibold"
+                  >
+                    Insert Table
+                  </button>
                 </div>
 
                 <div>
@@ -632,11 +769,12 @@ export default function SeoBlogAdminDashboard() {
                     Article Body (Markdown & HTML supported) *
                   </label>
                   <textarea
+                    ref={contentRef}
                     rows={16}
                     required
                     value={content}
                     onChange={(e) => setContent(e.target.value)}
-                    placeholder="Write your article here using ## H2, ### H3, tables, internal links..."
+                    placeholder="Highlight any text and click H2, Bold, Link, or Image to format it instantly..."
                     className="w-full p-3 rounded bg-slate-950 border border-slate-700 font-mono text-sm"
                   />
                 </div>
@@ -729,7 +867,7 @@ export default function SeoBlogAdminDashboard() {
 
                 <div>
                   <label className="block text-xs text-slate-400 mb-1">
-                    SEO Meta Title ({(metaTitle || title).length}/60 chars)
+                    SEO Meta Title ({effectiveMetaTitle.length}/60 chars)
                   </label>
                   <input
                     type="text"
@@ -742,7 +880,7 @@ export default function SeoBlogAdminDashboard() {
 
                 <div>
                   <label className="block text-xs text-slate-400 mb-1">
-                    SEO Meta Description ({(metaDescription || excerpt).length}/160 chars)
+                    SEO Meta Description ({effectiveMetaDesc.length}/160 chars)
                   </label>
                   <textarea
                     rows={2}
@@ -838,26 +976,44 @@ export default function SeoBlogAdminDashboard() {
                   </div>
                 )}
 
-                <div className="grid grid-cols-2 gap-2">
-                  <div>
-                    <label className="block text-xs text-slate-400 mb-1">Category</label>
+                <div className="space-y-2">
+                  <label className="block text-xs text-slate-400 mb-1">Category *</label>
+                  <select
+                    value={category}
+                    onChange={(e) => setCategory(e.target.value)}
+                    className="w-full p-2.5 rounded bg-slate-950 border border-slate-700 text-sm text-white"
+                  >
+                    <option value="AI & LLM SEO">AI & LLM SEO</option>
+                    <option value="SEO">SEO</option>
+                    <option value="Digital Marketing">Digital Marketing</option>
+                    <option value="Technical SEO">Technical SEO</option>
+                    <option value="eCommerce SEO">eCommerce SEO</option>
+                    <option value="Local SEO">Local SEO</option>
+                    <option value="Content Marketing">Content Marketing</option>
+                    <option value="Analytics & Search Trends">Analytics & Search Trends</option>
+                    <option value="Custom...">Custom Category...</option>
+                  </select>
+
+                  {category === "Custom..." && (
                     <input
                       type="text"
-                      value={category}
-                      onChange={(e) => setCategory(e.target.value)}
-                      className="w-full p-2 rounded bg-slate-950 border border-slate-700 text-xs"
+                      value={customCategory}
+                      onChange={(e) => setCustomCategory(e.target.value)}
+                      placeholder="Type custom category name..."
+                      className="w-full mt-2 p-2.5 rounded bg-slate-950 border border-slate-700 text-sm text-white"
                     />
-                  </div>
-                  <div>
-                    <label className="block text-xs text-slate-400 mb-1">Tags (comma separated)</label>
-                    <input
-                      type="text"
-                      value={tags}
-                      onChange={(e) => setTags(e.target.value)}
-                      placeholder="SEO, Branding, Web"
-                      className="w-full p-2 rounded bg-slate-950 border border-slate-700 text-xs"
-                    />
-                  </div>
+                  )}
+                </div>
+
+                <div>
+                  <label className="block text-xs text-slate-400 mb-1">Tags (comma separated)</label>
+                  <input
+                    type="text"
+                    value={tags}
+                    onChange={(e) => setTags(e.target.value)}
+                    placeholder="SEO, Branding, Web"
+                    className="w-full p-2 rounded bg-slate-950 border border-slate-700 text-xs text-white"
+                  />
                 </div>
 
                 <div className="grid grid-cols-2 gap-2">
@@ -867,7 +1023,7 @@ export default function SeoBlogAdminDashboard() {
                       type="text"
                       value={authorName}
                       onChange={(e) => setAuthorName(e.target.value)}
-                      className="w-full p-2 rounded bg-slate-950 border border-slate-700 text-xs"
+                      className="w-full p-2 rounded bg-slate-950 border border-slate-700 text-xs text-white"
                     />
                   </div>
                   <div>
@@ -876,12 +1032,12 @@ export default function SeoBlogAdminDashboard() {
                       type="email"
                       value={authorEmail}
                       onChange={(e) => setAuthorEmail(e.target.value)}
-                      className="w-full p-2 rounded bg-slate-950 border border-slate-700 text-xs"
+                      className="w-full p-2 rounded bg-slate-950 border border-slate-700 text-xs text-white"
                     />
                   </div>
                 </div>
 
-                <label className="flex items-center gap-2 text-xs cursor-pointer">
+                <label className="flex items-center gap-2 text-xs cursor-pointer pt-2">
                   <input
                     type="checkbox"
                     checked={isFeatured}
@@ -892,43 +1048,10 @@ export default function SeoBlogAdminDashboard() {
 
                 <button
                   type="submit"
-                  className="w-full py-3 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm"
+                  className="w-full py-3 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm mt-2"
                 >
                   {editingId ? "Save Changes & Revision" : "Publish / Save Blog Post"}
                 </button>
-              </div>
-
-              <div className="p-5 rounded-xl bg-slate-900 border border-slate-800 space-y-4">
-                <div className="flex items-center justify-between">
-                  <h3 className="font-bold text-white">SEO Score & Analysis</h3>
-                  <span
-                    className={`px-3 py-1 rounded-full text-sm font-bold ${
-                      seoAnalysis.score >= 80
-                        ? "bg-emerald-950 text-emerald-300 border border-emerald-600"
-                        : seoAnalysis.score >= 50
-                        ? "bg-amber-950 text-amber-300 border border-amber-600"
-                        : "bg-rose-950 text-rose-300 border border-rose-600"
-                    }`}
-                  >
-                    {seoAnalysis.score} / 100
-                  </span>
-                </div>
-
-                <div className="space-y-2">
-                  {seoAnalysis.checks.map((c, idx) => (
-                    <div key={idx} className="text-xs flex items-start gap-2">
-                      <span className={c.passed ? "text-emerald-400" : "text-rose-400"}>
-                        {c.passed ? "PASS" : "TODO"}
-                      </span>
-                      <div>
-                        <p className={c.passed ? "text-slate-200" : "text-slate-400 font-medium"}>
-                          {c.label}
-                        </p>
-                        {!c.passed && <p className="text-[11px] text-slate-500">{c.tip}</p>}
-                      </div>
-                    </div>
-                  ))}
-                </div>
               </div>
 
               <div className="p-5 rounded-xl bg-slate-900 border border-slate-800 space-y-3">
@@ -965,11 +1088,10 @@ export default function SeoBlogAdminDashboard() {
                     https://www.watnidea.com &gt; blog &gt; {slug || "post-slug"}
                   </p>
                   <p className="text-base font-medium text-[#1a0dab] hover:underline truncate mt-0.5">
-                    {seoAnalysis.effectiveMetaTitle || "Your Blog Title Appears Here"}
+                    {effectiveMetaTitle}
                   </p>
                   <p className="text-xs text-[#4d5156] line-clamp-2 mt-1">
-                    {seoAnalysis.effectiveMetaDesc ||
-                      "Your meta description will appear here in Google search results..."}
+                    {effectiveMetaDesc}
                   </p>
                 </div>
               </div>
@@ -1023,7 +1145,7 @@ export default function SeoBlogAdminDashboard() {
                   value={sourcePath}
                   onChange={(e) => setSourcePath(e.target.value)}
                   placeholder="/old-blog-url"
-                  className="w-full p-2.5 rounded bg-slate-950 border border-slate-700 text-sm"
+                  className="w-full p-2.5 rounded bg-slate-950 border border-slate-700 text-sm text-white"
                 />
               </div>
               <div>
@@ -1034,7 +1156,7 @@ export default function SeoBlogAdminDashboard() {
                   value={targetPath}
                   onChange={(e) => setTargetPath(e.target.value)}
                   placeholder="/blog/new-blog-url"
-                  className="w-full p-2.5 rounded bg-slate-950 border border-slate-700 text-sm"
+                  className="w-full p-2.5 rounded bg-slate-950 border border-slate-700 text-sm text-white"
                 />
               </div>
               <div>
@@ -1042,7 +1164,7 @@ export default function SeoBlogAdminDashboard() {
                 <select
                   value={isPermanent ? "301" : "302"}
                   onChange={(e) => setIsPermanent(e.target.value === "301")}
-                  className="w-full p-2.5 rounded bg-slate-950 border border-slate-700 text-sm"
+                  className="w-full p-2.5 rounded bg-slate-950 border border-slate-700 text-sm text-white"
                 >
                   <option value="301">301 Permanent Redirect</option>
                   <option value="302">302 Temporary Redirect</option>
@@ -1132,7 +1254,7 @@ export default function SeoBlogAdminDashboard() {
                 type="text"
                 value={globalSeo.defaultMetaTitle || ""}
                 onChange={(e) => setGlobalSeo({ ...globalSeo, defaultMetaTitle: e.target.value })}
-                className="w-full p-2.5 rounded bg-slate-950 border border-slate-700 text-sm"
+                className="w-full p-2.5 rounded bg-slate-950 border border-slate-700 text-sm text-white"
               />
             </div>
             <div>
@@ -1143,7 +1265,7 @@ export default function SeoBlogAdminDashboard() {
                 rows={2}
                 value={globalSeo.defaultMetaDesc || ""}
                 onChange={(e) => setGlobalSeo({ ...globalSeo, defaultMetaDesc: e.target.value })}
-                className="w-full p-2.5 rounded bg-slate-950 border border-slate-700 text-sm"
+                className="w-full p-2.5 rounded bg-slate-950 border border-slate-700 text-sm text-white"
               />
             </div>
             <div>
@@ -1152,7 +1274,7 @@ export default function SeoBlogAdminDashboard() {
                 rows={5}
                 value={globalSeo.customRobotsTxt || ""}
                 onChange={(e) => setGlobalSeo({ ...globalSeo, customRobotsTxt: e.target.value })}
-                className="w-full p-2.5 rounded bg-slate-950 border border-slate-700 font-mono text-xs"
+                className="w-full p-2.5 rounded bg-slate-950 border border-slate-700 font-mono text-xs text-white"
               />
             </div>
             <button
