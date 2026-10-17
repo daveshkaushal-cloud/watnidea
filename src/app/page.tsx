@@ -15,8 +15,8 @@ import {
 import { HOME_FAQS } from '@/components/site/home/faq-data'
 
 export const metadata = {
-  title: "Social Media Agency in Noida, Delhi NCR | watNidea",
-  description: "Social media agency in Noida, Delhi NCR for strategy, management, Instagram marketing, content and paid social. Book a call.",
+  title: "Branding & Creative Agency in Noida, Delhi NCR | watNidea",
+  description: "Branding and creative agency in Noida, Delhi NCR for brand identity, websites, video, social media, performance marketing, AI advertising and SEO.",
   alternates: {
     canonical: "https://www.watnidea.com/the-hype-engine",
   }
