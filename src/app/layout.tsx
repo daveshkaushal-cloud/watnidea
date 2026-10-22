@@ -21,6 +21,7 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(site.url), // <-- This forces all relative paths & alternates to use https://watnidea.com
   verification: {
     google: 'EM7JIBer6u03L0M18NQqLIRu4FY8hiYeSiBavFf_mUI',
   },
@@ -49,7 +50,7 @@ export const metadata: Metadata = {
     description: "Branding and creative agency in Noida, Delhi NCR for brand identity, websites, video, social media, performance marketing, AI advertising and SEO.",
     siteName: site.name,
     type: "website",
-    url: site.url,
+    url: "/",
     images: [
       {
         url: "/og-image.png",

@@ -346,6 +346,6 @@ export const NAV_LINKS: { label: string; href: string }[] = [
   { label: 'Work', href: '/work' },
   { label: 'Services', href: '#services' },
   { label: 'About', href: '/about' },
-  { label: 'Insights', href: '/insights' },
+  { label: 'Blog', href: '/blog' }, // <-- Updated to /blog
   { label: 'Contact', href: '/book-strategy-call' },
 ]
