@@ -18,7 +18,7 @@ export const metadata = {
   title: "Branding & Creative Agency in Noida, Delhi NCR | watNidea",
   description: "Branding and creative agency in Noida, Delhi NCR for brand identity, websites, video, social media, performance marketing, AI advertising and SEO.",
   alternates: {
-    canonical: "https://www.watnidea.com/the-hype-engine",
+    canonical: "https://watnidea.com/the-hype-engine",
   }
 };
 
