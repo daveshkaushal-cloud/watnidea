@@ -1,18 +1,18 @@
 /**
- * /work/[slug] — dynamic case-study route.
+- /work/[slug] — dynamic case-study route.
  *
- * Honesty rules (NON-NEGOTIABLE):
- *   - generateStaticParams returns ONLY verified case-study slugs.
- *     Currently empty (no verified case studies in siteContent.ts).
- *   - Unverified concepts are rendered on demand (SSR) when a user
- *     navigates to /work/[slug] for a concept slug — behind an
- *     explicit "Concept exploration" label and with NO fake metrics.
- *   - Verified case studies render Overview, Challenge, Approach,
- *     Deliverables, Visual Work, Verified Outcome sections — sourced
- *     entirely from siteContent.ts.
- *   - NO invented clients, metrics, testimonials, or awards.
- *   - Exactly ONE <h1> on the page: the case-study title.
- *   - Navbar + Footer shared components.
+- Honesty rules (NON-NEGOTIABLE):
+- generateStaticParams returns ONLY verified case-study slugs.
+-     Currently empty (no verified case studies in siteContent.ts).
+- Unverified concepts are rendered on demand (SSR) when a user
+-     navigates to /work/[slug] for a concept slug — behind an
+-     explicit "Concept exploration" label and with NO fake metrics.
+- Verified case studies render Overview, Challenge, Approach,
+-     Deliverables, Visual Work, Verified Outcome sections — sourced
+-     entirely from siteContent.ts.
+- NO invented clients, metrics, testimonials, or awards.
+- Exactly ONE <h1> on the page: the case-study title.
+- Navbar + Footer shared components.
  */
 
 import type { Metadata } from 'next'
@@ -32,8 +32,8 @@ import {
 } from '@/lib/siteContent'
 
 /* ------------------------------------------------------------------ *
- * Static params + metadata
- * ------------------------------------------------------------------ */
+- Static params + metadata
+- ------------------------------------------------------------------ */
 
 export function generateStaticParams() {
   // Only verified case studies are pre-rendered.
@@ -54,7 +54,7 @@ export async function generateMetadata({
     return {
       title: 'Case Study',
       description: 'watNidea case study.',
-      alternates: { canonical: '/work' },
+      alternates: { canonical: 'https://watnidea.com/work' }, // FIXED: Absolute non-www URL
     }
   }
 
@@ -62,7 +62,7 @@ export async function generateMetadata({
     ? `${study.title} · Case Study`
     : `${study.title} · Concept Exploration`
   const description = study.summary
-  const canonical = `/work/${study.slug}`
+  const canonical = `https://watnidea.com/work/${study.slug}` // FIXED: Absolute non-www URL
 
   return {
     title,
@@ -71,7 +71,7 @@ export async function generateMetadata({
     openGraph: {
       title: `${title} · ${site.name}`,
       description,
-      url: `${site.url}${canonical}`,
+      url: canonical, // FIXED: Using absolute non-www canonical
       type: 'article',
     },
     twitter: {
@@ -83,8 +83,8 @@ export async function generateMetadata({
 }
 
 /* ------------------------------------------------------------------ *
- * Helpers
- * ------------------------------------------------------------------ */
+- Helpers
+- ------------------------------------------------------------------ */
 
 function serviceNames(slugs: CaseStudy['services']): string {
   return slugs
@@ -110,8 +110,8 @@ function MetaRow({
 }
 
 /* ------------------------------------------------------------------ *
- * Page sections
- * ------------------------------------------------------------------ */
+- Page sections
+- ------------------------------------------------------------------ */
 
 function CaseStudyShell({
   study,
@@ -224,8 +224,8 @@ function BodySection({
 }
 
 /* ------------------------------------------------------------------ *
- * Page
- * ------------------------------------------------------------------ */
+- Page
+- ------------------------------------------------------------------ */
 
 export default async function CaseStudyPage({
   params,
@@ -348,9 +348,10 @@ export default async function CaseStudyPage({
               </BodySection>
 
               {/* Concept visual — art-directed specimen sheet.
-               * 100% CSS/SVG — no images, no stock photos.
-               * Rendered ONLY for the two real concept case studies
-               * that have a designed visual companion. */}
+- 100% CSS/SVG — no images, no stock photos.
+- Rendered ONLY for the two real concept case studies
+- that have a designed visual companion. */
+}
               {slug === 'aura-brand-system-exploration' && (
                 <BodySection
                   id="visual-work"

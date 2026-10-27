@@ -19,14 +19,14 @@ export async function generateMetadata(): Promise<Metadata> {
       globalSeo?.defaultMetaDesc ||
       "Explore the latest digital strategy, web engineering, branding, and SEO insights from Watnidea.",
     alternates: {
-      canonical: "https://www.watnidea.com/blog",
+      canonical: "https://watnidea.com/blog", // FIXED: Removed www
     },
     openGraph: {
       title: globalSeo?.defaultMetaTitle || "Insights & Blog | Watnidea",
       description:
         globalSeo?.defaultMetaDesc ||
         "Explore the latest digital strategy, web engineering, branding, and SEO insights from Watnidea.",
-      url: "https://www.watnidea.com/blog",
+      url: "https://watnidea.com/blog", // FIXED: Removed www
       type: "website",
     },
   };

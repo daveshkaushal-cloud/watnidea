@@ -1,3 +1,4 @@
+import type { Metadata } from 'next' // Added this import
 import SiteHeader from '@/components/site/site-header'
 import SiteFooter from '@/components/site/site-footer'
 import Image from 'next/image'
@@ -16,6 +17,12 @@ import {
 } from '@/components/site/primitives'
 import { site } from '@/lib/siteContent'
 
+// Added clean metadata for SEO (inherits canonical from layout.tsx automatically)
+export const metadata: Metadata = {
+  title: "About | Branding & Creative Agency in Noida | watNidea",
+  description: "watNidea is a branding and creative agency connecting strategy, design, content, and growth to build brands people recognise and remember.",
+}
+
 /* Helpers */
 function isLightHex(hex: string): boolean {
   const color = hex.replace('#', '')
@@ -29,8 +36,8 @@ function isLightHex(hex: string): boolean {
 }
 
 /* ============================================================
- * S1 — About hero (paper) with Purpose / Direction specimen
- * ============================================================ */
+- S1 — About hero (paper) with Purpose / Direction specimen
+- ============================================================ */
 function AboutHero() {
   return (
     <Section
@@ -203,8 +210,8 @@ function AboutHero() {
 }
 
 /* ============================================================
- * S2 — We Build Brands With Meaning (white)
- * ============================================================ */
+- S2 — We Build Brands With Meaning (white)
+- ============================================================ */
 function AboutMeaning() {
   return (
     <Section surface="white" ariaLabelledBy="about-meaning-heading">
@@ -247,8 +254,8 @@ function AboutMeaning() {
 }
 
 /* ============================================================
- * S3 — What We Do (sand, asymmetric capability grid)
- * ============================================================ */
+- S3 — What We Do (sand, asymmetric capability grid)
+- ============================================================ */
 type Capability = {
   n: string
   t: string
@@ -332,8 +339,8 @@ function AboutWhatWeDo() {
 }
 
 /* ============================================================
- * S4 — How We Think (ink, the ONE dark section)
- * ============================================================ */
+- S4 — How We Think (ink, the ONE dark section)
+- ============================================================ */
 const PRINCIPLES = [
   { n: '01', t: 'Strategy Before Execution', d: "We don't start designing until we understand the business, the audience and the goal. Strategy shapes every creative choice — so the work has a reason before it has a look." },
   { n: '02', t: 'Creativity With Purpose', d: "Creativity isn't decoration. It's how we solve problems, communicate ideas and make brands memorable. Every visual choice serves a strategic intent." },
@@ -373,8 +380,8 @@ function AboutHowWeThink() {
 }
 
 /* ============================================================
- * S5 — Why Businesses Choose watNidea (paper)
- * ============================================================ */
+- S5 — Why Businesses Choose watNidea (paper)
+- ============================================================ */
 const REASONS = [
   { t: 'Business Understanding', d: "We start with your business, market and goals — not a moodboard. Every creative choice is grounded in what you're trying to achieve.", featured: true },
   { t: 'Creative Thinking', d: 'Original ideas, not templates. We bring fresh perspectives to every project.' },
@@ -423,12 +430,12 @@ function AboutWhyChoose() {
 }
 
 /* ============================================================
- * S6 — "Our Work in Numbers" — HIDDEN (numbers not verified)
- * ============================================================ */
+- S6 — "Our Work in Numbers" — HIDDEN (numbers not verified)
+- ============================================================ */
 
 /* ============================================================
- * S7 — Final CTA (red)
- * ============================================================ */
+- S7 — Final CTA (red)
+- ============================================================ */
 
 const aboutJsonLd = {
   '@context': 'https://schema.org',
@@ -469,6 +476,6 @@ export default function AboutPage() {
         />
       </main>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutJsonLd) }} />
-    </div>
+   </div>
   )
 }

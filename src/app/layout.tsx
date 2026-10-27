@@ -3,7 +3,7 @@ import { Playfair_Display, Poppins } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { site } from "@/lib/siteContent";
-import ClientLayoutWrapper from "@/components/ClientLayoutWrapper"; // We'll create this tiny wrapper
+import ClientLayoutWrapper from "@/components/ClientLayoutWrapper";
 
 const poppins = Poppins({
   variable: "--font-geist-sans",
@@ -21,7 +21,7 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(site.url), // <-- This forces all relative paths & alternates to use https://watnidea.com
+  metadataBase: new URL(site.url), // Forces all relative paths to https://watnidea.com
   verification: {
     google: 'EM7JIBer6u03L0M18NQqLIRu4FY8hiYeSiBavFf_mUI',
   },
@@ -44,13 +44,13 @@ export const metadata: Metadata = {
     icon: "/watnidea-favicon.png",
     apple: "/watnidea-favicon-64.png",
   },
-  alternates: { canonical: "/" },
+  alternates: { canonical: "./" }, // <-- FIXED: Added dot to make it dynamically resolve for every page
   openGraph: {
     title: `Branding & Creative Agency in Noida, Delhi NCR | watNidea`,
     description: "Branding and creative agency in Noida, Delhi NCR for brand identity, websites, video, social media, performance marketing, AI advertising and SEO.",
     siteName: site.name,
     type: "website",
-    url: "/",
+    url: "./", // <-- FIXED: Use current route dynamically
     images: [
       {
         url: "/og-image.png",

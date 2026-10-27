@@ -7,6 +7,7 @@ import { Section, Container, Reveal } from '@/components/site/primitives'
 export const metadata: Metadata = {
   title: 'Terms and Conditions | watNidea',
   description: 'Terms governing the watNidea website and enquiries for watNidea services.',
+  alternates: { canonical: 'https://watnidea.com/terms' }, // FIXED: Explicit non-www absolute URL added
 }
 
 const EFFECTIVE_DATE = '14 January 2026'

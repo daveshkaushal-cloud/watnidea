@@ -5,23 +5,23 @@ import SiteFooter from '@/components/site/site-footer'
 import { getVerifiedArticles } from '@/lib/siteContent'
 
 /* ------------------------------------------------------------------ *
- * /insights/[slug] — article detail route.
+- /insights/[slug] — article detail route.
  *
- * As of today there are NO verified articles (getVerifiedArticles()
- * returns []). This route exists and is READY for future articles:
+- As of today there are NO verified articles (getVerifiedArticles()
+- returns []). This route exists and is READY for future articles:
  *
- *   - generateStaticParams() returns [] (no SSG paths yet)
- *   - With dynamicParams = false, any slug not in the static set
- *     automatically 404s. We additionally call notFound() as a
- *     defensive fallback at request time.
+- generateStaticParams() returns [] (no SSG paths yet)
+- With dynamicParams = false, any slug not in the static set
+-     automatically 404s. We additionally call notFound() as a
+-     defensive fallback at request time.
  *
- * We NEVER invent article bodies, authors, or dates. The author is
- * always "watNidea Editorial Team" — never invented employee names.
+- We NEVER invent article bodies, authors, or dates. The author is
+- always "watNidea Editorial Team" — never invented employee names.
  *
- * When the studio is ready to publish, add a verified Article to
- * ARTICLES in src/lib/siteContent.ts; this route will start serving
- * it automatically (after rebuilding the static params list).
- * ------------------------------------------------------------------ */
+- When the studio is ready to publish, add a verified Article to
+- ARTICLES in src/lib/siteContent.ts; this route will start serving
+- it automatically (after rebuilding the static params list).
+- ------------------------------------------------------------------ */
 
 export const dynamicParams = false
 
@@ -36,13 +36,13 @@ export function generateMetadata({
   params: Promise<{ slug: string }>
 }): Metadata {
   // We do not have any articles yet. Return a minimal, honest title
-  // that points back at the Insights index (canonical: /insights) and
+  // that points back at the Insights index (canonical: https://watnidea.com/insights) and
   // asks robots not to index a non-existent article URL.
   return {
     title: 'Insights',
     description:
       'Essays on brand, craft and growth from the watNidea studio.',
-    alternates: { canonical: '/insights' },
+    alternates: { canonical: 'https://watnidea.com/insights' }, // FIXED: Exact non-www absolute URL
     robots: { index: false, follow: true },
   }
 }

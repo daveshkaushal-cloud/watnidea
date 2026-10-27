@@ -25,7 +25,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const title = post.metaTitle || post.title;
   const description = post.metaDescription || post.excerpt || "";
-  const canonical = post.canonicalUrl || `https://www.watnidea.com/blog/${post.slug}`;
+  // FIXED: Removed www from the fallback canonical URL
+  const canonical = post.canonicalUrl || `https://watnidea.com/blog/${post.slug}`;
   const ogImg = post.ogImage || post.coverImage || undefined;
 
   return {
@@ -125,8 +126,9 @@ export default async function SingleBlogPostPage({ params }: Props) {
     datePublished: post.createdAt.toISOString(),
     dateModified: post.updatedAt.toISOString(),
     author: { "@type": "Person", name: post.author?.name || "Watnidea Team" },
-    publisher: { "@type": "Organization", name: "Watnidea", url: "https://www.watnidea.com" },
-    mainEntityOfPage: { "@type": "WebPage", "@id": post.canonicalUrl || `https://www.watnidea.com/blog/${post.slug}` },
+    publisher: { "@type": "Organization", name: "Watnidea", url: "https://watnidea.com" },
+    // FIXED: Removed www from the schema markup
+    mainEntityOfPage: { "@type": "WebPage", "@id": post.canonicalUrl || `https://watnidea.com/blog/${post.slug}` },
   };
 
   return (

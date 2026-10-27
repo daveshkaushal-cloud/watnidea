@@ -7,6 +7,7 @@ import { Section, Container, Reveal } from '@/components/site/primitives'
 export const metadata: Metadata = {
   title: 'Privacy Policy | watNidea',
   description: 'How watNidea Private Limited collects, uses and protects personal information.',
+  alternates: { canonical: 'https://watnidea.com/privacy-policy' }, // FIXED: Explicit non-www absolute URL added
 }
 
 const EFFECTIVE_DATE = '14 January 2026'

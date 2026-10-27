@@ -8,50 +8,50 @@ import { InsightsNewsletter } from '@/components/site/insights/newsletter'
 import { EndingCTA } from '@/components/site/primitives'
 
 /* ------------------------------------------------------------------ *
- * /insights — Gen-Z studio zine "Editorial Digital Playground"
+- /insights — Gen-Z studio zine "Editorial Digital Playground"
  *
- * As of today, getVerifiedArticles() returns []. There are no real
- * published essays. Rather than fabricate articles, readership numbers
- * or invented authors, this page surfaces an honest "we're writing our
- * first pieces now" experience across 5 zine-style sections:
+- As of today, getVerifiedArticles() returns []. There are no real
+- published essays. Rather than fabricate articles, readership numbers
+- or invented authors, this page surfaces an honest "we're writing our
+- first pieces now" experience across 5 zine-style sections:
  *
- *   1. Cover hero        — paper (light), single <h1>, "Coming soon" sticker,
- *                          IdeaStamp, big "ISSUE 01" graphical number
- *   2. Topics grid       — sand (light), 8 colour-coded topic cards
- *                          with "ESSAY 0X" issue-number styling
- *   3. Reading list      — ink (DARK — the ONE dark moment on the page),
- *                          Marquee of the 8 topics with "Currently writing" sticker
- *   4. Newsletter        — mint (light colour), REAL functional form that
- *                          POSTs to /api/newsletter. Email + honeypot
- *                          `company`. Privacy + Terms links (real <Link>).
- *   5. Final CTA         — red (colour), "Have a project in mind?"
+- Cover hero        — paper (light), single <h1>, "Coming soon" sticker,
+-                          IdeaStamp, big "ISSUE 01" graphical number
+-   2. Topics grid       — sand (light), 8 colour-coded topic cards
+-                          with "ESSAY 0X" issue-number styling
+-   3. Reading list      — ink (DARK — the ONE dark moment on the page),
+-                          Marquee of the 8 topics with "Currently writing" sticker
+-   4. Newsletter        — mint (light colour), REAL functional form that
+-                          POSTs to /api/newsletter. Email + honeypot
+-                          `company`. Privacy + Terms links (real <Link>).
+-   5. Final CTA         — red (colour), "Have a project in mind?"
  *
- * Colour rhythm: paper → sand → ink → mint → red.
- *   - 3 light / colour surfaces (paper, sand, mint)
- *   - 1 colour block (red)
- *   - 1 dark moment (ink)
- * Exactly ONE <h1> (the cover). Section titles are <h2>.
+- Colour rhythm: paper → sand → ink → mint → red.
+- 3 light / colour surfaces (paper, sand, mint)
+- 1 colour block (red)
+- 1 dark moment (ink)
+- Exactly ONE <h1> (the cover). Section titles are <h2>.
  *
- * NO fake articles, NO fake authors, NO fake readership numbers.
- * NO LiquidChrome / ParticleField / CustomCursor / old Navbar/Footer.
- * Shared primitives only.
+- NO fake articles, NO fake authors, NO fake readership numbers.
+- NO LiquidChrome / ParticleField / CustomCursor / old Navbar/Footer.
+- Shared primitives only.
  *
- * The page is a SERVER component so we can export unique <Metadata>.
- * Each section below is a small client component (for Framer Motion).
- * ------------------------------------------------------------------ */
+- The page is a SERVER component so we can export unique <Metadata>.
+- Each section below is a small client component (for Framer Motion).
+- ------------------------------------------------------------------ */
 
 export const metadata: Metadata = {
   title: 'Insights · watNidea',
   description:
     'Essays on brand, craft and growth from the watNidea studio.',
-  alternates: { canonical: '/insights' },
+  alternates: { canonical: 'https://watnidea.com/insights' }, // FIXED: Exact non-www absolute URL
   robots: { index: false, follow: true },
   openGraph: {
     title: 'Insights · watNidea',
     description:
       'Essays on brand, craft and growth from the watNidea studio.',
     type: 'website',
-    url: '/insights',
+    url: 'https://watnidea.com/insights', // FIXED: Exact non-www absolute URL
   },
   twitter: {
     card: 'summary_large_image',

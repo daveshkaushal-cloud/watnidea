@@ -1,30 +1,31 @@
 /* ------------------------------------------------------------------ *
- * /book-strategy-call — Contact / Start-a-Project page.
+- /book-strategy-call — Contact / Start-a-Project page.
  *
- * Positioning: both a project-enquiry page and an invitation to start
- * a conversation.
+- Positioning: both a project-enquiry page and an invitation to start
+- a conversation.
  *
- * 8 visible sections + Final CTA. Exactly ONE <h1> (the hero).
- * All section titles are <h2> via `EditorialHeading`.
- * The Final CTA renders its own <h2> (id="book-final-heading").
+- 8 visible sections + Final CTA. Exactly ONE <h1> (the hero).
+- All section titles are <h2> via `EditorialHeading`.
+- The Final CTA renders its own <h2> (id="book-final-heading").
  *
- * Colour rhythm: paper (hero) → white (form) → sand (services) →
- *   ink (conversation — the ONE dark section) → paper (direct contact) →
- *   sand (FAQ) → red (final CTA).
- * ≈ 4 light + 1 dark + 1 colour block. Matches "one dark section maximum".
+- Colour rhythm: paper (hero) → white (form) → sand (services) →
+-   ink (conversation — the ONE dark section) → paper (direct contact) →
+-   sand (FAQ) → red (final CTA).
+- ≈ 4 light + 1 dark + 1 colour block. Matches "one dark section maximum".
  *
- * Honesty:
- *   - NO invented email, phone, address, office, availability or response time.
- *   - Only verified contact info shown (info@watnidea.com confirmed).
- *   - Phone + Location hidden (not verified).
- *   - NO "free", "guaranteed" or specific-time call claims.
- *   - Success shown only after confirmed DB delivery.
- *   - Form uses secure POST — lead data never in URLs.
+- Honesty:
+- NO invented email, phone, address, office, availability or response time.
+- Only verified contact info shown (info@watnidea.com confirmed).
+- Phone + Location hidden (not verified).
+- NO "free", "guaranteed" or specific-time call claims.
+- Success shown only after confirmed DB delivery.
+- Form uses secure POST — lead data never in URLs.
  *
- * Uses ONLY shared primitives + the new section components in
- * `@/components/site/book-strategy-call/`.
- * ------------------------------------------------------------------ */
+- Uses ONLY shared primitives + the new section components in
+- `@/components/site/book-strategy-call/`.
+- ------------------------------------------------------------------ */
 
+import type { Metadata } from 'next' // Added for SEO
 import SiteHeader from '@/components/site/site-header'
 import SiteFooter from '@/components/site/site-footer'
 import {
@@ -38,6 +39,12 @@ import {
 import { ProjectForm } from '@/components/site/book-strategy-call/project-form'
 import { BOOK_FAQS } from '@/lib/book-faq-data'
 import { site } from '@/lib/siteContent'
+
+// Added clean metadata for SEO (inherits canonical from layout.tsx automatically)
+export const metadata: Metadata = {
+  title: "Contact & Book Strategy Call | watNidea",
+  description: "Contact watNidea to discuss branding, websites, video production, social media, SEO, AI advertising, and performance marketing.",
+}
 
 const contactJsonLd = {
   '@context': 'https://schema.org',

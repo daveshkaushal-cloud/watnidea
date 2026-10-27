@@ -2,7 +2,7 @@ export const metadata = {
   title: "Social Media Agency in Noida, Delhi NCR | watNidea",
   description: "Social media agency in Noida, Delhi NCR for strategy, management, Instagram marketing, content and paid social. Book a call.",
   alternates: {
-    canonical: "https://www.watnidea.com/the-hype-engine",
+    canonical: "https://watnidea.com/the-hype-engine",
   }
 };
 
